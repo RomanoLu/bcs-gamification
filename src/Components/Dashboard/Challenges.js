@@ -13,15 +13,15 @@ const Challenges = () => {
               </thead>
               <tbody>
                   <tr className='secondhead'>
-                      <td>Icon</td>
-                      <td>Beschreibung</td>
+                      <td colSpan={2}>Beschreibung</td>
                       <td>Schwierigkeit</td>
                       <td>Zeit</td>
                       <td>Belohnung</td>
                   </tr>
-                  <tr>
-                    <td><i><FaAward /></i></td>
-                      <td>Absolviere 3 Tickets</td>
+                  <tr className='items'>
+                      <td colSpan={2}>
+                          <i><FaAward /></i>
+                          Absolviere 3 Tickets</td>
                       <td>Einfach</td>
                       <td>2 Stunden</td>
                       <td>1/100 Urlaubstage</td>

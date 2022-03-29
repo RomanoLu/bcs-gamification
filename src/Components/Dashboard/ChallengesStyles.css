@@ -8,12 +8,38 @@
 .challenges thead {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
+    text-align: left;
+}
+
+.challenges th{
+    font-weight: normal;
+    font-size: 12;
+    color: #41454c;
 }
 
 .secondhead {
     background-color: #f8f8f8;
+    color: #3E3E3E;
+    font-size: 8px;
+    text-align: left;
+}
+
+.secondhead td {
+    border-left: 0.01px solid #9fa49f;
 }
 
 .challenges tbody {
     background-color: white;
+    color: #2f87ba;
+    font-size: 10px;
+    text-align: left;
 }
+
+tbody:before {
+    line-height:1em;
+    background-color: #f8f8f8;
+    content:"."; 
+    color: #f8f8f8;
+    display:block;
+}
+
