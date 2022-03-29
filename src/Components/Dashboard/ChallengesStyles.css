@@ -1,0 +1,19 @@
+.challenges {
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    background-color: #f8f8f8;
+}
+
+.challenges thead {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.secondhead {
+    background-color: #f8f8f8;
+}
+
+.challenges tbody {
+    background-color: white;
+}

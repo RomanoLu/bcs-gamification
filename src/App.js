@@ -1,11 +1,11 @@
+import React, { Component } from 'react'
 import './App.css';
+import Challenges from './Components/Dashboard/Challenges.js';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>BCS</p>
-      </header>
+        <Challenges />
     </div>
   );
 }
