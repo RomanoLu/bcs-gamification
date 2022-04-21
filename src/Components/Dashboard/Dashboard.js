@@ -11,7 +11,7 @@ import Workflow from './Workflow.js';
 
 const Dashboard = () => {
     return (
-      <div className='dashboard'>
+      <div>
         <Header />
         <Termin/>
         <Challenge/>
@@ -23,6 +23,7 @@ const Dashboard = () => {
         <Wiedervorlagen/>        
         <Workflow/>
       </div>
+
     )
 }
 
