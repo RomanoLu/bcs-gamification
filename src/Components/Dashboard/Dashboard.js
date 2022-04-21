@@ -5,7 +5,7 @@ import './DashboardStyles.css';
 
 const Dashboard = () => {
     return (
-      <div>
+      <div className='dashboard'>
           <Challenge/>
       </div>
     )

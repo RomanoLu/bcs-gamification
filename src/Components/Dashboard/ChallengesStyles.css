@@ -1,10 +1,17 @@
 
 .challenges {
-    width: 100%;
+    flex-wrap: wrap;
+    height: 100px;
+    width: 800px;
+    border-radius: 0px;
+    background-color: #e0e0e0;
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     background-color: #f8f8f8;
+    box-shadow: 5px 5px 10px #cecece,
+    -5px -5px 10px #f2f2f2;
 }
+
 
 .challenges thead {
     font-family: Arial, Helvetica, sans-serif;
