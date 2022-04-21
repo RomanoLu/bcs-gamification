@@ -1,13 +1,26 @@
 import './App.css';
-import Dashboard from './Components/Dashboard/Dashboard.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Dashboard from './Components/Dashboard/Dashboard';
+
+
 
 function App() {
   return (
-    <div className="App">
+    <div className='dashboard'>
       <Dashboard />
     </div>
-  );
+
+  )
 }
 
 export default App;
+
+
+
+    /*
+    <>
+    <Routes>
+      <Route path='/' element={<Home />}/>
+    </Routes>
+    </>
+    */
