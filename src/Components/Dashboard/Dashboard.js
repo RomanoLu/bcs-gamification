@@ -6,11 +6,10 @@ import Header from '../Header/Header.js';
 
 const Dashboard = () => {
     return (
-      <div className='dashboard'>
+      <div>
         <Header />
-        <Challenge/>
-        <Challenge />
       </div>
+
     )
 }
 
