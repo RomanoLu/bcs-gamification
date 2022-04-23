@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from 'react-bootstrap';
 import {FaAward} from 'react-icons/fa';
-import './ChallengesStyles.css';
+import './AufgabenStyles.css';
 function Aufgaben() {
     return (
         <div className='container'>

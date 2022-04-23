@@ -10,21 +10,27 @@ import Workflow from './Workflow.js';
 
 
 const Dashboard = () => {
-    return (
-      <div>
-        <Header />
-        <Termin/>
-        <Challenge/>
-        <Ticket/>
-        <Ticket/>
-        
-        <Aufgaben/>
-        
-        <Wiedervorlagen/>        
-        <Workflow/>
+  return (
+    <div>
+      <Header />
+      <div className='dashboard'>
+        <div className='row1'>
+          <Termin />
+          <Challenge />
+          <Ticket />
+          <Ticket />
+        </div>
+        <div className='row2'>
+          <Aufgaben />
+        </div>
+        <div className='row3'>
+          <Wiedervorlagen />
+          <Workflow />
+        </div>
       </div>
+    </div>
 
-    )
+  )
 }
 
 export default Dashboard
