@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/bcs-gamification/static/css/main.e2e8e03e.css",
+    "main.js": "/bcs-gamification/static/js/main.f93325db.js",
+    "index.html": "/bcs-gamification/index.html",
+    "main.e2e8e03e.css.map": "/bcs-gamification/static/css/main.e2e8e03e.css.map",
+    "main.f93325db.js.map": "/bcs-gamification/static/js/main.f93325db.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e2e8e03e.css",
+    "static/js/main.f93325db.js"
+  ]
+}
