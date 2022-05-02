@@ -4,7 +4,7 @@ import './HeaderStyles.css';
 import {FaSearch, FaStar, FaBell} from 'react-icons/fa';
 import {GiLetterBomb} from 'react-icons/gi';
 import {RiTimerLine, RiSettings5Fill} from 'react-icons/ri';
-import {Navbar, Nav, Tabs, Tab, Sonnet} from 'react-bootstrap';
+import {Navbar, Nav} from 'react-bootstrap';
 import {HiQuestionMarkCircle} from 'react-icons/hi';
 
 
