@@ -22,7 +22,7 @@ function Termin() {
                 <tr className='items'>
                   <td>
                   <i><FaAward /></i>
-                  Aboslviere 3 Tickets
+                  Absolviere 3 Tickets
                   </td>
                   <td>Einfach</td>
                   <td>2 Stunden</td>
