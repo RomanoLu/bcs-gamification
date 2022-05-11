@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/bcs-gamification/static/css/main.a64b20b2.css",
+    "main.css": "/bcs-gamification/static/css/main.ddf54763.css",
     "main.js": "/bcs-gamification/static/js/main.183b5594.js",
     "index.html": "/bcs-gamification/index.html",
-    "main.a64b20b2.css.map": "/bcs-gamification/static/css/main.a64b20b2.css.map",
+    "main.ddf54763.css.map": "/bcs-gamification/static/css/main.ddf54763.css.map",
     "main.183b5594.js.map": "/bcs-gamification/static/js/main.183b5594.js.map"
   },
   "entrypoints": [
-    "static/css/main.a64b20b2.css",
+    "static/css/main.ddf54763.css",
     "static/js/main.183b5594.js"
   ]
 }
