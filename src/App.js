@@ -1,10 +1,10 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Ticket from './Components/Tickets/Ticket';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 function App() {
   return (
-      <Ticket />
+      <Dashboard />
   )
 }
 
