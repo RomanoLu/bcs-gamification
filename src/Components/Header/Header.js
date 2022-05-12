@@ -18,9 +18,9 @@ const Header = () => {
             <Navbar.Toggle className="coloring" />
             <Navbar.Collapse>
               <Nav>
-                <Nav.Link href="#blog">Mein Bereich</Nav.Link>
-                <Nav.Link href="#about-us">Tickets</Nav.Link>
-                <Nav.Link href="#contact-us">Profil</Nav.Link>
+                <Nav.Link href="/dashboard">Mein Bereich</Nav.Link>
+                <Nav.Link href="/tickets">Tickets</Nav.Link>
+                <Nav.Link href="/profile">Profil</Nav.Link>
               </Nav>
           </Navbar.Collapse>
           </Navbar>
