@@ -4,7 +4,7 @@ import './HeaderStyles.css';
 import {FaSearch, FaStar, FaBell} from 'react-icons/fa';
 import {GiLetterBomb} from 'react-icons/gi';
 import {RiTimerLine, RiSettings5Fill} from 'react-icons/ri';
-import {Navbar, Nav, Tabs, Tab, Sonnet} from 'react-bootstrap';
+import {Navbar, Nav} from 'react-bootstrap';
 import {HiQuestionMarkCircle} from 'react-icons/hi';
 <<<<<<< Updated upstream
 
@@ -21,9 +21,9 @@ const Header = () => {
             <Navbar.Toggle className="coloring" />
             <Navbar.Collapse>
               <Nav>
-                <Nav.Link href="#blog">Mein Bereich</Nav.Link>
-                <Nav.Link href="#about-us">Tickets</Nav.Link>
-                <Nav.Link href="#contact-us">Profil</Nav.Link>
+                <Nav.Link href="/dashboard">Mein Bereich</Nav.Link>
+                <Nav.Link href="/tickets">Tickets</Nav.Link>
+                <Nav.Link href="/profile">Profil</Nav.Link>
               </Nav>
           </Navbar.Collapse>
           </Navbar>
