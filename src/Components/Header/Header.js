@@ -6,7 +6,10 @@ import {GiLetterBomb} from 'react-icons/gi';
 import {RiTimerLine, RiSettings5Fill} from 'react-icons/ri';
 import {Navbar, Nav, Tabs, Tab, Sonnet} from 'react-bootstrap';
 import {HiQuestionMarkCircle} from 'react-icons/hi';
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 const Header = () => {
   return (
@@ -58,10 +61,47 @@ const Header = () => {
           </div>
         </div>
       </div>
+<<<<<<< Updated upstream
     </div>
     
 
+=======
+
+
+      <div className='tabs'>
+              <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
+            <Tab eventKey="home" title="Home">
+            </Tab>
+            <Tab eventKey="profile" title="Profile">
+            </Tab>
+            <Tab eventKey="contact" title="Contact" disabled>
+            </Tab>
+          </Tabs>
+      </div>
+      
+    </div>
+>>>>>>> Stashed changes
   )
 }
 
 export default Header
+
+/*
+<div className="App">
+      <Navbar className='test'>
+        <Navbar.Brand>
+          <img src={Logo} width="30px" height="30px" />{' '}
+        </Navbar.Brand>
+
+        <Navbar.Toggle className="coloring" />
+        <Navbar.Collapse>
+          <Nav>
+            <Nav.Link href="#blog">Blog</Nav.Link>
+            <Nav.Link href="#about-us">About Us</Nav.Link>
+            <Nav.Link href="#contact-us">Contact Us</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+
+      </Navbar>
+    </div>
+    */

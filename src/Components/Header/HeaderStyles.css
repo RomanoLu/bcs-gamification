@@ -25,6 +25,7 @@
   justify-content: space-between;
 }
 
+<<<<<<< Updated upstream
 .wrapper .search {
   display: flex;
   align-items: center;
@@ -36,6 +37,20 @@
   align-items: center;
 }
 
+=======
+
+.wrapper .search {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+
+.items {
+  display: flex;
+  align-items: center;
+}
+
+>>>>>>> Stashed changes
 .items .item {
   display: flex;
   align-items: center;
