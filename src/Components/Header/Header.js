@@ -6,10 +6,6 @@ import {GiLetterBomb} from 'react-icons/gi';
 import {RiTimerLine, RiSettings5Fill} from 'react-icons/ri';
 import {Navbar, Nav} from 'react-bootstrap';
 import {HiQuestionMarkCircle} from 'react-icons/hi';
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 
 const Header = () => {
   return (
@@ -61,11 +57,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-<<<<<<< Updated upstream
-    </div>
-    
-
-=======
 
 
       <div className='tabs'>
@@ -80,7 +71,6 @@ const Header = () => {
       </div>
       
     </div>
->>>>>>> Stashed changes
   )
 }
 
