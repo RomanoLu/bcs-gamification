@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  flex-direction: row;
   align-items: stretch;
   border-style: solid;
   border-color: #d0e1ef;
@@ -20,6 +21,43 @@
   order: 0;
   width: 30%;
 }
+
+
+html, body, .app {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0,0,0, 0.5);
+}
+.popup_inner {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 25%;
+  bottom: 25%;
+  height: 450px;
+  margin: auto;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
   
   .container-items:nth-child(2) {
     display: block;
@@ -27,17 +65,16 @@
     flex-shrink: 1;
     flex-basis: auto;
     align-self: stretch;
+    justify-content: center;
     order: 0;
-    width: 70%;
     height: 100%;
-    border-style: dotted;
   }
 
   .card-left {
     width: auto;
   }
 
-  .list {
+  .comp {
     width: 100%;
   }
 
@@ -46,4 +83,93 @@
     height: 90px;
     border-radius: 50%;
     align-self: center;
+    margin-left: 5px;
   }
+
+  .BadgeList {
+    overflow-y: scroll;
+    height: 200px;
+    width: 100%;
+    border-style: solid;
+    margin-left: 10px;
+    border-width: 2px;
+    border-color: #d0e1ef;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .badge-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    align-self: center;
+  }
+
+  .Updates{
+    flex: 50%;
+    background: white;
+    border-radius: 0.7rem;
+    padding: 1rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+}
+
+.update{
+    display: flex;
+    gap: 0.5rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d0e1ef;
+}
+
+.update>img{
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+.noti>div>span:nth-of-type(1){
+    font-weight: bold;
+}
+
+.r1 {
+  width: 900px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+
+.rl {
+  flex: 0 1 auto;
+}
+
+.rl:nth-child(1) {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
+.rl:nth-child(2) {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
+.popup_BadgeList {
+  overflow-y: scroll;
+  height: 70%;
+  width: 80%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #d0e1ef;
+  
+}
+
+.popup-btn {
+  margin-top: 20px;
+}
