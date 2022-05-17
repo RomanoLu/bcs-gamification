@@ -7,7 +7,6 @@ import {RiTimerLine, RiSettings5Fill} from 'react-icons/ri';
 import {Navbar, Nav} from 'react-bootstrap';
 import {HiQuestionMarkCircle} from 'react-icons/hi';
 
-
 const Header = () => {
   return (
     <div className="navbar">
@@ -18,9 +17,9 @@ const Header = () => {
             <Navbar.Toggle className="coloring" />
             <Navbar.Collapse>
               <Nav>
-                <Nav.Link href="#blog">Mein Bereich</Nav.Link>
-                <Nav.Link href="#about-us">Tickets</Nav.Link>
-                <Nav.Link href="#contact-us">Profil</Nav.Link>
+                <Nav.Link href="/dashboard">Mein Bereich</Nav.Link>
+                <Nav.Link href="/tickets">Tickets</Nav.Link>
+                <Nav.Link href="/profile">Profil</Nav.Link>
               </Nav>
           </Navbar.Collapse>
           </Navbar>
@@ -58,10 +57,41 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </div>
-    
 
+
+      <div className='tabs'>
+              <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
+            <Tab eventKey="home" title="Home">
+            </Tab>
+            <Tab eventKey="profile" title="Profile">
+            </Tab>
+            <Tab eventKey="contact" title="Contact" disabled>
+            </Tab>
+          </Tabs>
+      </div>
+      
+    </div>
   )
 }
 
 export default Header
+
+/*
+<div className="App">
+      <Navbar className='test'>
+        <Navbar.Brand>
+          <img src={Logo} width="30px" height="30px" />{' '}
+        </Navbar.Brand>
+
+        <Navbar.Toggle className="coloring" />
+        <Navbar.Collapse>
+          <Nav>
+            <Nav.Link href="#blog">Blog</Nav.Link>
+            <Nav.Link href="#about-us">About Us</Nav.Link>
+            <Nav.Link href="#contact-us">Contact Us</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+
+      </Navbar>
+    </div>
+    */
