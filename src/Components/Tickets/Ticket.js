@@ -2,9 +2,28 @@ import React, { Component } from 'react'
 import './TicketsStyles.css'
 import { FaAward } from 'react-icons/fa';
 import { Table, Dropdown, Button, Form } from 'react-bootstrap';
+import Axios from 'axios';
 
 class Popup extends React.Component {
+    constructor(){
+        super();
+        this.state = {
+            showPopup: false,
+            betreff: "",
+            art: "",
+            bezug: "",
+            prio: "",
+            sta: ""
+        };
+    }
+
     render() {
+        const submit = () => {
+            Axios.post('http://localhost:3001/api/insert', {betreff: this.state.betreff, bezug: this.state.bezug, prio: this.state.prio, sta: this.state.sta }).then(() => {
+                alert("succesfull insert");
+            });
+        };
+
         return (
             <div className='popup'>
                 <div className='popup_inner'>
@@ -13,19 +32,29 @@ class Popup extends React.Component {
                     <Form className='formcontainer'>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Betreff <span style={{ color: 'red' }}>*</span></Form.Label>
-                            <Form.Control className='tfstyle' type="email" />
+                            <Form.Control onChange={(e) => {
+                                this.setState({ betreff: e.target.value })
+                            }} className='tfstyle' type="email" />
                         </Form.Group>
                         <div className='parent'>
                             <div className='div1'>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Ticketart <span style={{ color: 'red' }}>*</span></Form.Label>
-                                    <Form.Control className='tfstyle' type="email" />
+                                    <Form.Control onChange={(e) => {
+                                        this.setState({ art: e.target.value })
+                                        }} className='tfstyle' type="email" />
                                     <Form.Label>Bezug <span style={{ color: 'red' }}>*</span></Form.Label>
-                                    <Form.Control className='tfstyle' type="email" />
-                                    <Form.Label>Status <span style={{ color: 'red' }}>*</span></Form.Label>
-                                    <Form.Control className='tfstyle' type="email" />
+                                    <Form.Control onChange={(e) => {
+                                        this.setState({ bezug: e.target.value })
+                                        }} className='tfstyle' type="email" />
+                                    <Form.Label>sta <span style={{ color: 'red' }}>*</span></Form.Label>
+                                    <Form.Control onChange={(e) => {
+                                    this.setState({ sta: e.target.value })
+                                    }}className='tfstyle' type="email" />
                                     <Form.Label>Priorität (intern) <span style={{ color: 'red' }}>*</span></Form.Label>
-                                    <Form.Control className='tfstyle' type="email" />
+                                    <Form.Control onChange={(e) => {
+                                        this.setState({ prio: e.target.value })
+                                        }}className='tfstyle' type="email" />
                                 
                                 </Form.Group>
                             </div>
@@ -42,7 +71,7 @@ class Popup extends React.Component {
                         </div>
 
 
-                        <Button variant="primary" onClick={this.props.closePopup}>
+                        <Button variant="primary" onClick={submit}>
                             Submit
                         </Button>
                     </Form>
@@ -51,8 +80,6 @@ class Popup extends React.Component {
         );
     }
 }
-
-
 
 class Ticket extends Component {
     constructor() {
