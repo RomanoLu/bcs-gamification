@@ -1,0 +1,33 @@
+.flexboxContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+}
+
+.flexboxItem {
+  width: 100rem;
+  margin: 150px;
+  border: 2px solid rgb(0, 0, 0);
+  background-color: #dfdfdf;
+}
+
+.flexboxItem1 {
+  min-height: 100px;
+}
+
+.flexboxItem2 {
+  min-height: 100px;
+  flex-direction: row;
+}
+
+.flexboxItem3 {
+  min-height: 100px;
+}
+
+.text {
+  margin-top: 1cm;
+}
+
+.form {
+  background-color: #04063d;
+}
