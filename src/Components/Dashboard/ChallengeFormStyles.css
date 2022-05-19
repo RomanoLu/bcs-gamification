@@ -1,13 +1,19 @@
 .flexboxContainer {
   display: flex;
   justify-content: center;
-  margin-top: 150px;
+  flex-direction: row;
+  margin-top: 2%;
+  border-collapse: collapse;
+  background-color: #f8f8f8;
+  box-shadow: 5px 5px 10px #cecece,
+  -5px -5px 10px #f2f2f2;
+  margin-left: 30%;
+  margin-right: 30%;
 }
 
 .flexboxItem {
   width: 100rem;
   margin: 150px;
-  border: 2px solid rgb(0, 0, 0);
   background-color: #dfdfdf;
 }
 
@@ -28,6 +34,15 @@
   margin-top: 1cm;
 }
 
-.form {
-  background-color: #04063d;
+.form-select {
+  background-color: #d5e8f6;
 }
+.form {
+  background-color: #d5e8f6;
+}
+
+h2{
+  margin-top: 50px;
+}
+
+

@@ -22,8 +22,21 @@ app.post('/api/insert', (req, res) => {
     const bezug = req.body.bezug;
     const sta = req.body.sta;
     const prio = req.body.prio;
-    const sqlInsert = 'INSERT INTO tickets (Betreff, Bezug, Status, Priorität) VALUES (?,?,?,?);';
+    const sqlInsert = 'INSERT INTO ticket (Betreff, Bezug, Status, Priorität) VALUES (?,?,?,?);';
     db.query(sqlInsert, [betreff, bezug, sta, prio], (err, result) => {
+    console.log(err)
+    })
+});
+
+app.post('/api/insertChallenge', (req, res) => {
+    const beschreibung = req.body.beschreibung;
+    const titel = req.body.titel;
+    const schwierigkeit = req.body.schwierigkeit;
+    const idbelohnung = req.body.idbelohnung;
+    const zeit = req.body.zeit;    
+    const ende = req.body.ende;
+    const sqlInsert = 'INSERT INTO challenges (beschreibung, titel, schwierigkeit, idbelohnung, zeit, ende) VALUES (?,?,?,?);';
+    db.query(sqlInsert, [beschreibung, titel, schwierigkeit, idbelohnung, zeit, ende], (err, result) => {
     console.log(err)
     })
 });

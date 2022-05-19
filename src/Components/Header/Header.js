@@ -20,6 +20,8 @@ const Header = () => {
                 <Nav.Link href="/dashboard">Mein Bereich</Nav.Link>
                 <Nav.Link href="/tickets">Tickets</Nav.Link>
                 <Nav.Link href="/profile">Profil</Nav.Link>
+                <Nav.Link href="/newChallenge">Neue Challenge Anlegen</Nav.Link>
+                
               </Nav>
           </Navbar.Collapse>
           </Navbar>
