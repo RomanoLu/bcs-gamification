@@ -17,12 +17,12 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 
-app.post('/api/insert', (req, res) => {
+app.post('/api/insertTicket', (req, res) => {
     const betreff = req.body.betreff;
     const bezug = req.body.bezug;
     const sta = req.body.sta;
     const prio = req.body.prio;
-    const sqlInsert = 'INSERT INTO ticket (Betreff, Bezug, Status, Priorität) VALUES (?,?,?,?);';
+    const sqlInsert = 'INSERT INTO tickets (Betreff, Bezug, Status, Priorität, Erstellt_am) VALUES (?,?,?,?, now());';
     db.query(sqlInsert, [betreff, bezug, sta, prio], (err, result) => {
     console.log(err)
     })

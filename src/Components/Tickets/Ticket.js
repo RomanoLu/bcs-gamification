@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './TicketsStyles.css'
 import { FaAward } from 'react-icons/fa';
-import { Table, Dropdown, Button, Form } from 'react-bootstrap';
+import { Table, Dropdown, Button, Form, DropdownButton } from 'react-bootstrap';
 import Axios from 'axios';
 
 class Popup extends React.Component {
@@ -10,20 +10,24 @@ class Popup extends React.Component {
         this.state = {
             showPopup: false,
             betreff: "",
-            art: "",
+            art: "Fehler",
             bezug: "",
-            prio: "",
-            sta: ""
+            prio: "Normal",
+            sta: "Neu"
         };
     }
 
     render() {
         const submit = () => {
-            Axios.post('http://localhost:3001/api/insert', {betreff: this.state.betreff, bezug: this.state.bezug, prio: this.state.prio, sta: this.state.sta }).then(() => {
-                alert("succesfull insert");
-            });
+            if(this.state.betreff == "" || this.state.bezug == "") {
+                alert("Bitte füllen Sie alle Pflichtfelder aus!")
+            } else {
+                this.props.closePopup();
+                Axios.post('http://localhost:3001/api/insertTicket', {betreff: this.state.betreff, bezug: this.state.bezug, prio: this.state.prio, sta: this.state.sta }).then(() => {
+                    console.log("succesfull insert");
+                });
+            }
         };
-
         return (
             <div className='popup'>
                 <div className='popup_inner'>
@@ -40,22 +44,58 @@ class Popup extends React.Component {
                             <div className='div1'>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Ticketart <span style={{ color: 'red' }}>*</span></Form.Label>
-                                    <Form.Control onChange={(e) => {
-                                        this.setState({ art: e.target.value })
-                                        }} className='tfstyle' type="email" />
+                                    <DropdownButton
+                                        title={this.state.art}
+                                        id="dropdown-menu-align-responsive-1"
+                                        onSelect={(e) => {
+                                            this.setState({ art: e })}}
+                                            >
+                                                <Dropdown.Item eventKey="Fehler" style = {{ backgroundColor: '#f0f9ff' }}>Fehler</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Anpassung" style = {{ backgroundColor: '#f0f9ff' }}>Anpassung</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Dienstleistung" style = {{ backgroundColor: '#f0f9ff' }}>Dienstleistung</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Offener Punkt" style = {{  backgroundColor: '#f0f9ff' }}>Offener Punkt</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Vorschlag" style = {{ backgroundColor: '#f0f9ff' }}>Vorschlag</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Anfrage" style = {{  backgroundColor: '#f0f9ff' }}>Anfrage</Dropdown.Item>
+                                    </DropdownButton>
                                     <Form.Label>Bezug <span style={{ color: 'red' }}>*</span></Form.Label>
                                     <Form.Control onChange={(e) => {
                                         this.setState({ bezug: e.target.value })
                                         }} className='tfstyle' type="email" />
-                                    <Form.Label>sta <span style={{ color: 'red' }}>*</span></Form.Label>
-                                    <Form.Control onChange={(e) => {
-                                    this.setState({ sta: e.target.value })
-                                    }}className='tfstyle' type="email" />
-                                    <Form.Label>Priorität (intern) <span style={{ color: 'red' }}>*</span></Form.Label>
-                                    <Form.Control onChange={(e) => {
-                                        this.setState({ prio: e.target.value })
-                                        }}className='tfstyle' type="email" />
-                                
+                                    <Form.Label>Status <span style={{ color: 'red' }}>*</span></Form.Label>
+                                    <DropdownButton
+                                        title={this.state.sta}
+                                        id="dropdown-menu-align-responsive-1"
+                                        onSelect={(e) => {
+                                            this.setState({ sta: e })}}
+                                            >
+                                                <Dropdown.Item eventKey="Neu" style = {{ color:'blue', backgroundColor: '#f0f9ff' }}>Neu</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Gesichtet" style = {{ color: 'red', backgroundColor: '#f0f9ff' }}>Gesichtet</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Klärung" style = {{ color: 'purple',backgroundColor: '#f0f9ff' }}>Klärung</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Absprache" style = {{ backgroundColor: '#f0f9ff' }}>Absprache</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Angeboten" style = {{ color: 'purple', backgroundColor: '#f0f9ff' }}>Angeboten</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Aufgenommen" style = {{ backgroundColor: '#f0f9ff' }}>Aufgenommen</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Eingeplant" style = {{  backgroundColor: '#f0f9ff' }}>Eingeplant</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Bearbeitung" style = {{ color: 'red', backgroundColor: '#f0f9ff' }}>Bearbeitung</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Abnahme" style = {{ color: 'green',backgroundColor: '#f0f9ff' }}>Abnahme</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Geschlossen" style = {{ color: 'green', backgroundColor: '#f0f9ff' }}>Geschlossen</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Unbeantwortet" style = {{ backgroundColor: '#f0f9ff' }}>Unbeantwortet</Dropdown.Item>
+                                                <Dropdown.Item eventKey="(Importiert)" style = {{  backgroundColor: '#f0f9ff' }}>(Importiert)</Dropdown.Item>
+                                    </DropdownButton>
+                                    <Form.Label>Priorität (intern) <span style={{ color: 'red' }}>*</span></Form.Label>                                
+                                    <DropdownButton
+                                        title={this.state.prio}
+                                        id="dropdown-menu-align-responsive-1"
+                                        onSelect={(e) => {
+                                            this.setState({ prio: e })}}
+                                            >
+                                                <Dropdown.Item eventKey="Maximal" style = {{ backgroundColor: '#f0f9ff' }}>Maximal</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Sehr Hoch" style = {{ color:'#FF0000', backgroundColor: '#f0f9ff' }}>Sehr Hoch</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Hoch" style = {{ color: '#AA0000', backgroundColor: '#f0f9ff' }}>Hoch</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Normal" style = {{ backgroundColor: '#f0f9ff' }}>Normal</Dropdown.Item>
+                                                <Dropdown.Item eventKey="Niedrig" style = {{ color: '#c7c7c7', backgroundColor: '#f0f9ff' }}>Niedrig</Dropdown.Item>
+                                    </DropdownButton>
+
+                                    
                                 </Form.Group>
                             </div>
                             <div className='div2'>
