@@ -1,5 +1,5 @@
 import React from 'react';
-import './ProfileStyles.css';
+import ProfileCSS from'./ProfileStyles.module.css';
 import {Card, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {BiCheckCircle} from 'react-icons/bi';
 import {ImInfo} from 'react-icons/im';
@@ -9,18 +9,18 @@ import { Button, ProgressBar} from 'react-bootstrap';
 class Popup extends React.Component {
     render() {
         return (
-            <div className='popup'>
-                <div className='popup_inner'>
+            <div className={ProfileCSS.popup}>
+                <div className={ProfileCSS.popup_inner}>
                     <h4>Offene Badges</h4>
-                    <div className='popup_BadgeList'>
-                      <div className="Updates">
-                          <div className="update">
+                    <div className={ProfileCSS.popup_BadgeList}>
+                      <div className={ProfileCSS.Updates}>
+                          <div className={ProfileCSS.update}>
                                   <img
                               src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
                               alt=""
-                              className="avatar"
+                              className={ProfileCSS.avatar}
                               />                   
-                              <div className="noti">
+                              <div className={ProfileCSS.noti}>
                                   <div  style={{marginBottom: '0.5rem'}}>
                                       <span>Rockstar</span> <br/>
                                       <span style={{color: 'grey'}}>Resolved 50 Tickets, at the speed of light.</span> <br/>
@@ -29,13 +29,13 @@ class Popup extends React.Component {
                               </div>
                           </div>
       
-                          <div className="update">
+                          <div className={ProfileCSS.update}>
                                   <img
                               src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
                               alt=""
-                              className="avatar"
+                              className={ProfileCSS.avatar}
                               />                   
-                              <div className="noti">
+                              <div className={ProfileCSS.noti}>
                                   <div  style={{marginBottom: '0.5rem'}}>
                                       <span>Rockstar</span> <br/>
                                       <span style={{color: 'grey'}}>Resolved 50 Tickets, at the speed of light.</span> <br/>
@@ -44,13 +44,13 @@ class Popup extends React.Component {
                               </div>
                           </div>
       
-                          <div className="update">
+                          <div className={ProfileCSS.update}>
                                   <img
                               src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
                               alt=""
-                              className="avatar"
+                              className={ProfileCSS.avatar}
                               />                   
-                              <div className="noti">
+                              <div className={ProfileCSS.noti}>
                                   <div  style={{marginBottom: '0.5rem'}}>
                                       <span>Rockstar</span> <br/>
                                       <span style={{color: 'grey'}}>Resolved 50 Tickets, at the speed of light.</span> <br/>
@@ -59,13 +59,13 @@ class Popup extends React.Component {
                               </div>
                           </div>
       
-                          <div className="update">
+                          <div className={ProfileCSS.update}>
                                   <img
                               src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
                               alt=""
-                              className="avatar"
+                              className={ProfileCSS.avatar}
                               />                   
-                              <div className="noti">
+                              <div className={ProfileCSS.noti}>
                                   <div  style={{marginBottom: '0.5rem'}}>
                                       <span>Rockstar</span> <br/>
                                       <span style={{color: 'grey'}}>Resolved 50 Tickets, at the speed of light.</span> <br/>
@@ -76,7 +76,7 @@ class Popup extends React.Component {
                       </div>
                   </div>  
                   
-                  <div className = 'popup-btn'>
+                  <div className = {ProfileCSS.popupbtn}>
                   <Button variant="primary"  onClick={this.props.closePopup}>
                             Schließe Fenster
                   </Button>
@@ -92,7 +92,7 @@ class Profile extends React.Component {
     constructor() {
         super();
         this.state = {
-            showPopup: false
+            showPopup: true
         };
     }
     togglePopup() {
@@ -102,20 +102,20 @@ class Profile extends React.Component {
     }
     render(){
         return (
-            <div className='container'>
-                <div className='container-items'>
-                  <Card className ='card-left'>
+            <div className={ProfileCSS.container}>
+                <div className={ProfileCSS.containeritems}>
+                  <Card className ={ProfileCSS.cardleft}>
                   <img
                     src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
                     alt=""
-                    className="avatar"
+                    className={ProfileCSS.avatar}
                   />
                       <Card.Body>
                           <Card.Title>Fatih Kuruscu</Card.Title>
                           <Card.Text>
                           </Card.Text>
                       </Card.Body>
-                      <ListGroup className="list-group-flush">
+                      <ListGroup className={ProfileCSS.listgroupflush}>
                           <ListGroupItem>
                               <h6>Adresse</h6>
                               <p>Hochschule Reutlingen <br />
@@ -137,26 +137,25 @@ class Profile extends React.Component {
                   </Card>
                 </div>
       
-                <div className='container-items'>
-                    <div className='r1'>
-                      <div className='rl'>
+                <div className={ProfileCSS.containeritems}>
+                    <div className={ProfileCSS.r1}>
+                      <div className={ProfileCSS.rl}>
                           <h5 style = {{marginTop: '15px', marginLeft: '15px'}}>Badges</h5>
                       </div>
-                      <div className='rl'>
-                          <ImInfo size= {20} onClick={this.togglePopup.bind(this)} style= {{marginTop: '10px' }}/>
+                      <div className={ProfileCSS.rl}>
+                          <ImInfo size= {20} onClick= {this.togglePopup.bind(this) } style= {{marginTop: '10px' }}/>
                       </div>
-                    </div>
+                    </div>      
       
-      
-                  <div className='BadgeList'>
-                      <div className="Updates">
-                          <div className="update">
+                  <div className={ProfileCSS.BadgeList}>
+                      <div className={ProfileCSS.Updates}>
+                          <div className={ProfileCSS.update}>
                                   <img
                               src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
                               alt=""
-                              className="avatar"
+                              className={ProfileCSS.avatar}
                               />                   
-                              <div className="noti">
+                              <div className={ProfileCSS.noti}>
                                   <div  style={{marginBottom: '0.5rem'}}>
                                       <span>Rockstar</span> <br/>
                                       <span style={{color: 'grey'}}>Resolved 50 Tickets, at the speed of light.</span> <br/>
@@ -165,13 +164,13 @@ class Profile extends React.Component {
                               </div>
                           </div>
       
-                          <div className="update">
+                          <div className={ProfileCSS.update}>
                                   <img
                               src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
                               alt=""
-                              className="avatar"
+                              className={ProfileCSS.avatar}
                               />                   
-                              <div className="noti">
+                              <div className={ProfileCSS.noti}>
                                   <div  style={{marginBottom: '0.5rem'}}>
                                       <span>Rockstar</span> <br/>
                                       <span style={{color: 'grey'}}>Resolved 50 Tickets, at the speed of light.</span> <br/>
@@ -180,13 +179,13 @@ class Profile extends React.Component {
                               </div>
                           </div>
       
-                          <div className="update">
+                          <div className={ProfileCSS.update}>
                                   <img
                               src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
                               alt=""
-                              className="avatar"
+                              className={ProfileCSS.avatar}
                               />                   
-                              <div className="noti">
+                              <div className={ProfileCSS.noti}>
                                   <div  style={{marginBottom: '0.5rem'}}>
                                       <span>Rockstar</span> <br/>
                                       <span style={{color: 'grey'}}>Resolved 50 Tickets, at the speed of light.</span> <br/>
@@ -195,13 +194,13 @@ class Profile extends React.Component {
                               </div>
                           </div>
       
-                          <div className="update">
+                          <div className={ProfileCSS.update}>
                                   <img
                               src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
                               alt=""
-                              className="avatar"
+                              className={ProfileCSS.avatar}
                               />                   
-                              <div className="noti">
+                              <div className={ProfileCSS.noti}>
                                   <div  style={{marginBottom: '0.5rem'}}>
                                       <span>Rockstar</span> <br/>
                                       <span style={{color: 'grey'}}>Resolved 50 Tickets, at the speed of light.</span> <br/>
@@ -213,15 +212,15 @@ class Profile extends React.Component {
                   </div>
                   <hr></hr>
 
-                <div className='Medaille'>
+                <div className={ProfileCSS.Medaille}>
                     <h5 style = {{marginTop: '15px', marginLeft: '15px'}}>Wander-Medaillie</h5>
-                    <div className="update">
+                    <div className={ProfileCSS.update}>
                             <img
                         src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
                         alt=""
-                        className="avatar"
+                        className={ProfileCSS.avatar}
                         />                   
-                        <div className="noti">
+                        <div className={ProfileCSS.noti}>
                             <div  style={{marginBottom: '0.5rem'}}>
                                 <span>Rockstar</span> <br/>
                                 <span style={{color: 'grey'}}>Resolved 50 Tickets, at the speed of light.</span> <br/>
