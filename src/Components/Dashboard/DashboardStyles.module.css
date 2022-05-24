@@ -1,43 +1,40 @@
 .dashboard {
-    display: flex;
-    justify-items: center;
-    align-content: center;
-    flex-direction: column;
-    margin-left: 25px;
-    margin-right: 25px;
+  display: flex;
+  justify-items: center;
+  align-content: center;
+  flex-direction: column;
+  margin-left: 25px;
+  margin-right: 25px;
 }
 
 .row1 {
-    display: flex;
-    flex-direction: row;
-    justify-items: center;
-    flex-wrap: wrap; 
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  flex-wrap: wrap;
 }
 
 .row2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    justify-items: center;
-    flex-wrap: wrap; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  justify-items: center;
+  flex-wrap: wrap;
 }
 .row3 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    justify-items: center;
-    flex-wrap: wrap; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  justify-items: center;
+  flex-wrap: wrap;
 }
 .row4 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    justify-items: center;
-    flex-wrap: wrap; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  justify-items: center;
+  flex-wrap: wrap;
 }
-
-
-
 
 /*
 .row-1 {
