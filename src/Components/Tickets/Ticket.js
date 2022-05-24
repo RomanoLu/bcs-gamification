@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './TicketsStyles.css'
+import TicketCSS from './TicketsStyles.module.css'
 import { FaAward } from 'react-icons/fa';
-import { Table, Dropdown, Button, Form, DropdownButton } from 'react-bootstrap';
+import { Table, Dropdown, Button, Form } from 'react-bootstrap';
 import Axios from 'axios';
 
 class Popup extends React.Component {
@@ -19,7 +19,7 @@ class Popup extends React.Component {
 
     render() {
         const submit = () => {
-            if(this.state.betreff == "" || this.state.bezug == "") {
+            if(this.state.betreff === "" || this.state.bezug === "") {
                 alert("Bitte füllen Sie alle Pflichtfelder aus!")
             } else {
                 this.props.closePopup();
@@ -29,88 +29,100 @@ class Popup extends React.Component {
             }
         };
         return (
-            <div className='popup'>
-                <div className='popup_inner'>
+            <div className={TicketCSS.popup}>
+                <div className={TicketCSS.popup_inner}>
                     <h4>Neues Ticket erstellen</h4>
                     <hr></hr>
-                    <Form className='formcontainer'>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Betreff <span style={{ color: 'red' }}>*</span></Form.Label>
-                            <Form.Control onChange={(e) => {
-                                this.setState({ betreff: e.target.value })
-                            }} className='tfstyle' type="email" />
-                        </Form.Group>
-                        <div className='parent'>
-                            <div className='div1'>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Label>Ticketart <span style={{ color: 'red' }}>*</span></Form.Label>
-                                    <DropdownButton
-                                        title={this.state.art}
-                                        id="dropdown-menu-align-responsive-1"
-                                        onSelect={(e) => {
-                                            this.setState({ art: e })}}
-                                            >
-                                                <Dropdown.Item eventKey="Fehler" style = {{ backgroundColor: '#f0f9ff' }}>Fehler</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Anpassung" style = {{ backgroundColor: '#f0f9ff' }}>Anpassung</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Dienstleistung" style = {{ backgroundColor: '#f0f9ff' }}>Dienstleistung</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Offener Punkt" style = {{  backgroundColor: '#f0f9ff' }}>Offener Punkt</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Vorschlag" style = {{ backgroundColor: '#f0f9ff' }}>Vorschlag</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Anfrage" style = {{  backgroundColor: '#f0f9ff' }}>Anfrage</Dropdown.Item>
-                                    </DropdownButton>
-                                    <Form.Label>Bezug <span style={{ color: 'red' }}>*</span></Form.Label>
-                                    <Form.Control onChange={(e) => {
-                                        this.setState({ bezug: e.target.value })
-                                        }} className='tfstyle' type="email" />
-                                    <Form.Label>Status <span style={{ color: 'red' }}>*</span></Form.Label>
-                                    <DropdownButton
-                                        title={this.state.sta}
-                                        id="dropdown-menu-align-responsive-1"
-                                        onSelect={(e) => {
-                                            this.setState({ sta: e })}}
-                                            >
-                                                <Dropdown.Item eventKey="Neu" style = {{ color:'blue', backgroundColor: '#f0f9ff' }}>Neu</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Gesichtet" style = {{ color: 'red', backgroundColor: '#f0f9ff' }}>Gesichtet</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Klärung" style = {{ color: 'purple',backgroundColor: '#f0f9ff' }}>Klärung</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Absprache" style = {{ backgroundColor: '#f0f9ff' }}>Absprache</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Angeboten" style = {{ color: 'purple', backgroundColor: '#f0f9ff' }}>Angeboten</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Aufgenommen" style = {{ backgroundColor: '#f0f9ff' }}>Aufgenommen</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Eingeplant" style = {{  backgroundColor: '#f0f9ff' }}>Eingeplant</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Bearbeitung" style = {{ color: 'red', backgroundColor: '#f0f9ff' }}>Bearbeitung</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Abnahme" style = {{ color: 'green',backgroundColor: '#f0f9ff' }}>Abnahme</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Geschlossen" style = {{ color: 'green', backgroundColor: '#f0f9ff' }}>Geschlossen</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Unbeantwortet" style = {{ backgroundColor: '#f0f9ff' }}>Unbeantwortet</Dropdown.Item>
-                                                <Dropdown.Item eventKey="(Importiert)" style = {{  backgroundColor: '#f0f9ff' }}>(Importiert)</Dropdown.Item>
-                                    </DropdownButton>
-                                    <Form.Label>Priorität (intern) <span style={{ color: 'red' }}>*</span></Form.Label>                                
-                                    <DropdownButton
-                                        title={this.state.prio}
-                                        id="dropdown-menu-align-responsive-1"
-                                        onSelect={(e) => {
-                                            this.setState({ prio: e })}}
-                                            >
-                                                <Dropdown.Item eventKey="Maximal" style = {{ backgroundColor: '#f0f9ff' }}>Maximal</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Sehr Hoch" style = {{ color:'#FF0000', backgroundColor: '#f0f9ff' }}>Sehr Hoch</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Hoch" style = {{ color: '#AA0000', backgroundColor: '#f0f9ff' }}>Hoch</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Normal" style = {{ backgroundColor: '#f0f9ff' }}>Normal</Dropdown.Item>
-                                                <Dropdown.Item eventKey="Niedrig" style = {{ color: '#c7c7c7', backgroundColor: '#f0f9ff' }}>Niedrig</Dropdown.Item>
-                                    </DropdownButton>
+                    <Form className={TicketCSS.formcontainer}>
+                        <div className={TicketCSS.parent}>
+                            <div className={TicketCSS.div1}>
+                                <Form.Group className={TicketCSS.mb-3} htmlFor="disabledTextInput">
+                                    <Form.Label>Betreff <span style={{ color: 'red' }}>*</span></Form.Label>
+                                    <Form.Control 
+                                        onChange={(e) => {
+                                            this.setState({ betreff: e.target.value })
+                                        }} 
+                                        className={TicketCSS.tfstyle}
+                                        type="email" 
+                                    />
+                                </Form.Group>
 
+                                <Form.Group className={TicketCSS.mb-3}>
+                                    <Form.Label  htmlFor="disabledTextInput">
+                                        Ticketart <span style={{ color: 'red' }}>*</span>
+                                    </Form.Label>
+
+                                    <Form.Select id="disabledSelect" onChange={(e) => {
+                                        this.setState({ art: e.target.value })
+
+                                        }
+                                        }>
+                                        {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
+                                        <option style = {{ backgroundColor: '#f0f9ff' }} >Fehler</option>
+                                        <option style = {{ backgroundColor: '#f0f9ff' }}>Anpassung</option>
+                                        <option style = {{ backgroundColor: '#f0f9ff' }}>Dienstleistung</option>
+                                        <option style = {{ backgroundColor: '#f0f9ff' }}>Offener Punkt</option>
+                                        <option style = {{ backgroundColor: '#f0f9ff' }}>Vorschlag</option>
+                                        <option style = {{ backgroundColor: '#f0f9ff' }}>Anfrage</option>
+                                    </Form.Select>
+                                </Form.Group>
+                                <Form.Group className={TicketCSS.mb-3} htmlFor="disabledTextInput">
+                                    <Form.Label>Bezug <span style={{ color: 'red' }}>*</span></Form.Label>
+                                    <Form.Control 
+                                        onChange={(e) => {
+                                            this.setState({ bezug: e.target.value })
+                                        }} 
+                                        className={TicketCSS.tfstyle}
+                                        type="email" 
+                                    />
+                                </Form.Group>
+                                <Form.Group className={TicketCSS.mb-3}>
+                                    <Form.Label>Status <span style={{ color: 'red' }}>*</span></Form.Label>
+
+                                    <Form.Select id="disabledSelect" onChange={(e) => {
+                                        this.setState({ sta: e.target.value })
+                                        }}
+                                        >
+                                        {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
+                                        <option style = {{ color:'blue', backgroundColor: '#f0f9ff' }} >Neu</option>
+                                        <option style = {{  color: 'red', backgroundColor: '#f0f9ff' }}>Gesichtet</option>
+                                        <option style = {{  color: 'purple',backgroundColor: '#f0f9ff' }}>Klärung</option>
+                                        <option style = {{ backgroundColor: '#f0f9ff' }}>Absprache</option>
+                                        <option style = {{  color: 'purple',backgroundColor: '#f0f9ff' }}>Angeboten</option>
+                                        <option style = {{ backgroundColor: '#f0f9ff' }}>Aufgenommen</option>
+                                        <option style = {{ backgroundColor: '#f0f9ff' }}>Eingeplant</option>
+                                        <option style = {{  color: 'red', backgroundColor: '#f0f9ff' }}>Bearbeitung</option>
+                                        <option style = {{ color: 'green',backgroundColor: '#f0f9ff' }}>Abnahme</option>
+                                        <option style = {{ color: 'green',backgroundColor: '#f0f9ff' }}>Geschlossen</option>
+                                        <option style = {{ backgroundColor: '#f0f9ff' }}>Unbeantwortet</option>
+                                        <option style = {{ backgroundColor: '#f0f9ff' }}>(Importiert)</option>
+                                    </Form.Select>
+                                </Form.Group>
+                                <Form.Group className={TicketCSS.mb-3}>                                
+                                    <Form.Label>Priorität (intern) <span style={{ color: 'red' }}>*</span></Form.Label>                                
                                     
+                                    <Form.Select id="disabledSelect" onChange={(e) => {
+                                        this.setState({ prio: e.target.value })
+
+                                        }
+                                        }>
+                                        {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
+                                        <option style = {{ backgroundColor: '#f0f9ff' }}>Maximal</option>
+                                        <option style = {{  color: '#FF0000',backgroundColor: '#f0f9ff' }}>Sehr Hoch</option>
+                                        <option style = {{ color: '#AA0000',backgroundColor: '#f0f9ff' }}>Hoch</option>
+                                        <option style = {{ backgroundColor: '#f0f9ff' }}>Normal</option>
+                                        <option style = {{ color: '#c7c7c7', backgroundColor: '#f0f9ff' }}>Niedrig</option>
+
+                                    </Form.Select>                                    
                                 </Form.Group>
                             </div>
                             <div className='div2'>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Group className={TicketCSS.mb-3} controlId="formBasicEmail">
                                     <Form.Label>Beschreibung <span style={{ color: 'red' }}>*</span></Form.Label>
                                     <Form.Control className='tfstyle2' type="email" />
                                 </Form.Group>
-                               
                             </div>
-
-
-
                         </div>
-
-
                         <Button variant="primary" onClick={submit}>
                             Submit
                         </Button>
@@ -138,7 +150,7 @@ class Ticket extends Component {
             <div>
                 <h2>Meine Tickets: Alle meine Tickets</h2>
 
-                <div className='buttons'>
+                <div className={TicketCSS.buttons}>
                     <Button variant="light" onClick={this.togglePopup.bind(this)}>Neu</Button> <Button variant="primary">Bearbeiten</Button>{' '}
                 </div>
                 <Dropdown>
@@ -181,10 +193,10 @@ class Ticket extends Component {
 
 
 
-                <div className='container2'>
+                <div className={TicketCSS.cpntainer2}>
                     <Table responsive="sm">
                         <tbody>
-                            <tr className='secondhead'>
+                            <tr className={TicketCSS.secondhead}>
                                 <td>ID</td>
                                 <td>Betreff</td>
                                 <td>Status</td>
@@ -194,7 +206,7 @@ class Ticket extends Component {
                                 <td>Eingang</td>
                                 <td>Aktualisiert am</td>
                             </tr>
-                            <tr className='items'>
+                            <tr className={TicketCSS.items}>
                                 <td>#793</td>
                                 <td>
                                     <i><FaAward /></i>
@@ -207,7 +219,7 @@ class Ticket extends Component {
                                 <td>21.04.22</td>
                                 <td>29.04.22 15:17</td>
                             </tr>
-                            <tr className='secondhead'>
+                            <tr className={TicketCSS.secondhead}>
 
                             </tr>
                         </tbody>

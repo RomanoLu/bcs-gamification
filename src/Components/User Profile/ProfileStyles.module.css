@@ -12,7 +12,7 @@
 
 
 
-.container-items:nth-child(1) {
+.containeritems:nth-child(1) {
   display: block;
   flex-grow: 0;
   flex-shrink: 1;
@@ -59,7 +59,7 @@ html, body, .app {
 
 
   
-  .container-items:nth-child(2) {
+  .containeritems:nth-child(2) {
     display: block;
     flex-grow: 0;
     flex-shrink: 1;
@@ -70,7 +70,7 @@ html, body, .app {
     height: 100%;
   }
 
-  .card-left {
+  .cardleft {
     width: auto;
   }
 
@@ -98,7 +98,7 @@ html, body, .app {
     flex-wrap: wrap;
   }
 
-  .badge-pic {
+  .badgepic {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -160,7 +160,7 @@ html, body, .app {
   flex-basis: auto;
 }
 
-.popup_BadgeList {
+.popupBadgeList {
   overflow-y: scroll;
   height: 70%;
   width: 80%;
@@ -170,6 +170,6 @@ html, body, .app {
   
 }
 
-.popup-btn {
+.popupbtn {
   margin-top: 20px;
 }
