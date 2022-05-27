@@ -40,13 +40,17 @@ app.get('/api/getTickets', (req,res) => {
 
 app.post('/api/insertChallenge', (req, res) => {
     const beschreibung = req.body.beschreibung;
+    const bewertung = req.body.bewertung;
+    const art = req.body.art;
     const titel = req.body.titel;
-    const schwierigkeit = req.body.schwierigkeit;
-    const idbelohnung = req.body.idbelohnung;
+    const priorität = req.body.priorität;
+    const idbelohnung = 33;
+    const anzahl = req.body.anzahl;
+    const aktion = req.body.aktion;
     const zeit = req.body.zeit;    
-    const ende = req.body.ende;
-    const sqlInsert = 'INSERT INTO challenges (beschreibung, titel, schwierigkeit, idbelohnung, zeit, ende) VALUES (?,?,?,?);';
-    db.query(sqlInsert, [beschreibung, titel, schwierigkeit, idbelohnung, zeit, ende], (err, result) => {
+    const buchung_über = req.body.buchung_über;
+    const sqlInsert = 'INSERT INTO challenges (bewertung, beschreibung, art, titel, priorität, idbelohnung, anzahl, aktion, zeit, buchung_über) VALUES (?,?,?,?,?,?,?,?,?,?);';
+    db.query(sqlInsert, [bewertung, beschreibung, art, titel, priorität, idbelohnung, anzahl, aktion, zeit, buchung_über], (err, result) => {
     console.log(err)
     })
 });
