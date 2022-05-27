@@ -81,15 +81,29 @@ class ChallengeForm extends React.Component {
               <div className="parent">
                 <div className="div1">
                   <Form.Group className="mb-3">
-                    <Form.Label htmlFor="disabledTextInput">Gilt als erfüllt wenn</Form.Label>
-                    {/*Bedingung für erfüllung irgendwie festlegen, weil vllt ist es nicht immer die anzahl*/}
+                    <Form.Label htmlFor="disabledTextInput">Titel</Form.Label>
+                    {/*Bedingung für erfüllung irgendwie festlegen, weil vllt ist es nicht immer die anzahl
+                    Prio soll min so und so sein, Bewertung soll min. so und so sein, Anzahl soll größer kleiner also x sein, usw...*/}
                     <Form.Control
                       id="disabledTextInput"
-                      placeholder="bsp. Anzahl > 15"
+                      placeholder="Titel"
                       className="form"
                     />
                   </Form.Group>
-
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">Beschreibung</Form.Label>
+                    <Form.Control 
+                      as="textarea" 
+                      rows={3}
+                      id="disabledTextInput"
+                      className="form"
+                      placeholder="Beschreibung"
+                      onChange={(e) => {
+                        this.setState({ beschreibung: e.target.value })
+                      }
+                      }
+                    />
+                  </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="disabledSelect">Zeitspanne</Form.Label>
                     <Form.Select id="disabledSelect" onChange={(e) => {
@@ -109,26 +123,7 @@ class ChallengeForm extends React.Component {
                       <option>1 Jahr</option>
                     </Form.Select>
                   </Form.Group>
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="disabledSelect">Bewertung</Form.Label>
-                    <Form.Select id="disabledSelect">
-                      <option>keine Angabe</option>
-                      <option>unzufrieden</option>
-                      <option>akzeptabel</option>
-                      <option>zufrieden</option>
-                    </Form.Select>
-                  </Form.Group>
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="disabledSelect">Schwierigkeitsgrad</Form.Label>
-                    <Form.Select id="disabledSelect" onChange={(e) => {
-                      this.setState({ schwierigkeit: e.target.value })
-                    }
-                    }>
-                      <option>Simple</option>
-                      <option>Intermediate</option>
-                      <option>Advanced</option>
-                    </Form.Select>
-                  </Form.Group>
+                  
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="disabledSelect">Belohnung</Form.Label>
                     <Form.Select id="disabledSelect" onChange={(e) => {
@@ -142,17 +137,37 @@ class ChallengeForm extends React.Component {
                   </Form.Group>
                 </div>
                 <div className="div2">
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="disabledTextInput">Beschreibung</Form.Label>
+                <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">Anzahl</Form.Label>
+                    {/*Bedingung für erfüllung irgendwie festlegen, weil vllt ist es nicht immer die anzahl
+                    Prio soll min so und so sein, Bewertung soll min. so und so sein, Anzahl soll größer kleiner also x sein, usw...*/}
                     <Form.Control
                       id="disabledTextInput"
-                      placeholder="Beschreibung"
-                      className="tfstyle2"
-                      onChange={(e) => {
-                        this.setState({ beschreibung: e.target.value })
-                      }
-                      }
+                      placeholder="Anzahl"
+                      className="form"
                     />
+                  </Form.Group>
+                  
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledSelect">Bewertung</Form.Label>
+                    <Form.Select id="disabledSelect">
+                      <option>keine Angabe</option>
+                      <option>unzufrieden</option>
+                      <option>akzeptabel</option>
+                      <option>zufrieden</option>
+                    </Form.Select>
+                  </Form.Group>
+                  
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledSelect">Schwierigkeitsgrad</Form.Label>
+                    <Form.Select id="disabledSelect" onChange={(e) => {
+                      this.setState({ schwierigkeit: e.target.value })
+                    }
+                    }>
+                      <option>Simple</option>
+                      <option>Intermediate</option>
+                      <option>Advanced</option>
+                    </Form.Select>
                   </Form.Group>
                 </div>
               </div>

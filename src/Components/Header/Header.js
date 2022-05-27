@@ -21,9 +21,8 @@ const Header = () => {
                 <Nav.Link href="/tickets">Tickets</Nav.Link>
                 <Nav.Link href="/profile">Profil</Nav.Link>
                 <Nav.Link href="/newChallenge">Challenge</Nav.Link>
-                
               </Nav>
-          </Navbar.Collapse>
+            </Navbar.Collapse>
           </Navbar>
         </div>
         <div className={HeaderCSS.items}>
@@ -59,12 +58,11 @@ const Header = () => {
           </div>
         </div>
       </div>
-      
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
 
 /*
 <div className="App">
