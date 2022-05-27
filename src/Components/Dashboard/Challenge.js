@@ -3,6 +3,8 @@ import { Table, Modal, Button } from "react-bootstrap";
 import style from "./AufgabenStyles.module.css";
 import Axios from 'axios';
 import { FcCheckmark, FcCancel } from "react-icons/fc";
+import { useRowSelect } from 'react-table';
+
 
 
 class Challenge extends React.Component {
@@ -11,7 +13,8 @@ class Challenge extends React.Component {
     super();
     this.state = {
         challengeList: [],
-        show: false
+        show: false,
+        selectedItem: []
     };
   }
 
@@ -26,6 +29,10 @@ class Challenge extends React.Component {
         console.log(error);
       });
   }
+  
+  onSelectedRow(user, clickEvent){
+    this.setState({selectedItem: user})
+  }
 
  render() {
    const accept_Challenge = () =>{
@@ -39,15 +46,6 @@ class Challenge extends React.Component {
   const handleClose = () => this.setState({ show: false });
 
 
-  const selectRow = {
-    mode: 'radio',
-    clickToSelect: true,
-    selectionHeaderRenderer: () => 'X',
-    selectionRenderer: ({ mode, ...rest }) => (
-      <input type={ mode } { ...rest } />
-    )
-  };
-
   return (
     <div className={style.container}>
       <div className={style.challenges}>
@@ -57,7 +55,7 @@ class Challenge extends React.Component {
               <th>Challenges</th>
             </tr>
           </thead>
-          <tbody hover = {false}>
+          <tbody>
             <tr className={style.secondhead}>
               <td>ID</td>
               <td>Titel</td>
@@ -67,7 +65,7 @@ class Challenge extends React.Component {
               <td>Ablehnen</td>
             </tr>
             {this.state.challengeList.map(val =>
-              <tr>
+              <tr onClick={this.onSelectedRow.bind(this, val)}>
                 <td>{val.idchallenges}</td>
                 <td>{val.titel}</td>
                 <td>{val.idbelohnung}</td>
@@ -91,11 +89,12 @@ class Challenge extends React.Component {
           </tbody>
         </Table>
       </div>
+
       <Modal show={this.state.show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{this.state.selectedItem.titel}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>{this.state.selectedItem.beschreibung}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close

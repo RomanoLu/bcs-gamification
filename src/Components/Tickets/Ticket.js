@@ -4,6 +4,8 @@ import { FaAward } from 'react-icons/fa';
 import { Table, Dropdown, Button, Form } from 'react-bootstrap';
 import Axios from 'axios';
 import Confetti from './Confetti';
+import Confetti2 from 'react-confetti'
+
 
 class Popup extends React.Component { 
     constructor(){
@@ -244,7 +246,9 @@ class Ticket extends Component {
                 }
                 {
                     this.state.alert ?                   
-                        <Confetti/>
+                        <Confetti2
+                        run= {false}
+                         />
                         : null
                 }
             </div>
