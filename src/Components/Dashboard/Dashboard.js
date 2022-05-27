@@ -10,17 +10,26 @@ import Workflow from "./Workflow.js";
 const Dashboard = () => {
   return (
     <div>
-      <div className={style.dashboard}>
-        <div className={style.row1}>
+      <div className={style.parent}>
+        <div className={style.div1}>
           <Termin />
-          <Challenge />
-          <Ticket />
         </div>
-        <div className={style.row2}>
+          <div className={style.div2}>
+            <Challenge />
+          </div>
+          <div className={style.div3}>
+          <Ticket />
+          </div>
+          <div className={style.div4}>
+          <Ticket />
+          </div>
+        <div className={style.div5}>
           <Aufgaben />
         </div>
-        <div className={style.row3}>
+        <div className={style.div6}>
           <Wiedervorlagen />
+          </div>
+          <div className={style.div7}>
           <Workflow />
         </div>
       </div>
