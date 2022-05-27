@@ -28,6 +28,16 @@ app.post('/api/insertTicket', (req, res) => {
     })
 });
 
+
+
+
+app.get('/api/getTickets', (req,res) => {
+    const sqlSelect = 'SELECT * FROM tickets'
+    db.query(sqlSelect, (err, result) => {
+        res.send(result);
+    })
+})
+
 app.post('/api/insertChallenge', (req, res) => {
     const beschreibung = req.body.beschreibung;
     const titel = req.body.titel;

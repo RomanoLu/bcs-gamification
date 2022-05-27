@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../Pictures/bcs-logo.png'
-import './HeaderStyles.css';
+import HeaderCSS from './HeaderStyles.module.css';
 import {FaSearch, FaStar, FaBell} from 'react-icons/fa';
 import {GiLetterBomb} from 'react-icons/gi';
 import {RiTimerLine, RiSettings5Fill} from 'react-icons/ri';
@@ -9,67 +9,55 @@ import {HiQuestionMarkCircle} from 'react-icons/hi';
 
 const Header = () => {
   return (
-    <div className="navbar">
-      <div className="wrapper">
-        <div className="search">
+    <div className={HeaderCSS.navbar}>
+      <div className={HeaderCSS.wrapper}>
+        <div className={HeaderCSS.search}>
           <Navbar>
             <Navbar.Brand> <img src={Logo} width="30px" height="30px" />{' '} </Navbar.Brand>
-            <Navbar.Toggle className="coloring" />
+            <Navbar.Toggle className={HeaderCSS.coloring} />
             <Navbar.Collapse>
               <Nav>
                 <Nav.Link href="/dashboard">Mein Bereich</Nav.Link>
                 <Nav.Link href="/tickets">Tickets</Nav.Link>
                 <Nav.Link href="/profile">Profil</Nav.Link>
-                <Nav.Link href="/newChallenge">Neue Challenge Anlegen</Nav.Link>
+                <Nav.Link href="/newChallenge">Challenge</Nav.Link>
                 
               </Nav>
           </Navbar.Collapse>
           </Navbar>
         </div>
-        <div className="items">
-          <div className="item">
-            <FaSearch className="icon" />
+        <div className={HeaderCSS.items}>
+          <div className={HeaderCSS.item}>
+            <FaSearch className={HeaderCSS.icon} />
           </div>
-          <div className="item">
-            <FaStar className="icon"/>
+          <div className={HeaderCSS.item}>
+            <FaStar className={HeaderCSS.icon}/>
           </div>
-          <div className="item">
-            <GiLetterBomb className="icon" />
+          <div className={HeaderCSS.item}>
+            <GiLetterBomb className={HeaderCSS.icon} />
           </div>
-          <div className="item">
-            <FaBell className="icon" />
-            <div className="counter">1</div>
+          <div className={HeaderCSS.item}>
+            <FaBell className={HeaderCSS.icon} />
+            <div className={HeaderCSS.counter}>1</div>
           </div>
-          <div className="item">
-            <RiTimerLine className="icon" />
+          <div className={HeaderCSS.item}>
+            <RiTimerLine className={HeaderCSS.icon} />
             Starten
           </div>
-          <div className="item">
-            <HiQuestionMarkCircle className="icon" />
+          <div className={HeaderCSS.item}>
+            <HiQuestionMarkCircle className={HeaderCSS.icon} />
           </div>
-          <div className="item">
+          <div className={HeaderCSS.item}>
             <img
               src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
               alt=""
-              className="avatar"
+              className={HeaderCSS.avatar}
             />
           </div>
-          <div className="item">
-            <RiSettings5Fill className="icon" />
+          <div className={HeaderCSS.item}>
+            <RiSettings5Fill className={HeaderCSS.icon} />
           </div>
         </div>
-      </div>
-
-
-      <div className='tabs'>
-              <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
-            <Tab eventKey="home" title="Home">
-            </Tab>
-            <Tab eventKey="profile" title="Profile">
-            </Tab>
-            <Tab eventKey="contact" title="Contact" disabled>
-            </Tab>
-          </Tabs>
       </div>
       
     </div>

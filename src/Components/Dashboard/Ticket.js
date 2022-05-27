@@ -1,9 +1,11 @@
-import React from 'react'
+import { Axios } from 'axios';
+import React, { useEffect } from 'react'
 import { Table } from 'react-bootstrap';
 import {FaAward} from 'react-icons/fa';
 import './ChallengesStyles.css';
 
 function Ticket() {
+
     return (
         <div className='container'>
           <div className='challenges'>

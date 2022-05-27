@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import TicketCSS from './TicketsStyles.module.css'
 import { FaAward } from 'react-icons/fa';
 import { Table, Dropdown, Button, Form } from 'react-bootstrap';
 import Axios from 'axios';
 
-class Popup extends React.Component {
+class Popup extends React.Component { 
     constructor(){
         super();
         this.state = {
@@ -16,7 +16,6 @@ class Popup extends React.Component {
             sta: "Neu"
         };
     }
-
     render() {
         const submit = () => {
             if(this.state.betreff === "" || this.state.bezug === "") {
@@ -28,6 +27,7 @@ class Popup extends React.Component {
                 });
             }
         };
+
         return (
             <div className={TicketCSS.popup}>
                 <div className={TicketCSS.popup_inner}>
@@ -137,9 +137,23 @@ class Ticket extends Component {
     constructor() {
         super();
         this.state = {
-            showPopup: false
+            showPopup: false,
+            ticketsList: []
         };
     }
+    
+    componentDidMount() {
+        Axios.get('http://localhost:3001/api/getTickets')
+        .then(response => {
+            const ticketsList = response.data;
+            this.setState({ ticketsList});
+            console.log(this.state.ticketsList)
+        }
+        ).catch(function(error) {
+            console.log(error);
+          });
+    }
+
     togglePopup() {
         this.setState({
             showPopup: !this.state.showPopup
@@ -147,7 +161,7 @@ class Ticket extends Component {
     }
     render() {
         return (
-            <div>
+            <div className={TicketCSS.container}>
                 <h2>Meine Tickets: Alle meine Tickets</h2>
 
                 <div className={TicketCSS.buttons}>
@@ -200,28 +214,23 @@ class Ticket extends Component {
                                 <td>ID</td>
                                 <td>Betreff</td>
                                 <td>Status</td>
-                                <td>Prio</td>
-                                <td>Wartungen</td>
+                                <td>Priorität</td>
                                 <td>Bezug</td>
                                 <td>Eingang</td>
-                                <td>Aktualisiert am</td>
                             </tr>
-                            <tr className={TicketCSS.items}>
-                                <td>#793</td>
+                            {this.state.ticketsList.map(val =>
+                                <tr className={TicketCSS.items}>
+                                <td>{val.idTickets}</td>
                                 <td>
                                     <i><FaAward /></i>
-                                    Flexbox anpassen
+                                    {val.Betreff}
                                 </td>
-                                <td>8-Bearbeitung</td>
-                                <td>gelb</td>
-                                <td>-</td>
-                                <td>BCS Gamefication</td>
-                                <td>21.04.22</td>
-                                <td>29.04.22 15:17</td>
-                            </tr>
-                            <tr className={TicketCSS.secondhead}>
-
-                            </tr>
+                                <td>{val.Status}</td>
+                                <td>{val.Priorität}</td>
+                                <td>{val.Bezug}</td>
+                                <td>{val.Erstellt_am}</td>
+                                </tr>
+                            )}
                         </tbody>
                     </Table>
                 </div>
