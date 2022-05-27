@@ -9,15 +9,19 @@ class ChallengeForm extends React.Component {
   constructor() {
     super();
     this.state = {
+      art: "Tickets",
       betreff: "",
       beschreibung: "",
       titel: "",
       schwierigkeit: "",
       idbelohnung: "",
       zeit: "2022-05-07 19:09:44",
-      ende: "2022-05-07"
+      ende: "2022-05-07",
+      o_a: "Arbeitszeiten"
     };
   }
+
+
 
   render() {
     const submit = () => {
@@ -44,14 +48,13 @@ class ChallengeForm extends React.Component {
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="disabledSelect">Challengeart</Form.Label>
                     <Form.Select className={ChallengeFormCSS.form} id="disabledSelect" onChange={(e) => {
-                      this.setState({ schwierigkeit: e.target.value })
-                    }
-                    }>
+                                            this.setState({ art: e.target.value })
+                                        }}                  >
                       <option>Tickets</option>
                       <option>Workflow</option>
-                      <option>Aufgaben</option>
-                      <option>Organisatorisches</option>
+                      <option>Checkliste</option>
                       <option>Wiedervorlagen</option>
+                      <option>Organisatorisches</option>
                       {/*
                       unter organisatirisches --> Arbeitszeiten, Urlaub, Termin(Introtermin z.b)
                       */}
@@ -61,10 +64,11 @@ class ChallengeForm extends React.Component {
                   </div>
               <div className={ChallengeFormCSS.parent}>
               
+                <div className={ChallengeFormCSS.div2}>  
 
-                <div className={ChallengeFormCSS.div2}>
-                  
-                  <Form.Group className="mb-3">
+                {this.state.art === "Tickets" ? (
+                  <>
+                <Form.Group className="mb-3">
                     <Form.Label htmlFor="disabledTextInput">Anzahl</Form.Label>
                     {/*Bedingung für erfüllung irgendwie festlegen, weil vllt ist es nicht immer die anzahl
                     Prio soll min so und so sein, Bewertung soll min. so und so sein, Anzahl soll größer kleiner also x sein, usw...*/}
@@ -94,8 +98,120 @@ class ChallengeForm extends React.Component {
                       <option>Niedrig</option>
                       <option>Mittel</option>
                       <option>Hoch</option>
-                    </Form.Select>
+                    </Form.Select>                        <br />
+                        <Button className="buttoncolor" type="submit" onClick={submit}>
+                        Submit
+                        </Button>
                   </Form.Group>
+                  </>
+                ) :
+                this.state.art === "Workflow" ? (
+                  <>
+                      <Form.Group className="mb-3">
+                      <Form.Label htmlFor="disabledTextInput">Anzahl absolvierter Workflowschritte</Form.Label>
+                      {/*Bedingung für erfüllung irgendwie festlegen, weil vllt ist es nicht immer die anzahl
+                      Prio soll min so und so sein, Bewertung soll min. so und so sein, Anzahl soll größer kleiner also x sein, usw...*/}
+                      <Form.Control
+                        id="disabledTextInput"
+                        placeholder="Anzahl"
+                        className={ChallengeFormCSS.form}
+                      />                        <br />
+                      <Button className="buttoncolor" type="submit" onClick={submit}>
+                      Submit
+                      </Button>
+                      </Form.Group>
+                  </>
+                ):
+                this.state.art === "Wiedervorlagen" ? (
+                  <>
+                      <Form.Group className="mb-3">
+                      <Form.Label htmlFor="disabledTextInput">Anzahl absolvierter Wiedervorlagen</Form.Label>
+                      {/*Bedingung für erfüllung irgendwie festlegen, weil vllt ist es nicht immer die anzahl
+                      Prio soll min so und so sein, Bewertung soll min. so und so sein, Anzahl soll größer kleiner also x sein, usw...*/}
+                      <Form.Control
+                        id="disabledTextInput"
+                        placeholder="Anzahl"
+                        className={ChallengeFormCSS.form}
+                      />
+                          <br />
+                        <Button className="buttoncolor" type="submit" onClick={submit}>
+                        Submit
+                        </Button>
+                      </Form.Group>
+                  </>
+                ):
+                this.state.art === "Checkliste" ? (
+                  <>
+                      <Form.Group className="mb-3">
+                      <Form.Label htmlFor="disabledTextInput">Anzahl absolvierter Checklist-Einträge</Form.Label>
+                      {/*Bedingung für erfüllung irgendwie festlegen, weil vllt ist es nicht immer die anzahl
+                      Prio soll min so und so sein, Bewertung soll min. so und so sein, Anzahl soll größer kleiner also x sein, usw...*/}
+                      <Form.Control
+                        id="disabledTextInput"
+                        placeholder="Anzahl"
+                        className={ChallengeFormCSS.form}
+                      />
+                        <br />
+                        <Button className="buttoncolor" type="submit" onClick={submit}>
+                        Submit
+                        </Button>
+                      </Form.Group>
+                  </>
+                ):
+                this.state.art === "Organisatorisches" && (
+                  <>
+                    <Form.Group className="mb-3">
+                      <Form.Label htmlFor="disabledSelect">Aktion</Form.Label>
+                      <Form.Select className={ChallengeFormCSS.form} id="disabledSelect" onChange={(e) => {
+                        this.setState({ o_a: e.target.value })
+                      }
+                      }>
+                        <option>Arbeitszeiten</option>
+                        <option>Termine</option>
+                        <option>Urlaubstage</option>
+                      </Form.Select>
+                    </Form.Group>
+                    {this.state.o_a === "Arbeitszeiten" ? (
+                        <Form.Group className="mb-3">
+                        <Form.Label htmlFor="disabledSelect">Buchung über:</Form.Label>
+                        <Form.Select className={ChallengeFormCSS.form} id="disabledSelect">
+                          <option>Stopp-Uhr</option>
+                          <option>Aufgabenbuchung</option>
+                          <option>Zeitbuchung</option>
+                        </Form.Select>
+                          <br />
+                          <Button className="buttoncolor" type="submit" onClick={submit}>
+                          Submit
+                          </Button>
+                      </Form.Group>
+                    ): 
+                    this.state.o_a === "Termine" ? (
+                      <Form.Group className="mb-3">
+                      <Form.Label htmlFor="disabledTextInput">Anzahl zu buchender</Form.Label>
+                      <Form.Control
+                        id="disabledTextInput"
+                        placeholder="Anzahl"
+                        className={ChallengeFormCSS.form}
+                      />
+                      <br />
+                        <Button className="buttoncolor" type="submit" onClick={submit}>
+                        Submit
+                        </Button>
+                      </Form.Group>
+                      
+
+                      
+                    ):
+                    this.state.o_a === "Urlaubstage" && (
+                      <Button className="buttoncolor" type="submit" onClick={submit}>
+                      Submit
+                      </Button>
+                    )
+                    
+                    }
+                  </>
+                )}                
+                  
                 </div>
                 <div className={ChallengeFormCSS.div1}>
                   <Form.Group className="mb-3">
