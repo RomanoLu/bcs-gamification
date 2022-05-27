@@ -3,6 +3,7 @@ import TicketCSS from './TicketsStyles.module.css'
 import { FaAward } from 'react-icons/fa';
 import { Table, Dropdown, Button, Form } from 'react-bootstrap';
 import Axios from 'axios';
+import Confetti from './Confetti';
 
 class Popup extends React.Component { 
     constructor(){
@@ -16,6 +17,8 @@ class Popup extends React.Component {
             sta: "Neu"
         };
     }
+
+
     render() {
         const submit = () => {
             if(this.state.betreff === "" || this.state.bezug === "") {
@@ -137,6 +140,7 @@ class Ticket extends Component {
     constructor() {
         super();
         this.state = {
+            alert: false,
             showPopup: false,
             ticketsList: []
         };
@@ -156,6 +160,7 @@ class Ticket extends Component {
 
     togglePopup() {
         this.setState({
+            alert : !this.state.alert,
             showPopup: !this.state.showPopup
         });
     }
@@ -231,11 +236,16 @@ class Ticket extends Component {
                     </Table>
                 </div>
                 {this.state.showPopup ?
-                    <Popup
+                        <Popup
                         text='Close Me'
                         closePopup={this.togglePopup.bind(this)}
                     />
                     : null
+                }
+                {
+                    this.state.alert ?                   
+                        <Confetti/>
+                        : null
                 }
             </div>
 
