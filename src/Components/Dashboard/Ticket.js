@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import style from "./ChallengesStyles.module.css";
+import style from "./AufgabenStyles.module.css";
 
 function Ticket() {
   return (

@@ -42,11 +42,6 @@ h2{
   margin-top: 50px;
 }
 
-.tfstyle2{
-  background-color: #d5e8f6;
-  height: 150px;
-}
-
 .parent {
   margin-left: 10%;
   margin-right: 10%;
@@ -58,8 +53,17 @@ h2{
   }
   
   .div1 { 
-      grid-area: 1 / 1 / 2 / 2;          
+      grid-area: 1 / 1 / 2 / 2;  
+      margin-right: 10%;        
   }
   .div2 { 
       grid-area: 1 / 2 / 2 / 3;        
+  }
+
+  .challengeArt{
+    width: auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+    border-bottom: 3px solid rgb(0, 0, 0);
   }
