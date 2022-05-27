@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Table, Modal, Button } from "react-bootstrap";
 import style from "./AufgabenStyles.module.css";
 import Axios from 'axios';
 import { FcCheckmark, FcCancel } from "react-icons/fc";
@@ -10,7 +10,8 @@ class Challenge extends React.Component {
   constructor() {
     super();
     this.state = {
-        challengeList: []
+        challengeList: [],
+        show: false
     };
   }
 
@@ -28,22 +29,35 @@ class Challenge extends React.Component {
 
  render() {
    const accept_Challenge = () =>{
-     alert("MUSIYE")
+    this.setState({ show: true })
    }
 
    const deny_Challenge = () =>{
     alert("MUSIYE")
   }
+
+  const handleClose = () => this.setState({ show: false });
+
+
+  const selectRow = {
+    mode: 'radio',
+    clickToSelect: true,
+    selectionHeaderRenderer: () => 'X',
+    selectionRenderer: ({ mode, ...rest }) => (
+      <input type={ mode } { ...rest } />
+    )
+  };
+
   return (
     <div className={style.container}>
       <div className={style.challenges}>
-        <Table striped bordered hover responsive="sm">
+        <Table striped bordered hover responsive="sm" >
           <thead>
             <tr>
               <th>Challenges</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody hover = {false}>
             <tr className={style.secondhead}>
               <td>ID</td>
               <td>Titel</td>
@@ -77,7 +91,23 @@ class Challenge extends React.Component {
           </tbody>
         </Table>
       </div>
+      <Modal show={this.state.show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
+
+    
   );
  }
 
