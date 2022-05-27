@@ -1,62 +1,86 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import style from "./AufgabenStyles.module.css";
+import Axios from 'axios';
+import { FcCheckmark, FcCancel } from "react-icons/fc";
 
-function Challenge() {
+
+class Challenge extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+        challengeList: []
+    };
+  }
+
+  componentDidMount() {
+    Axios.get('http://localhost:3001/api/getChallenges')
+    .then(response => {
+        const challengeList = response.data;
+        this.setState({ challengeList});
+        console.log(this.state.challengeList)
+    }
+    ).catch(function(error) {
+        console.log(error);
+      });
+  }
+
+ render() {
+   const accept_Challenge = () =>{
+     alert("MUSIYE")
+   }
+
+   const deny_Challenge = () =>{
+    alert("MUSIYE")
+  }
   return (
     <div className={style.container}>
       <div className={style.challenges}>
         <Table striped bordered hover responsive="sm">
           <thead>
             <tr>
-              <th>aktuelle Challenges</th>
+              <th>Challenges</th>
             </tr>
           </thead>
           <tbody>
             <tr className={style.secondhead}>
               <td>ID</td>
-              <td>Beschreibung</td>
               <td>Titel</td>
-              <td>Schwierigkeit</td>
               <td>Belohnung</td>
               <td>Zeit</td>
-              <td>angenommen</td>
-              <td>absolviert</td>
-              <td>Start</td>
-              <td>Ende</td>
+              <td>Akzeptieren</td>
+              <td>Ablehnen</td>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>
-                Bearbeite und schließe drei Tickets mit einer Priorität von
-                "Normal" oder "Hoch" innerhalb von fünf Tagen.
-              </td>
-              <td>Langsam läufts</td>
-              <td>Einfach</td>
-              <td>1/100 Arbeitstag</td>
-              <td>4 Tage</td>
-              <td>2022-05-01 10:00:00</td>
-              <td>2022-05-30 18:00:00</td>
-              <td>2021-12-16 07:29:54</td>
-              <td>2021-12-20 07:29:54</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Schließe ein Ticket, dass älter als ein Jahr ist</td>
-              <td>Die Mumie</td>
-              <td>Schwer</td>
-              <td>2 Kinotickets</td>
-              <td>5 Tage</td>
-              <td>2022-04-21 09:00:00</td>
-              <td>2022-07-19 16:00:00</td>
-              <td>2022-05-16 17:02:32</td>
-              <td>2022-05-21 17:02:32</td>
-            </tr>
+            {this.state.challengeList.map(val =>
+              <tr>
+                <td>{val.idchallenges}</td>
+                <td>{val.titel}</td>
+                <td>{val.idbelohnung}</td>
+                <td>{val.zeit}</td>
+                <td>
+                  <button onClick = {accept_Challenge}>
+                    <FcCheckmark
+                    size={20}
+                  />
+                  </button>
+                </td>
+                <td>
+                <button onClick = {deny_Challenge}>
+                <FcCancel
+                  size={20}
+                />
+                </button>               
+                </td>
+              </tr>
+            )}
           </tbody>
         </Table>
       </div>
     </div>
   );
+ }
+
 }
 
 export default Challenge;

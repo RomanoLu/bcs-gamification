@@ -118,12 +118,12 @@ class ChallengeForm extends React.Component {
                       <Form.Control
                         id="disabledTextInput"
                         placeholder="Anzahl"
+                        className={ChallengeFormCSS.form}
                         onChange={(e) => {
                           this.setState({ anzahl: parseInt(e.target.value) })
                       }}>
-                        </Form.Control>          
-                        className={ChallengeFormCSS.form}
-                                              <br />
+                      </Form.Control>          
+                            <br />
                       <Button className="buttoncolor" type="submit" onClick={submit}>
                       Submit
                       </Button>

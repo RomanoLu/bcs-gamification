@@ -28,7 +28,21 @@ app.post('/api/insertTicket', (req, res) => {
     })
 });
 
+app.post('/api/userInteraction', (req, res) => {
+    const bezug = req.body.bezug;
+    const aktion = req.body.action;
+    const sqlInsert = 'INSERT INTO userinteraction (aktion, bezug, datum) VALUES (?,?,now());';
+    db.query(sqlInsert, [aktion,bezug], (err, result) => {
+    console.log(err)
+    })
+});
 
+app.get('/api/getChallenges', (req,res) => {
+    const sqlSelect = 'SELECT * FROM challenges WHERE angenommen IS NULL';
+    db.query(sqlSelect, (err, result) => {
+        res.send(result)
+    })
+})
 
 
 app.get('/api/getTickets', (req,res) => {
