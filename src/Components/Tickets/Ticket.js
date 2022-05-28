@@ -210,7 +210,7 @@ class Ticket extends Component {
 
                 </Dropdown>
 
-                <div className={TicketCSS.cpntainer2}>
+                <div className={TicketCSS.container2}>
                     <Table responsive="sm" >
                         <tbody>
                             <tr className={TicketCSS.secondhead}>

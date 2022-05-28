@@ -1,11 +1,11 @@
-import React from 'react'
-import Logo from '../Pictures/bcs-logo.png'
-import HeaderCSS from './HeaderStyles.module.css';
-import {FaSearch, FaStar, FaBell} from 'react-icons/fa';
-import {GiLetterBomb} from 'react-icons/gi';
-import {RiTimerLine, RiSettings5Fill} from 'react-icons/ri';
-import {Navbar, Nav, Tabs, Tab} from 'react-bootstrap';
-import {HiQuestionMarkCircle} from 'react-icons/hi';
+import React from "react";
+import Logo from "../Pictures/bcs-logo.png";
+import HeaderCSS from "./HeaderStyles.module.css";
+import { FaSearch, FaStar, FaBell } from "react-icons/fa";
+import { GiLetterBomb } from "react-icons/gi";
+import { RiTimerLine, RiSettings5Fill } from "react-icons/ri";
+import { Navbar, Nav, Tabs, Tab } from "react-bootstrap";
+import { HiQuestionMarkCircle } from "react-icons/hi";
 
 const Header = () => {
   return (
@@ -13,7 +13,10 @@ const Header = () => {
       <div className={HeaderCSS.wrapper}>
         <div className={HeaderCSS.search}>
           <Navbar>
-            <Navbar.Brand> <img src={Logo} width="30px" height="30px" />{' '} </Navbar.Brand>
+            <Navbar.Brand>
+              {" "}
+              <img src={Logo} width="30px" height="30px" />{" "}
+            </Navbar.Brand>
             <Navbar.Toggle className={HeaderCSS.coloring} />
             <Navbar.Collapse>
               <Nav>
@@ -21,6 +24,7 @@ const Header = () => {
                 <Nav.Link href="/tickets">Tickets</Nav.Link>
                 <Nav.Link href="/profile">Profil</Nav.Link>
                 <Nav.Link href="/newChallenge">Challenge</Nav.Link>
+                <Nav.Link href="/statistics">Statistik</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -30,7 +34,7 @@ const Header = () => {
             <FaSearch className={HeaderCSS.icon} />
           </div>
           <div className={HeaderCSS.item}>
-            <FaStar className={HeaderCSS.icon}/>
+            <FaStar className={HeaderCSS.icon} />
           </div>
           <div className={HeaderCSS.item}>
             <GiLetterBomb className={HeaderCSS.icon} />
