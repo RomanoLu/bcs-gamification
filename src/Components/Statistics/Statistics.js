@@ -324,7 +324,7 @@ class Statistics extends Component {
                   </span>
                 </td>
               </tr>
-              {this.state.challengeList.map((val) => (
+              {this.state.ticketsList.map((val) => (
                 <tr className={style.items}>
                   <td>{val.idchallenges}</td>
                   <td>{val.titel}</td>
