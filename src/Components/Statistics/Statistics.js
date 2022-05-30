@@ -257,7 +257,7 @@ class Statistics extends Component {
   render() {
     return (
       <div className={style.container}>
-        <h2>Meine Statistik: Fortschritt</h2>
+        <h2>Meine Statistik: Challenge</h2>
         {/*
         <div className={style.buttons}>
           <Button variant="light" onClick={this.togglePopup.bind(this)}>

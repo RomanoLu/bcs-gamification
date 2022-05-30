@@ -1,5 +1,4 @@
 .navbar {
-  height: 50px;
   border-bottom: 0px solid rgb(231, 228, 228);
   padding-top: 0px;
   display: flex;
@@ -68,4 +67,10 @@
   position: absolute;
   top: -5px;
   right: -5px;
+}
+
+.settingNav {
+  position: absolute;
+  right:0; 
+  margin-right: 179px;       
 }

@@ -7,6 +7,7 @@ import Profile from "./Components/User Profile/Profile";
 import Statistics from "./Components/Statistics/Statistics";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ChallengeForm from "./Components/Dashboard/ChallengeForm";
+import Belohnung from "./Components/Statistics/Belohnung";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/newChallenge" element={<ChallengeForm />} />
           <Route exact path="/statistics" element={<Statistics />} />
+          <Route exact path="/belohnungen" element={<Belohnung />} />
           <Route path="*" element={<Dashboard />} />
         </Routes>
       </Router>
