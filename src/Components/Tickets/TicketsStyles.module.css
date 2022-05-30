@@ -34,8 +34,8 @@
   }
   .popup_inner {
     position: fixed;
-    left: 0%;
-    right: 25%;
+    left: 20%;
+    right: 20%;
     top: 25%;
     bottom: 15%;
     margin: auto;
