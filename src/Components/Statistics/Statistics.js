@@ -4,6 +4,9 @@ import { FaAward } from "react-icons/fa";
 import { Table, Dropdown, Button, Form } from "react-bootstrap";
 import { ProgressBar } from "react-bootstrap";
 import Axios from "axios";
+import LineChart from "./LineChart";
+import PieChart from "./PieChart";
+import BarChart from "./BarChart";
 /*
 class Popup extends React.Component {
   constructor() {
@@ -341,6 +344,17 @@ class Statistics extends Component {
           <Popup text="Close Me" closePopup={this.togglePopup.bind(this)} />
         ) : null}
         */}
+
+        <div className={style.container3}>
+          <div className={style.chart1}>
+            {" "}
+            <LineChart title="abgeschlossene Challenges (Woche)" aspect={2} />
+          </div>
+          <div className={style.chart2}>
+            {" "}
+            <BarChart title="lol" aspect={3} />
+          </div>
+        </div>
       </div>
     );
   }

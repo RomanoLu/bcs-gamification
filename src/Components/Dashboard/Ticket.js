@@ -23,10 +23,10 @@ function Ticket() {
             </tr>
             <tr>
               <td>1</td>
-              <td>Einloggen in BCS-Account nicht möglich</td>
+              <td>Einloggen in BCS-Account ist immer möglich</td>
               <td>
-                Bro, ich komm nicht mehr in meinen Account rein. Scheiß BCS und
-                scheiß Projektron.
+                Bro, ich hatte noch nie ein Problem in meinen Account
+                reinzukommen. Gott segne BCS und Projektron.
               </td>
               <td>2</td>
               <td>Maximal</td>
@@ -34,11 +34,11 @@ function Ticket() {
             </tr>
             <tr>
               <td>2</td>
-              <td>React ist behindert</td>
+              <td>React ist super!</td>
               <td>
-                Hallo Fatih, ich kriege diese scheiß Tabellen in React nicht
-                hin. Warum schmeißen wir das Projekt nicht einfach und versuchen
-                es nächstes Semester wieder.
+                Hallo Fatih, diese Tabellen in das Dashboard zu implementieren
+                ist ein Klacks. Wir sollten nächstes Semester wieder so ein
+                Projekt machen!
               </td>
               <td>5</td>
               <td>Sehr hoch</td>
