@@ -4,9 +4,9 @@ import style from "./AufgabenStyles.module.css";
 function Termin() {
   return (
     <div className={style.container}>
-      <div className={style.challenges}>
-        <Table striped bordered hover responsive="sm">
-          <thead>
+      <div className={style.aufgaben}>
+        <Table responsive="sm">
+          <thead className={style.test}>
             <tr>
               <th>Nächste Termine</th>
             </tr>

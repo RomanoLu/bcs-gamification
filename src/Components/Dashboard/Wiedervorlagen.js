@@ -5,9 +5,9 @@ import style from "./AufgabenStyles.module.css";
 function Wiedervorlagen() {
   return (
     <div className={style.container}>
-      <div className={style.challenges}>
-        <Table striped bordered hover responsive="sm">
-          <thead>
+      <div className={style.aufgaben}>
+        <Table responsive="sm">
+          <thead className={style.test}>
             <tr>
               <th>Wiedervorlagen</th>
             </tr>
@@ -24,8 +24,7 @@ function Wiedervorlagen() {
               <td>Seitenlayout</td>
               <td>2022-07-01 00:00:00</td>
               <td>
-                Fertigstellung des Seitenlayouts für das Dashboard der neuen
-                BCS-Website
+                BCS-Gamification
               </td>
             </tr>
             <tr>
@@ -33,8 +32,7 @@ function Wiedervorlagen() {
               <td>Softwarearchitektur-Buch lesen</td>
               <td>2022-08-10 00:00:00</td>
               <td>
-                Buch über Softwarearchitektur lesen, speziell die Kapitel zu
-                Energieeffizienz
+              BCS-Gamification
               </td>
             </tr>
           </tbody>

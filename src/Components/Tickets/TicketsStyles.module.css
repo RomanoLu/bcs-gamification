@@ -74,7 +74,7 @@ h2{
 
 .tfstyle2{
     background-color: #d5e8f6;
-    height: 200px;
+    height: 100px;
 }
 
 .tfstyle3{
@@ -94,11 +94,33 @@ h2{
     grid-row-gap: 0px;
     }
     
-    .div1 { 
-        grid-area: 1 / 1 / 2 / 2;       
-        border-style: groove;
-    }
-    .div2 { 
-        grid-area: 1 / 2 / 2 / 3;        
-        border-style: groove;
-     }
+.div1 { 
+    grid-area: 1 / 1 / 2 / 2;  
+    margin-right: 10%;        
+}
+.div2 { 
+    grid-area: 1 / 2 / 2 / 3;        
+}
+
+
+.flexboxContainer {
+    margin-top: 2%;
+    border-collapse: collapse;
+    background-color: #f8f8f8;
+    box-shadow: 5px 5px 10px #cecece,
+    -5px -5px 10px #f2f2f2;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+
+.parent {
+    margin-left: 10%;
+    margin-right: 10%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+  

@@ -21,7 +21,7 @@ const Dashboard = () => {
           <Ticket />
           </div>
           <div className={style.div4}>
-          <Ticket />
+          <Workflow />
           </div>
         <div className={style.div5}>
           <Aufgaben />
@@ -30,7 +30,6 @@ const Dashboard = () => {
           <Wiedervorlagen />
           </div>
           <div className={style.div7}>
-          <Workflow />
         </div>
       </div>
     </div>

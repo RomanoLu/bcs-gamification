@@ -5,9 +5,9 @@ import style from "./AufgabenStyles.module.css";
 function Workflow() {
   return (
     <div className={style.container}>
-      <div className={style.challenges}>
-        <Table striped bordered hover responsive="sm">
-          <thead>
+      <div className={style.aufgaben}>
+        <Table responsive="sm">
+          <thead className={style.test}>
             <tr>
               <th>Offene Workflows</th>
             </tr>
@@ -25,14 +25,14 @@ function Workflow() {
               <td>2</td>
               <td>Zwischenpräsentation BCS-Gamification</td>
               <td>4 Tage</td>
-              <td>3</td>
+              <td>Offen</td>
             </tr>
             <tr>
               <td>2</td>
               <td>5</td>
               <td>Tabellen formatieren</td>
               <td>21 Tage</td>
-              <td>1</td>
+              <td>Offen</td>
             </tr>
           </tbody>
         </Table>

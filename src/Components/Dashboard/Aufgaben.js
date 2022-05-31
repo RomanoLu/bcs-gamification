@@ -6,8 +6,8 @@ function Aufgaben() {
   return (
     <div className={style.container}>
       <div className={style.aufgaben}>
-        <Table striped bordered hover responsive="sm">
-          <thead>
+        <Table responsive="sm">
+          <thead className={style.test}>
             <tr>
               <th>Aktuelle Aufgaben</th>
             </tr>

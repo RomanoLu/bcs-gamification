@@ -48,11 +48,16 @@ class Challenge extends React.Component {
 
   return (
     <div className={style.container}>
-      <div className={style.challenges}>
-        <Table striped bordered hover responsive="sm" >
-          <thead>
+      <div className={style.aufgaben}>
+        <Table responsive="sm">
+          <thead className={style.test}>
             <tr>
               <th>Challenges</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>

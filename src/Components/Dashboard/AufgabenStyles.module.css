@@ -17,21 +17,6 @@
     -5px -5px 10px #f2f2f2;
 }
 
-.aufgaben tbody {
-    background-color: white;
-    color: #2f87ba;
-    font-size: 10px;
-    text-align: left;
-}
-
-tbody:before {
-    line-height:1em;
-    background-color: #f8f8f8;
-    content:"."; 
-    color: #f8f8f8;
-    display:block;
-}
-
 .aufgaben thead {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
@@ -55,18 +40,14 @@ tbody:before {
     border-left: 0.01px solid #9fa49f;
 }
 
-.challenges tbody {
+
+.aufgaben tbody {
     background-color: white;
     color: #2f87ba;
     font-size: 10px;
     text-align: left;
 }
 
-tbody:before {
-    line-height:1em;
+.test {
     background-color: #f8f8f8;
-    content:"."; 
-    color: #f8f8f8;
-    display:block;
 }
-
