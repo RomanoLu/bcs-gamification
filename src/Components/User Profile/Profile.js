@@ -284,7 +284,7 @@ class Profile extends React.Component {
 
           <div className={style.Medaille}>
             <h5 style={{ marginTop: "15px", marginLeft: "15px" }}>
-              Wander-Medaillie
+              Wander-Medaille
             </h5>
             <div className={style.update}>
               <img

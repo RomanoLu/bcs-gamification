@@ -3,6 +3,7 @@ import { Table, Modal, Button } from "react-bootstrap";
 import style from "./AufgabenStyles.module.css";
 import Axios from 'axios';
 import { FcCheckmark, FcCancel } from "react-icons/fc";
+import { GrAchievement} from "react-icons/gr";
 import { useRowSelect } from 'react-table';
 
 
@@ -40,10 +41,30 @@ class Challenge extends React.Component {
    }
 
    const deny_Challenge = () =>{
-    alert("MUSIYE")
+    Axios.post('http://localhost:3001/api/selectedChallenge', { 
+      id: this.state.selectedItem.idchallenges, 
+      zeitspanne: 0, 
+      angenommen: false}).then(() => {
+      console.log("succesfull insert");
+  });
+  const newList = this.state.challengeList.filter((item) => item.idchallenges !== this.state.selectedItem.idchallenges);
+  this.setState({challengeList: newList})
   }
 
-  const handleClose = () => this.setState({ show: false });
+  const handleCloseDeny = () => this.setState({ show: false });
+  const handleCloseAccept = () =>  {
+    this.setState({ show: false });
+
+    Axios.post('http://localhost:3001/api/selectedChallenge', { 
+      id: this.state.selectedItem.idchallenges, 
+      zeitspanne: this.state.selectedItem.zeit, 
+      angenommen: true}).then(() => {
+      console.log("succesfull insert");
+  });
+  const newList = this.state.challengeList.filter((item) => item.idchallenges !== this.state.selectedItem.idchallenges);
+  this.setState({challengeList: newList})
+  }
+
 
 
   return (
@@ -95,17 +116,30 @@ class Challenge extends React.Component {
         </Table>
       </div>
 
-      <Modal show={this.state.show} onHide={handleClose}>
+      <Modal show={this.state.show} onHide={handleCloseDeny}>
         <Modal.Header closeButton>
+          <img
+                  src=" https://www.pngitem.com/pimgs/m/632-6329807_business-challenge-challenges-icon-hd-png-download.png"
+                  alt=""
+                  className={style.avatar}
+                />
           <Modal.Title>{this.state.selectedItem.titel}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{this.state.selectedItem.beschreibung}</Modal.Body>
+        <Modal.Body>
+          <div>
+          <h5>Beschreibung</h5>
+          <p>{this.state.selectedItem.beschreibung}</p>
+          <h5>Belohnung: {this.state.selectedItem.idbelohnung}</h5>
+          <h5>Zeitspanne: {this.state.selectedItem.zeit} Tage</h5>
+          </div>
+          
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
+          <Button variant="secondary" onClick={handleCloseDeny}>
+            Vielleicht ein andermal..
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button variant="primary" onClick={handleCloseAccept}>
+            Challenge akzeptieren
           </Button>
         </Modal.Footer>
       </Modal>
