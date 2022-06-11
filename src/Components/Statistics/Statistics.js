@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState,useEffect } from "react";
 import style from "./Statistics.module.css";
 import { FaAward } from "react-icons/fa";
 import { Table, Dropdown, Button, Form } from "react-bootstrap";
@@ -8,6 +8,7 @@ import Axios from "axios";
 import LineChart from "./LineChart";
 import PieChart from "./PieChart";
 import BarChart from "./BarChart";
+import openChallenge from "./OpenChallenge";
 
 class Statistics extends Component {
   constructor() {
@@ -17,7 +18,7 @@ class Statistics extends Component {
       showPopup: false,
       progress: [],
       challengeList: [],
-      filter: ""
+      filter: "Offen"
     };
   }
 
@@ -62,39 +63,7 @@ class Statistics extends Component {
           </Form.Select>
         </Form.Group> 
         <div className={style.container2}>
-          <Table responsive="sm">
-            <tbody>
-              <tr className={style.secondhead}>
-                <td>ID</td>
-                <td>Titel</td>
-                <td>Anzahl</td>
-                <td>Belohnung</td>
-                <td>Zeit bis</td>
-                <td>Fortschritt</td>
-              </tr>
-              {this.state.challengeList.map((val) => (
-                <>
-              <tr>
-                <td>{val.idchallenges}</td>
-                <td>{val.titel}</td>
-                <td>{val.anzahl}</td>
-                <td>{val.idbelohnung}</td>
-                <td>{val.ende}</td>
-                  <td>
-                  <span style={{ color: "green" }}>
-                    <ProgressBar
-                      striped
-                      variant="success"
-                      now={this.state.progress.challengeProgress*100}
-                      label={this.state.progress.challengeProgress*100 + "%"}
-                    />
-                  </span>
-                </td>
-              </tr>
-              </>
-              ))}
-            </tbody>
-          </Table>
+          <OpenChallenges display={this.state.filter} challengeProgress= {this.state.progress.challengeProgress} />
         </div>
 
         {/*
@@ -115,3 +84,90 @@ class Statistics extends Component {
 }
 
 export default Statistics;
+
+/*ChallengeList */
+const OpenChallenges = (props) => {
+  const [state, setState] = useState([])
+  useEffect(() => {
+    Axios.get("http://localhost:3001/api/getOpenChallenges")
+      .then(
+        res => setState(res.data)
+      )
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+
+  const openChallenge = state.filter(open => open.absolviert != 1)
+  const solvedChallenge = state.filter(open => open.absolviert == 1)
+
+
+  return(
+    <>
+    {
+      props.display === "Offen" ? (
+        <Table responsive="sm">
+          <tbody>
+            <tr className={style.secondhead}>
+              <td>ID</td>
+              <td>Titel</td>
+              <td>Anzahl</td>
+              <td>Belohnung</td>
+              <td>Zeit bis</td>
+              <td>Fortschritt</td>
+            </tr>
+          {openChallenge.map((val) => (           
+            <tr>
+              <td>{val.idchallenges}</td>
+              <td>{val.titel}</td>
+              <td>{val.anzahl}</td>
+              <td>{val.idbelohnung}</td>
+              <td>{val.ende}</td>
+                <td>
+                <span style={{ color: "green" }}>
+                  <ProgressBar
+                    striped
+                    variant="success"
+                    now={props.challengeProgress*100}
+                    label={props.challengeProgress*100 + "%"}
+                  />
+                </span>
+              </td>
+            </tr>
+            ))}
+            </tbody>
+          </Table>
+      ):
+      props.display === "Absolviert" && (
+    
+        <Table responsive="sm">
+          <tbody>
+            <tr className={style.secondhead}>
+              <td>ID</td>
+              <td>Titel</td>
+              <td>Anzahl</td>
+              <td>Belohnung</td>
+              <td>Zeit bis</td>
+              <td>Fortschritt</td>
+            </tr>
+          {solvedChallenge.map((val) => (
+            <tr>
+              <td>{val.idchallenges}</td>
+              <td>{val.titel}</td>
+              <td>{val.anzahl}</td>
+              <td>{val.idbelohnung}</td>
+              <td>{val.ende}</td>
+                <td>
+                <span style={{ color: "green" }}>
+                </span>
+              </td>
+            </tr>
+            ))}
+            </tbody>
+          </Table>
+        )
+    }
+
+    </>
+  )
+}

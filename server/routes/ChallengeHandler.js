@@ -67,5 +67,6 @@ router.get('/getOpenChallenges', (req,res) => {
     })
 });
 
+
 module.exports = router;
 
