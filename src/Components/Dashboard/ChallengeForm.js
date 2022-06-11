@@ -20,41 +20,50 @@ class ChallengeForm extends React.Component {
       ende: "",
       aktion: "Arbeitszeiten",
       buchung_über: "",
+      validated: false
     };
   }
 
 
 
   render() {
-    const submit = () => {
-      Axios.post('http://localhost:3001/api/insertChallenge', {
-        art: this.state.art,
-        beschreibung: this.state.beschreibung,
-        titel: this.state.titel,
-        idbelohnung: this.state.idbelohnung,
-        zeit: this.state.zeit,
-        priorität: this.state.priorität,
-        bewertung: this.state.bewertung,
-        anzahl: this.state.anzahl,
-        aktion: this.state.aktion,
-        buchung_über: this.state.buchung_über
-      }).then(() => {
-        alert("succesfull insert");
-      });
-    };
+      const submit = (event) => {
+      const form = event.currentTarget;
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      else {
+        Axios.post('http://localhost:3001/api/insertChallenge', {
+          art: this.state.art,
+          beschreibung: this.state.beschreibung,
+          titel: this.state.titel,
+          idbelohnung: this.state.idbelohnung,
+          zeit: this.state.zeit,
+          priorität: this.state.priorität,
+          bewertung: this.state.bewertung,
+          anzahl: this.state.anzahl,
+          aktion: this.state.aktion,
+          buchung_über: this.state.buchung_über
+        }).then(() => {
+          alert("succesfull insert");
+        });
+      }
+      this.setState({validated: true});
 
+    };
     return (
       <>
         <h2>Neue Challenge anlegen</h2>
         <div className={ChallengeFormCSS.flexboxContainer}>
-          <Form>
+          <Form noValidate validated={this.state.validated} onSubmit={submit}>
             <fieldset>
               <div className={ChallengeFormCSS.challengeArt}>
-                  <Form.Group className="mb-3">
+                  <Form.Group className="mb-3" controlId="validationCustom01">
                     <Form.Label htmlFor="disabledSelect">Challengeart</Form.Label>
                     <Form.Select className={ChallengeFormCSS.form} id="disabledSelect" onChange={(e) => {
                                             this.setState({ art: e.target.value })
-                                        }}                  >
+                                        }}  required                >
                       <option>Tickets</option>
                       <option>Workflow</option>
                       <option>Checkliste</option>
@@ -71,12 +80,13 @@ class ChallengeForm extends React.Component {
 
                 {this.state.art === "Tickets" ? (
                   <>
-                <Form.Group className="mb-3">
+                <Form.Group className="mb-3" controlId="validationCustom02">
                     <Form.Label htmlFor="disabledTextInput">Anzahl</Form.Label>
                     <Form.Control
                       id="disabledTextInput"
                       placeholder="Anzahl"
                       className={ChallengeFormCSS.form}
+                      required
                       onChange={(e) => {
                         this.setState({ anzahl: parseInt(e.target.value) })
                     }}
@@ -87,17 +97,16 @@ class ChallengeForm extends React.Component {
                     <Form.Label htmlFor="disabledSelect">Bewertung</Form.Label>
                     <Form.Select className={ChallengeFormCSS.form} id="disabledSelect" onChange={(e) => {
                                             this.setState({ bewertung: e.target.value })
-                                        }}                  >
-                      <option>keine Angabe</option>
+                                        }}   required>
                       <option>unzufrieden</option>
                       <option>akzeptabel</option>
-                      <option>zufrieden</option>
+                      <option>zufrieden</option>s
                     </Form.Select>
                   </Form.Group>
 
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="disabledSelect">Priorität</Form.Label>
-                    <Form.Select className={ChallengeFormCSS.form} id="disabledSelect" onChange={(e) => {
+                    <Form.Select className={ChallengeFormCSS.form} id="disabledSelect" required onChange={(e) => {
                       this.setState({ priorität: e.target.value })
                     }
                     }>
@@ -105,8 +114,8 @@ class ChallengeForm extends React.Component {
                       <option>Mittel</option>
                       <option>Hoch</option>
                     </Form.Select>                        <br />
-                        <Button className="buttoncolor" type="submit" onClick={submit}>
-                        Submit
+                        <Button className="buttoncolor" type="submit">
+                        Challenge Hinzufügen
                         </Button>
                   </Form.Group>
                   </>
@@ -118,14 +127,15 @@ class ChallengeForm extends React.Component {
                       <Form.Control
                         id="disabledTextInput"
                         placeholder="Anzahl"
+                        required
                         className={ChallengeFormCSS.form}
                         onChange={(e) => {
                           this.setState({ anzahl: parseInt(e.target.value) })
                       }}>
                       </Form.Control>          
                             <br />
-                      <Button className="buttoncolor" type="submit" onClick={submit}>
-                      Submit
+                      <Button className="buttoncolor" type="submit">
+                      Challenge Hinzufügen
                       </Button>
                       </Form.Group>
                   </>
@@ -137,14 +147,15 @@ class ChallengeForm extends React.Component {
                       <Form.Control
                         id="disabledTextInput"
                         placeholder="Anzahl"
+                        required
                         onChange={(e) => {
                           this.setState({ anzahl: parseInt(e.target.value) })
                       }}     
                         className={ChallengeFormCSS.form}
                       />
                           <br />
-                        <Button className="buttoncolor" type="submit" onClick={submit}>
-                        Submit
+                        <Button className="buttoncolor" type="submit">
+                        Challenge Hinzufügen
                         </Button>
                       </Form.Group>
                   </>
@@ -155,6 +166,7 @@ class ChallengeForm extends React.Component {
                       <Form.Label htmlFor="disabledTextInput">Anzahl absolvierter Checklist-Einträge</Form.Label>
                       <Form.Control
                         id="disabledTextInput"
+                        required
                         placeholder="Anzahl"
                         onChange={(e) => {
                           this.setState({ anzahl: parseInt(e.target.value) })
@@ -162,8 +174,8 @@ class ChallengeForm extends React.Component {
                         className={ChallengeFormCSS.form}
                       />
                         <br />
-                        <Button className="buttoncolor" type="submit" onClick={submit}>
-                        Submit
+                        <Button className="buttoncolor" type="submit">
+                        Challenge Hinzufügen
                         </Button>
                       </Form.Group>
                   </>
@@ -172,7 +184,7 @@ class ChallengeForm extends React.Component {
                   <>
                     <Form.Group className="mb-3">
                       <Form.Label htmlFor="disabledSelect">Aktion</Form.Label>
-                      <Form.Select className={ChallengeFormCSS.form} id="disabledSelect" onChange={(e) => {
+                      <Form.Select className={ChallengeFormCSS.form} required id="disabledSelect" onChange={(e) => {
                         this.setState({ aktion: e.target.value })
                       }
                       }>
@@ -184,7 +196,7 @@ class ChallengeForm extends React.Component {
                     {this.state.aktion === "Arbeitszeiten" ? (
                         <Form.Group className="mb-3">
                         <Form.Label htmlFor="disabledSelect">Buchung über:</Form.Label>
-                        <Form.Select className={ChallengeFormCSS.form} id="disabledSelect" onChange={(e) => {
+                        <Form.Select className={ChallengeFormCSS.form} required id="disabledSelect" onChange={(e) => {
                                             this.setState({ buchung_über: e.target.value })
                                       }}          >
                           <option>Stopp-Uhr</option>
@@ -192,8 +204,8 @@ class ChallengeForm extends React.Component {
                           <option>Zeitbuchung</option>
                         </Form.Select>
                           <br />
-                          <Button className="buttoncolor" type="submit" onClick={submit}>
-                          Submit
+                          <Button className="buttoncolor" type="submit">
+                          Challenge Hinzufügen
                           </Button>
                       </Form.Group>
                     ): 
@@ -203,14 +215,15 @@ class ChallengeForm extends React.Component {
                       <Form.Control
                         id="disabledTextInput"
                         placeholder="Anzahl"
+                        required
                         onChange={(e) => {
                           this.setState({ anzahl: parseInt(e.target.value) })
                       }}  
                         className={ChallengeFormCSS.form}
                       />
                       <br />
-                        <Button className="buttoncolor" type="submit" onClick={submit}>
-                        Submit
+                      <Button className="buttoncolor" type="submit">
+                        Challenge Hinzufügen
                         </Button>
                       </Form.Group>
                       
@@ -218,8 +231,8 @@ class ChallengeForm extends React.Component {
                       
                     ):
                     this.state.aktion === "Urlaubstage" && (
-                      <Button className="buttoncolor" type="submit" onClick={submit}>
-                      Submit
+                      <Button className="buttoncolor" type="submit">
+                      Challenge Hinzufügen
                       </Button>
                     )
                     
@@ -233,6 +246,7 @@ class ChallengeForm extends React.Component {
                     <Form.Label htmlFor="disabledTextInput">Titel</Form.Label>
                     <Form.Control
                       id="disabledTextInput"
+                      required
                       placeholder="Titel"
                       className={ChallengeFormCSS.form}
                       onChange={(e) => {
@@ -245,6 +259,7 @@ class ChallengeForm extends React.Component {
                     <Form.Control
                       as="textarea"
                       rows={3}
+                      required
                       id="disabledTextInput"
                       className={ChallengeFormCSS.form}
                       placeholder="Beschreibung"
@@ -255,12 +270,11 @@ class ChallengeForm extends React.Component {
                   </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="disabledSelect">Zeitspanne</Form.Label>
-                    <Form.Select className={ChallengeFormCSS.form} id="disabledSelect" onChange={(e) => {
+                    <Form.Select className={ChallengeFormCSS.form} required id="disabledSelect" onChange={(e) => {
                       this.setState({zeit: e.target.value})
                     }
                     }>
                       {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
-                      <option>keine Angabe</option>
                       <option value = "1">1 Tag</option>
                       <option value = "2">2 Tage</option>
                       <option value = "5">5 Tage</option>
@@ -274,7 +288,7 @@ class ChallengeForm extends React.Component {
 
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="disabledSelect">Belohnung</Form.Label>
-                    <Form.Select className={ChallengeFormCSS.form} id="disabledSelect" onChange={(e) => {
+                    <Form.Select className={ChallengeFormCSS.form} id="disabledSelect" required onChange={(e) => {
                       this.setState({ idbelohnung: e.target.value })
                     }
                     }>

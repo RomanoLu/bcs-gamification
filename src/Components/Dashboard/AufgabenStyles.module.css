@@ -7,6 +7,8 @@
 }
 
 .aufgaben {
+    overflow-y: scroll;
+    height: 190px;
     align-self: center;
     border-radius: 0px;
     background-color: #e0e0e0;
@@ -30,6 +32,7 @@
 }
 
 .secondhead {
+    
     background-color: #f8f8f8;
     color: #3E3E3E;
     font-size: 8px;
@@ -42,6 +45,7 @@
 
 
 .aufgaben tbody {
+    
     background-color: white;
     color: #2f87ba;
     font-size: 10px;

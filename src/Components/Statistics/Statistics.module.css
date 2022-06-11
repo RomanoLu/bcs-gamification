@@ -115,3 +115,8 @@ h2 {
   grid-area: 1 / 2 / 2 / 3;
   border-style: groove;
 }
+.form {
+  width: 200px;
+  background-color: grey;
+  color: white;
+}

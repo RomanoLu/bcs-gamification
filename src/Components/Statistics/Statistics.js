@@ -2,6 +2,7 @@ import React, { Component, useState } from "react";
 import style from "./Statistics.module.css";
 import { FaAward } from "react-icons/fa";
 import { Table, Dropdown, Button, Form } from "react-bootstrap";
+
 import { ProgressBar } from "react-bootstrap";
 import Axios from "axios";
 import LineChart from "./LineChart";
@@ -15,7 +16,8 @@ class Statistics extends Component {
       alert: false,
       showPopup: false,
       progress: [],
-      challengeList: []
+      challengeList: [],
+      filter: ""
     };
   }
 
@@ -51,6 +53,14 @@ class Statistics extends Component {
     return (
       <div className={style.container}>
         <h2>Meine Statistik: Challenge</h2>
+        <Form.Group className="mb-3" controlId="validationCustom01">
+          <Form.Select className={style.form} id="disabledSelect" onChange={(e) => {
+                                  this.setState({ filter: e.target.value })
+                              }}  required                >
+            <option>Offen</option>
+            <option>Absolviert</option>
+          </Form.Select>
+        </Form.Group> 
         <div className={style.container2}>
           <Table responsive="sm">
             <tbody>
@@ -87,16 +97,18 @@ class Statistics extends Component {
           </Table>
         </div>
 
-        <div className={style.container3}>
-          <div className={style.chart1}>
-            {" "}
-            <LineChart title="abgeschlossene Challenges (Woche)" aspect={2} />
-          </div>
-          <div className={style.chart2}>
-            {" "}
-            <BarChart title="lol" aspect={3} />
-          </div>
-        </div>
+        {/*
+                  <div className={style.container3}>
+                  <div className={style.chart1}>
+                    {" "}
+                    <LineChart title="abgeschlossene Challenges (Woche)" aspect={2} />
+                  </div>
+                  <div className={style.chart2}>
+                    {" "}
+                    <BarChart title="lol" aspect={3} />
+                  </div>
+                </div>
+              */ }
       </div>
     );
   }
