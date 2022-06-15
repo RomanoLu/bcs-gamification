@@ -4,7 +4,6 @@ import style from "./DashboardStyles.module.css";
 import Axios from 'axios';
 import Tabellen from './Tabellen.js';
 
-
 class Dashboard extends React.Component {
   constructor() {
     super();

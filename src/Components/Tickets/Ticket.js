@@ -5,6 +5,7 @@ import { Table, Dropdown, Button, Form, Row, Col } from 'react-bootstrap';
 import Axios from 'axios';
 import Confetti from './Confetti';
 import Confetti2 from 'react-confetti'
+import Notify from '../Notify';
 
 
 class Popup extends React.Component {
@@ -37,6 +38,7 @@ class Popup extends React.Component {
                 <div className={TicketCSS.popup_inner}>
                     <h4 style={{textAlign: 'center'}}>Neues Ticket erstellen</h4>
                     <hr></hr>
+                    <Notify />
                     <div className={TicketCSS.flexboxContainer}>
                         <Form>
                         <fieldset>
@@ -158,12 +160,11 @@ class Bearbeiten extends React.Component {
     render() {
         const submit = () => {
             if (this.state.sta === "Geschlossen") {
-                alert("Fertig")
                 //Hier GIF einfügen
                 this.setState({alert: true})
                 //Dannach das Fenster schließen
             } else {
-                this.props.closePopup();
+                this.props.closePopup2();
                 Axios.post('http://localhost:3001/api/insertTicket', { betreff: this.state.betreff, bezug: this.state.bezug, prio: this.state.prio, sta: this.state.sta }).then(() => {
                     console.log("succesfull insert");
                 });
@@ -272,9 +273,7 @@ class Bearbeiten extends React.Component {
                 </div>
                 {
                     this.state.alert ?
-                        <Confetti2
-                            run={alert}
-                        />
+                        <Notify />
                         : null
                 }
             </div>
@@ -311,9 +310,14 @@ class Ticket extends Component {
 
     togglePopup() {
         this.setState({
-            alert: !this.state.alert,
             showPopup: !this.state.showPopup
+        });
+    }
 
+        
+    togglePopup2() {
+        this.setState({
+            alert: !this.state.alert,
         });
     }
 
@@ -415,7 +419,8 @@ class Ticket extends Component {
                 }
                 {
                     this.state.showBearbeiten ?
-                    <Bearbeiten/>:null
+                    <Bearbeiten
+                        closePopup2={this.togglePopup2.bind(this)}/>:null
                 }
             </div>
 
