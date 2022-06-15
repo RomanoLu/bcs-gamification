@@ -6,7 +6,7 @@ import Header from "./Components/Header/Header";
 import Profile from "./Components/User Profile/Profile";
 import Statistics from "./Components/Statistics/Statistics";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ChallengeForm from "./Components/Dashboard/ChallengeForm";
+import ChallengeForm from "./Components/ChallengeFormular/ChallengeForm";
 import Belohnung from "./Components/Statistics/Belohnung";
 
 function App() {
