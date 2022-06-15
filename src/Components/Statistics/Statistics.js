@@ -147,15 +147,13 @@ const OpenChallenges = (props) => {
               <td>Titel</td>
               <td>Anzahl</td>
               <td>Belohnung</td>
-              <td>Zeit bis</td>
-              <td>Fortschritt</td>
+              <td>Abgeschlossen am</td>
             </tr>
           {solvedChallenge.map((val) => (
             <tr>
               <td>{val.idchallenges}</td>
               <td>{val.titel}</td>
               <td>{val.anzahl}</td>
-              <td>{val.idbelohnung}</td>
               <td>{val.ende}</td>
                 <td>
                 <span style={{ color: "green" }}>

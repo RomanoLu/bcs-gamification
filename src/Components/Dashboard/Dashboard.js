@@ -1,39 +1,59 @@
 import React from "react";
 import Challenge from "./Challenge.js";
 import style from "./DashboardStyles.module.css";
-import Ticket from "./Ticket.js";
-import Termin from "./Termin.js";
-import Wiedervorlagen from "./Wiedervorlagen.js";
-import Aufgaben from "./Aufgaben.js";
-import Workflow from "./Workflow.js";
+import Axios from 'axios';
+import Tabellen from './Tabellen.js';
 
-const Dashboard = () => {
-  return (
-    <div>
-      <div className={style.parent}>
-        <div className={style.div1}>
-          <Termin />
-        </div>
-          <div className={style.div2}>
-            <Challenge />
+
+class Dashboard extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+        challengeList: [],
+        show: false,
+        selectedItem: []
+    };
+  }
+
+  componentDidMount() {
+    Axios.get('http://localhost:3001/api/getChallenges')
+    .then(response => {
+        const challengeList = response.data;
+        this.setState({ challengeList});
+        console.log(this.state.challengeList)
+    }
+    ).catch(function(error) {
+        console.log(error);
+      });
+  }
+  render(){
+    return (
+      <div>
+        <div className={style.parent}>
+          <div className={style.div1}>
+           <Tabellen display= "Termin" />
           </div>
-          <div className={style.div3}>
-          <Ticket />
+            <div className={style.div2}>
+              <Challenge />
+            </div>
+            <div className={style.div3}>
+            <Tabellen display= "Ticket" />
+            </div>
+            <div className={style.div4}>
+            <Tabellen display= "Workflow" />
+            </div>
+          <div className={style.div5}>
+            <Tabellen display= "Aufgaben" />
           </div>
-          <div className={style.div4}>
-          <Workflow />
+          <div className={style.div6}>
+            <Tabellen display= "Wiedervorlagen" />
+            </div>
+            <div className={style.div7}>
           </div>
-        <div className={style.div5}>
-          <Aufgaben />
-        </div>
-        <div className={style.div6}>
-          <Wiedervorlagen />
-          </div>
-          <div className={style.div7}>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Dashboard;
