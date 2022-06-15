@@ -162,9 +162,9 @@ class Bearbeiten extends React.Component {
             if (this.state.sta === "Geschlossen") {
                 //Hier GIF einfügen
                 this.setState({alert: true})
+                this.props.closePopup();
                 //Dannach das Fenster schließen
             } else {
-                this.props.closePopup2();
                 Axios.post('http://localhost:3001/api/insertTicket', { betreff: this.state.betreff, bezug: this.state.bezug, prio: this.state.prio, sta: this.state.sta }).then(() => {
                     console.log("succesfull insert");
                 });
@@ -271,11 +271,6 @@ class Bearbeiten extends React.Component {
                         </Button>
                     </Form>
                 </div>
-                {
-                    this.state.alert ?
-                        <Notify />
-                        : null
-                }
             </div>
         );
         
@@ -317,13 +312,21 @@ class Ticket extends Component {
         
     togglePopup2() {
         this.setState({
-            alert: !this.state.alert,
+            alert: true,
+            showBearbeiten: false
         });
     }
 
     render() {
         return (
             <div className={TicketCSS.container}>
+                <div style = {{marginLeft: "400px", zIndex:"5" , position: "fixed"}}>
+                                {
+                    this.state.alert ?
+                        <Notify />
+                        : null
+                }
+                </div>
                 <h2>Meine Tickets: Alle meine Tickets</h2>
 
                 <div className={TicketCSS.buttons}>
@@ -380,7 +383,9 @@ class Ticket extends Component {
 
                             {this.state.ticketsList.map(val =>
                                 <tr className={TicketCSS.items}>
-                                    <td><Form.Check type="checkbox" id={val.idTickets} checked={this.state.checked === val.idTickets} onChange={(e) => {
+                                    <td><Form.Check type="checkbox" id={val.idTickets} checked={
+                                        this.state.checked === val.idTickets
+                                    } onChange={(e) => {
                                         var i = val.idTickets
                                         this.setState({ checked: i })
                                         this.setState({ showBearbeiten: true })
@@ -411,16 +416,10 @@ class Ticket extends Component {
                     : null
                 }
                 {
-                    this.state.alert ?
-                        <Confetti2
-                            run={false}
-                        />
-                        : null
-                }
-                {
                     this.state.showBearbeiten ?
                     <Bearbeiten
-                        closePopup2={this.togglePopup2.bind(this)}/>:null
+                    closePopup={this.togglePopup2.bind(this)}
+                    /> :null
                 }
             </div>
 
