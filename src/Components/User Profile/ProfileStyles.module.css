@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   flex-direction: row;
-  align-items: stretch;
+  align-items: center;
   border-style: solid;
   border-color: #d0e1ef;
   border-width: 1px;
@@ -17,9 +17,9 @@
   flex-grow: 0;
   flex-shrink: 1;
   flex-basis: auto;
-  align-self: stretch;
+  align-self: center;
   order: 0;
-  width: 30%;
+  width: 40%;
 }
 
 
@@ -64,9 +64,10 @@ html, body, .app {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
-    align-self: stretch;
+    align-self: center;
     justify-content: center;
     order: 0;
+    width: 60%;
     height: 100%;
   }
 
@@ -79,8 +80,8 @@ html, body, .app {
   }
 
   .avatar {
-    width: 90px;
-    height: 90px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     align-self: center;
     margin-left: 5px;

@@ -130,7 +130,7 @@ class Profile extends React.Component {
   constructor() {
     super();
     this.state = {
-      showPopup: true,
+      showPopup: false,
     };
   }
   togglePopup() {
@@ -144,7 +144,7 @@ class Profile extends React.Component {
         <div className={style.containeritems}>
           <Card className={style.cardleft}>
             <img
-              src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
+              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fanne-weinrich.de%2Fwp-content%2Fuploads%2F2015%2F12%2FBewerbungsbild-Basti-2.jpg&f=1&nofb=1"
               alt=""
               className={style.avatar}
             />
@@ -293,7 +293,7 @@ class Profile extends React.Component {
                 className={style.avatar}
               />
               <div className={style.noti}>
-                <div style={{ marginBottom: "0.5rem" }}>
+                <div style={{ marginBottom: "0.5rem", marginLeft: "15px" }}>
                   <span>Rockstar</span> <br />
                   <span style={{ color: "grey" }}>
                     Resolved 50 Tickets, at the speed of light.
