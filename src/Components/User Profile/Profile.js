@@ -139,12 +139,15 @@ class Profile extends React.Component {
     });
   }
   render() {
-    return (
-      <div className={style.container}>
+    return (<>   
+    <div className={style.title}>
+    <h3>Stammdaten</h3>
+    </div>
+       <div className={style.container}>  
         <div className={style.containeritems}>
           <Card className={style.cardleft}>
             <img
-              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fanne-weinrich.de%2Fwp-content%2Fuploads%2F2015%2F12%2FBewerbungsbild-Basti-2.jpg&f=1&nofb=1"
+              src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
               alt=""
               className={style.avatar}
             />
@@ -201,7 +204,7 @@ class Profile extends React.Component {
             <div className={style.Updates}>
               <div className={style.update}>
                 <img
-                  src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
+                  src="https://cdn-icons-png.flaticon.com/512/616/616285.png"
                   alt=""
                   className={style.avatar}
                 />
@@ -221,7 +224,7 @@ class Profile extends React.Component {
 
               <div className={style.update}>
                 <img
-                  src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F001%2F192%2F226%2Foriginal%2Fmusic-circle-icon-guitar-png.png&f=1&nofb=1"
                   alt=""
                   className={style.avatar}
                 />
@@ -312,6 +315,24 @@ class Profile extends React.Component {
           <Popup text="Close Me" closePopup={this.togglePopup.bind(this)} />
         ) : null}
       </div>
+
+      <div className={style.containerunten}>
+        <div  className={style.oben}>
+          <p>Externe Personensuche</p>
+          </div>
+          <div className={style.unten}>
+          <a href="" >Person in Google suchen  </a>
+          <a href="">Person in Xing suchen  </a>
+          <a href="">Adresse in Google Maps  </a>
+          </div>
+      </div>
+
+
+      <hr></hr>
+
+
+      </>
+
     );
   }
 }
