@@ -1,128 +1,123 @@
-
-.container{
-    margin-left: 1%;
-    margin-right: 1%;
+.container {
+  margin-left: 1%;
+  margin-right: 1%;
 }
-.container2{
-    overflow-y: scroll;
-    height: 400px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 40px;      
-    background-color: #e0e0e0;
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    background-color: #f8f8f8;
-    box-shadow: 5px 5px 10px #cecece,
-    -5px -5px 10px #f2f2f2;
+.container2 {
+  overflow-y: scroll;
+  height: 400px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 40px;
+  background-color: #e0e0e0;
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  background-color: #f8f8f8;
+  box-shadow: 5px 5px 10px #cecece, -5px -5px 10px #f2f2f2;
 }
-  html, body, .app {
-    margin: 0;
-    padding: 0;
-    position: relative;
-    width: 100%;
-    height: 100vh;
-  }
-  .popup {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    background-color: rgba(0,0,0, 0.5);
-  }
-  .popup_inner {
-    position: fixed;
-    left: 20%;
-    right: 20%;
-    top: 25%;
-    bottom: 15%;
-    margin: auto;
-    background: white;
-    
-  }
-.buttons{
-    margin-left: 85%;
+html,
+body,
+.app {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 100vh;
 }
-
-h2{
-    margin-top: 50px;
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.popup_inner {
+  position: fixed;
+  left: 20%;
+  right: 20%;
+  top: 25%;
+  bottom: 15%;
+  margin: auto;
+  background: white;
+}
+.buttons {
+  margin-left: 85%;
 }
 
-.items{
-    background-color: #f8f8f8;
-    color: #3E3E3E;
-    font-size: 10px;
-    text-align: left;
+h2 {
+  margin-top: 50px;
+}
+
+.items {
+  background-color: #f8f8f8;
+  color: #3e3e3e;
+  font-size: 10px;
+  text-align: left;
 }
 
 .secondhead {
-    background-color: #e7e7e7;
-    color: #3E3E3E;
-    font-size: 8px;
-    text-align: left;
+  background-color: #e7e7e7;
+  color: #3e3e3e;
+  font-size: 8px;
+  text-align: left;
 }
 
 .secondhead td {
-    border-left: 0.01px solid #9fa49f;
+  border-left: 0.01px solid #9fa49f;
 }
-.tfstyle{
-    background-color: #d5e8f6;
-    height: 27px;
-}
-
-.tfstyle2{
-    background-color: #d5e8f6;
-    height: 100px;
+.tfstyle {
+  background-color: #d5e8f6;
+  height: 27px;
 }
 
-.tfstyle3{
-    background-color: #d5e8f6;
-    width: 200px;
+.tfstyle2 {
+  background-color: #d5e8f6;
+  height: 100px;
 }
 
-.formcontainer{
-    margin-left: 10%;
-    margin-right: 10%;
+.tfstyle3 {
+  background-color: #d5e8f6;
+  width: 200px;
+}
+
+.formcontainer {
+  margin-left: 10%;
+  margin-right: 10%;
 }
 .parent {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    }
-    
-.div1 { 
-    grid-area: 1 / 1 / 2 / 2;  
-    margin-right: 10%;        
-}
-.div2 { 
-    grid-area: 1 / 2 / 2 / 3;        
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
 
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+  margin-right: 10%;
+}
+.div2 {
+  grid-area: 1 / 2 / 2 / 3;
+}
 
 .flexboxContainer {
-    margin-top: 2%;
-    border-collapse: collapse;
-    background-color: #f8f8f8;
-    box-shadow: 5px 5px 10px #cecece,
-    -5px -5px 10px #f2f2f2;
-    margin-left: 15%;
-    margin-right: 15%;
+  margin-top: 2%;
+  border-collapse: collapse;
+  background-color: #f8f8f8;
+  box-shadow: 5px 5px 10px #cecece, -5px -5px 10px #f2f2f2;
+  margin-left: 15%;
+  margin-right: 15%;
 }
-
 
 .parent {
-    margin-left: 10%;
-    margin-right: 10%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
-  
