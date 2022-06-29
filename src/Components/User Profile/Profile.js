@@ -147,7 +147,7 @@ class Profile extends React.Component {
         <div className={style.containeritems}>
           <Card className={style.cardleft}>
             <img
-              src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
+              src="https://profile-images.xing.com/images/4a6cc053bd0c65e3ecd609eb3f39188c-1/fatih-kuruscu.1024x1024.jpg"
               alt=""
               className={style.avatar}
             />
@@ -155,47 +155,57 @@ class Profile extends React.Component {
               <Card.Title>Fatih Kuruscu</Card.Title>
               <Card.Text></Card.Text>
             </Card.Body>
-            <ListGroup className={style.listgroupflush}>
-              <ListGroupItem>
+            <ListGroup>
+              <ListGroupItem className={style.listgroupflush}>
                 <h6>Adresse</h6>
                 <p>
                   Hochschule Reutlingen <br />
                   Alteburgstraße 150 72145 Reutlingen
                 </p>
-              </ListGroupItem>
-              <ListGroupItem>
                 <h6>Telefon</h6>
-                <p>
-                  07478 110
-                  <br />
-                </p>
-
+                <p>07478 110<br /></p>
                 <h6>Mobiltelefon</h6>
-                <p>
-                  +49 17670112531
-                  <br />
-                </p>
-
+                <p>+49 17670112531<br /></p>
                 <h6>E-Mail</h6>
-                <p>
-                  fatih.kuruscu@student.reutlingen-university.de
-                  <br />
-                </p>
+                <p>fatih.kuruscu@student.reutlingen-university.de<br /></p>
               </ListGroupItem>
             </ListGroup>
           </Card>
         </div>
 
+
         <div className={style.containeritems}>
-          <div className={style.r1}>
-            <div className={style.rl}>
-              <h5 style={{ marginTop: "15px", marginLeft: "15px" }}>Badges</h5>
+        <div className={style.Medaille}>
+            <h5 style={{ marginTop: "15px", marginLeft: "15px" }}>
+              Medaillen
+            </h5>
+            <div style = {{marginLeft: "10px", marginRight: "10px"}} className={style.update}>
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/6554/6554493.png"
+                alt=""
+                className={style.avatar}
+              />
+              <div className={style.noti}>
+                <div style={{ marginBottom: "0.5rem", marginLeft: "15px" }}>
+                  <span>Fleißigster Arbeiter</span> <br />
+                  <span style={{ color: "grey" }}>
+                    Mitarbeiter mit den meisten offenen Tickets
+                  </span>{" "}
+                  <br />
+                  <span style={{ color: "green" }}>
+                    <BiCheckCircle /> Verdient am: 02.05.2022
+                  </span>
+                </div>
+              </div>
             </div>
+          </div>
+          <div className={style.r1}>
+              <h5 style={{ marginTop: "15px", marginLeft: "15px" }}>Badges</h5>
             <div className={style.rl}>
               <ImInfo
                 size={20}
                 onClick={this.togglePopup.bind(this)}
-                style={{ marginTop: "10px" }}
+                style={{ marginTop: "10px", marginRight: "7px" }}
               />
             </div>
           </div>
@@ -204,19 +214,19 @@ class Profile extends React.Component {
             <div className={style.Updates}>
               <div className={style.update}>
                 <img
-                  src="https://cdn-icons-png.flaticon.com/512/616/616285.png"
+                  src="https://cdn-icons.flaticon.com/png/512/1459/premium/1459958.png?token=exp=1656537923~hmac=bf59a6c6613302758c1bbde2ec53872b"
                   alt=""
                   className={style.avatar}
                 />
                 <div className={style.noti}>
                   <div style={{ marginBottom: "0.5rem" }}>
-                    <span>Rockstar</span> <br />
+                    <span>Ticket-Guru</span> <br />
                     <span style={{ color: "grey" }}>
-                      Resolved 50 Tickets, at the speed of light.
+                      Über 50 Tickets abgeschlossen
                     </span>{" "}
                     <br />
                     <span style={{ color: "green" }}>
-                      <BiCheckCircle /> Achieved on: 02.05.2022
+                      <BiCheckCircle /> Verdient am: 02.05.2022
                     </span>
                   </div>
                 </div>
@@ -224,19 +234,19 @@ class Profile extends React.Component {
 
               <div className={style.update}>
                 <img
-                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F001%2F192%2F226%2Foriginal%2Fmusic-circle-icon-guitar-png.png&f=1&nofb=1"
+                  src="https://cdn-icons-png.flaticon.com/128/1503/1503170.png"
                   alt=""
                   className={style.avatar}
                 />
                 <div className={style.noti}>
                   <div style={{ marginBottom: "0.5rem" }}>
-                    <span>Rockstar</span> <br />
+                    <span>Qualitativer Mitarbeiter</span> <br />
                     <span style={{ color: "grey" }}>
-                      Resolved 50 Tickets, at the speed of light.
+                      Über 20 Tickets abgeschlossen mit einer Bewertung größer 4,5 
                     </span>{" "}
                     <br />
                     <span style={{ color: "green" }}>
-                      <BiCheckCircle /> Achieved on: 02.05.2022
+                      <BiCheckCircle /> Verdient am: 02.05.2022
                     </span>
                   </div>
                 </div>
@@ -244,67 +254,21 @@ class Profile extends React.Component {
 
               <div className={style.update}>
                 <img
-                  src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
+                  src="https://cdn-icons.flaticon.com/png/512/3852/premium/3852558.png?token=exp=1656538283~hmac=0d456a79dab0dcc19e4c7506689abf6b"
                   alt=""
                   className={style.avatar}
                 />
                 <div className={style.noti}>
                   <div style={{ marginBottom: "0.5rem" }}>
-                    <span>Rockstar</span> <br />
+                    <span>Herausforderer</span> <br />
                     <span style={{ color: "grey" }}>
-                      Resolved 50 Tickets, at the speed of light.
+                      Über 5 abgeschlossener Challenges
                     </span>{" "}
                     <br />
                     <span style={{ color: "green" }}>
-                      <BiCheckCircle /> Achieved on: 02.05.2022
+                      <BiCheckCircle /> Verdient am: 02.05.2022
                     </span>
                   </div>
-                </div>
-              </div>
-
-              <div className={style.update}>
-                <img
-                  src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
-                  alt=""
-                  className={style.avatar}
-                />
-                <div className={style.noti}>
-                  <div style={{ marginBottom: "0.5rem" }}>
-                    <span>Rockstar</span> <br />
-                    <span style={{ color: "grey" }}>
-                      Resolved 50 Tickets, at the speed of light.
-                    </span>{" "}
-                    <br />
-                    <span style={{ color: "green" }}>
-                      <BiCheckCircle /> Achieved on: 02.05.2022
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr></hr>
-
-          <div className={style.Medaille}>
-            <h5 style={{ marginTop: "15px", marginLeft: "15px" }}>
-              Wander-Medaille
-            </h5>
-            <div className={style.update}>
-              <img
-                src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
-                alt=""
-                className={style.avatar}
-              />
-              <div className={style.noti}>
-                <div style={{ marginBottom: "0.5rem", marginLeft: "15px" }}>
-                  <span>Rockstar</span> <br />
-                  <span style={{ color: "grey" }}>
-                    Resolved 50 Tickets, at the speed of light.
-                  </span>{" "}
-                  <br />
-                  <span style={{ color: "green" }}>
-                    <BiCheckCircle /> Achieved on: 02.05.2022
-                  </span>
                 </div>
               </div>
             </div>

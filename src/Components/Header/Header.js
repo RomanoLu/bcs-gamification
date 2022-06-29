@@ -68,7 +68,7 @@ class Header extends React.Component {
             </div>
             <div className={HeaderCSS.item}>
               <img
-                src="https://media-exp1.licdn.com/dms/image/C4D03AQEoIHMPNhI2BQ/profile-displayphoto-shrink_400_400/0/1593272066605?e=1655942400&v=beta&t=en7EBo-drD3KjfUgnA8OkoKOAzbfmeviHVRyq5DK7Uk"
+                src="https://profile-images.xing.com/images/4a6cc053bd0c65e3ecd609eb3f39188c-1/fatih-kuruscu.1024x1024.jpg"
                 alt=""
                 className={HeaderCSS.avatar}
               />

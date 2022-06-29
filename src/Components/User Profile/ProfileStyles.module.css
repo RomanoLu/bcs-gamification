@@ -3,7 +3,6 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   flex-direction: row;
-  align-items: center;
   border-style: solid;
   border-color: #d0e1ef;
   border-width: 1px;
@@ -24,7 +23,6 @@
   flex-grow: 0;
   flex-shrink: 1;
   flex-basis: auto;
-  align-self: center;
   order: 0;
   width: 40%;
 }
@@ -71,7 +69,6 @@ html, body, .app {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
-    align-self: center;
     justify-content: center;
     order: 0;
     width: 60%;
@@ -86,12 +83,19 @@ html, body, .app {
     width: 100%;
   }
 
+
+  .Medaille {
+    height: 220px;
+    border-width: 10px;
+  }
+
   .avatar {
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175px;
     border-radius: 50%;
     align-self: center;
     margin-left: 5px;
+    margin-top: 5px;
   }
 
   .BadgeList {
@@ -142,7 +146,6 @@ html, body, .app {
 }
 
 .r1 {
-  width: 900px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -150,6 +153,12 @@ html, body, .app {
   align-items: center;
   align-content: center;
 }
+
+.listgroupflush {
+  border-width: 0px;
+}
+
+
 
 
 .rl {
