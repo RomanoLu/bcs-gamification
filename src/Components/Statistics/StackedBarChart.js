@@ -45,7 +45,6 @@ export class DashboardView extends React.Component {
 
     return (
       <div className="content c-white">
-        <h1>Belohnungsfortschritt</h1>
         <ResponsiveContainer height={250} width={"100%"}>
           <BarChart
             layout="vertical"
