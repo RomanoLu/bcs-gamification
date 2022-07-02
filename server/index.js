@@ -13,11 +13,12 @@ const db = mysql.createPool({
 
 const ticketHandlerRoute = require('./routes/TicketHandler')
 const challengeHandlerRoute = require('./routes/ChallengeHandler')
+const interactionHandlerRoute = require('./routes/InteractionHandler')
 const belohnungHandlerRoute = require('./routes/BelohnungHandler')
-
 
 app.use('/api',ticketHandlerRoute);
 app.use('/api',challengeHandlerRoute);
+app.use('/api',interactionHandlerRoute);
 app.use('/api',belohnungHandlerRoute);
 
 
@@ -27,14 +28,6 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 
-app.post('/api/userInteraction', (req, res) => {
-    const bezug = req.body.bezug;
-    const aktion = req.body.action;
-    const sqlInsert = 'INSERT INTO userinteraction (aktion, bezug, datum) VALUES (?,?,now());';
-    db.query(sqlInsert, [aktion,bezug], (err, result) => {
-    console.log(err)
-    })
-});
 
 
 app.listen(3001, () => {

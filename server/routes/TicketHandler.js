@@ -23,7 +23,21 @@ router.post('/insertTicket', (req, res) => {
     const sta = req.body.sta;
     const prio = req.body.prio;
     const sqlInsert = 'INSERT INTO tickets (Betreff, Bezug, Status, Priorität, Erstellt_am) VALUES (?,?,?,?, now());';
+    
+   
     db.query(sqlInsert, [betreff, bezug, sta, prio], (err, result) => {
+    console.log(err)
+    })
+});
+
+router.post('/updateTicket', (req, res) => {
+    const id = req.body.id
+    const betreff = req.body.betreff;
+    const bezug = req.body.bezug;
+    const sta = req.body.sta;
+    const prio = req.body.prio;
+    const sqlInsert = 'UPDATE tickets SET Betreff = ?, Bezug = ?, Status = ?, Priorität = ?, Erstellt_am = now() WHERE idTickets = ? ;';
+    db.query(sqlInsert, [betreff, bezug, sta, prio, id], (err, result) => {
     console.log(err)
     })
 });

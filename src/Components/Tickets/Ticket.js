@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import style from "./TicketsStyles.module.css";
-import { FaAward, FaRegWindowClose } from "react-icons/fa";
+import { FaRegWindowClose } from "react-icons/fa";
 import { Table, Button, Form, Row, Col, Modal } from "react-bootstrap";
 import Axios from "axios";
-import Confetti from "./Confetti";
-import Confetti2 from "react-confetti";
 import Notify from "../Notify";
 import ticket from "../Pictures/tickets.png";
 import aufgaben from "../Pictures/Aufgaben.png";
@@ -20,6 +18,7 @@ class Popup extends React.Component {
       bezug: "",
       prio: "Normal",
       sta: "Neu",
+      descr: ""
     };
   }
 
@@ -34,6 +33,7 @@ class Popup extends React.Component {
           bezug: this.state.bezug,
           prio: this.state.prio,
           sta: this.state.sta,
+          descr: this.state.descr
         }).then(() => {
           alert("Ticket succesfully created")
           console.log("succesfull insert");
@@ -110,6 +110,9 @@ class Popup extends React.Component {
                       rows={3}
                       placeholder="Beschreibung"
                       className={style.tfstyle2}
+                      onChange={(e) => {
+                        this.setState({ descr: e.target.value });
+                      }}
                     />
                     <br />
                     <Row>
@@ -163,7 +166,7 @@ class Popup extends React.Component {
                         this.setState({ art: e.target.value });
                       }}
                     >
-                      {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
+              
                       <option style={{ backgroundColor: "#f0f9ff" }}>
                         Fehler
                       </option>
@@ -272,6 +275,12 @@ class Ticket extends Component {
       showBearbeiten: false,
       checked: 0,
       ticketsList: [],
+      currentBetreff: "",
+      currentStauts: "",
+      currentPrio: "",
+      currentDescription: "",
+      currentBezug: "",
+      currentID: ""
     };
   }
 
@@ -313,6 +322,8 @@ class Ticket extends Component {
         //Hier GIF einfügen
         this.setState({ alert: true });
         this.props.closePopup();
+        this.setState({ showBearbeiten: false });
+        this.setState({ checked: 0 });
         //Dannach das Fenster schließen
       } else {
         Axios.post("http://localhost:3001/api/updateTicket", {
@@ -320,13 +331,18 @@ class Ticket extends Component {
           bezug: this.state.bezug,
           prio: this.state.prio,
           sta: this.state.sta,
+          id: this.state.currentID
         }).then(() => {
           console.log("succesfull insert");
         });
 
-        Axios.post("http://localhost:3001/api/userInteraction", {
-          /**/
-        })
+        Axios.post("http://localhost:3001/api/insertinteraction", {
+          aktion: "Tickets_"+this.state.sta,
+        }).then(() => {
+          console.log("succesfull insert");
+        });
+        this.setState({ showBearbeiten: false });
+        this.setState({ checked: 0 });
       }
     };
     return (
@@ -393,10 +409,15 @@ class Ticket extends Component {
                       id={val.idTickets}
                       checked={this.state.checked === val.idTickets}
                       onChange={(e) => {
+                        this.setState({currentBetreff: val.Betreff})
+                        this.setState({currentStauts: val.Status})
+                        this.setState({currentPrio: val.Priorität})
+                        this.setState({currentDescription: val.Beschreibung})
+                        this.setState({currentBezug: val.Bezug})
+                        this.setState({currentID : val.idTickets})
                         var i = val.idTickets;
                         this.setState({ checked: i });
-                        this.setState({ showBearbeiten: true });
-                        //ToDo hier muss eine Componente namens "Bearbeiten" geöffnet werden und val.idTickets mitgegeben werden
+                        this.setState({ showBearbeiten: true });                       
                       }}
                     />
                   </td>
@@ -412,44 +433,44 @@ class Ticket extends Component {
 
 
                   {(() => {
-                    if (val.Status == "Neu") {
+                    if (val.Status === "Neu") {
                       return (
                         <td style={{ color: "blue" }}>{val.Status}</td>
                       )
-                    } else if (val.Status == "Gesichtet") {
+                    } else if (val.Status === "Gesichtet") {
                       return (
                         <td style={{ color: "red" }}>{val.Status}</td>
                       )
-                    } else if (val.Status == "Klärung") {
+                    } else if (val.Status === "Klärung") {
                       return (
                         <td >{val.Status}</td>
                       )
-                    } else if (val.Status == "Absprache") {
+                    } else if (val.Status === "Absprache") {
                       return (
                         <td >{val.Status}</td>
                       )
-                    } else if (val.Status == "Angeboten") {
+                    } else if (val.Status === "Angeboten") {
                       return (
                         <td style={{ color: "red" }}>{val.Status}</td>
                       )
-                    } else if (val.Status == "Aufgenommen") {
+                    } else if (val.Status === "Aufgenommen") {
                       return (
                         <td >{val.Status}</td>
                       )
-                    } else if (val.Status == "Eingeplant") {
+                    } else if (val.Status === "Eingeplant") {
                       return (
                         <td>{val.Status}</td>
                       )
-                    } else if (val.Status == "Bearbeitung") {
+                    } else if (val.Status === "Bearbeitung") {
                       return (
                         <td>{val.Status}</td>
                       )
-                    } else if (val.Status == "Abnahme") {
+                    } else if (val.Status === "Abnahme") {
                       return (
                         <td style={{ color: "green" }}>{val.Status}</td>
                       )
                     }
-                    else if (val.Status == "Geschlossen") {
+                    else if (val.Status === "Geschlossen") {
                       return (
                         <td style={{ color: "green" }}>{val.Status}</td>
                       )
@@ -462,19 +483,19 @@ class Ticket extends Component {
 
 
                   {(() => {
-                    if (val.Priorität == "Hoch") {
+                    if (val.Priorität === "Hoch") {
                       return (
                         <td style={{ color: "#f0f9ff" }}>{val.Priorität}</td>
                       )
-                    } else if (val.Priorität == "Sehr Hoch") {
+                    } else if (val.Priorität === "Sehr Hoch") {
                       return (
                         <td style={{ color: "#FF0000" }}>{val.Priorität}</td>
                       )
-                    } else if (val.Priorität == "Maximal") {
+                    } else if (val.Priorität === "Maximal") {
                       return (
                         <td>{val.Priorität}</td>
                       )
-                    } else if (val.Priorität == "Normal") {
+                    } else if (val.Priorität === "Normal") {
                       return (
                         <td>{val.Priorität}</td>
                       )
@@ -507,8 +528,12 @@ class Ticket extends Component {
         </div>
 
         <Modal size="lg" show={this.state.showBearbeiten} onHide={openBearbeiten} centered>
-          <Modal.Header closeButton>
-            <Modal.Title>Ticket aktualisieren</Modal.Title>
+          <Modal.Header closeButton onClick={closeBearbeiten}>
+            <Modal.Title><img
+                      src={ticket}
+                      alt=""
+                      className={style.avatar}
+                    />Ticket aktualisieren</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form className={style.formcontainer}>
@@ -517,15 +542,18 @@ class Ticket extends Component {
                   <Form.Group className={style.mb - 3} htmlFor="disabledTextInput">
                     <Form.Label> Betreff <span style={{ color: "red" }}>*</span></Form.Label>
                     <Form.Control
-                      onChange={(e) => {
+                        defaultValue={this.state.currentBetreff}
+                        onChange={(e) => {
                         this.setState({ betreff: e.target.value });
                       }} className={style.tfstyle} type="email" />
+                      
                   </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="disabledTextInput">
                       Ticketart
                     </Form.Label>
                     <Form.Select
+                      
                       id="disabledSelect"
                       style={{ backgroundColor: "#d5e8f6" }}
                       onChange={(e) => {
@@ -561,6 +589,7 @@ class Ticket extends Component {
                       Bezug <span style={{ color: "red" }}>*</span>
                     </Form.Label>
                     <Form.Control
+                    defaultValue={this.state.currentBezug}
                       onChange={(e) => {
                         this.setState({ bezug: e.target.value });
                       }}
@@ -641,12 +670,13 @@ class Ticket extends Component {
                       Priorität (intern)
                     </Form.Label>
                     <Form.Select
+                      defaultValue={this.state.currentPrio}
                       style={{ backgroundColor: "#d5e8f6" }}
                       id="disabledSelect"
                       onChange={(e) => {
                         this.setState({ prio: e.target.value });
                       }}
-                    >
+                      >
                       <option style={{ backgroundColor: "#f0f9ff" }}>
                         Maximal
                       </option>
@@ -689,6 +719,7 @@ class Ticket extends Component {
                       Beschreibung
                     </Form.Label>
                     <Form.Control
+                      defaultValue={this.state.currentDescription}
                       as="textarea"
                       rows={3}
                       placeholder="Beschreibung"
@@ -701,7 +732,7 @@ class Ticket extends Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="primary" onClick={closeBearbeiten}>Ticket aktualisieren</Button>
+            <Button variant="primary" onClick={submitBearbeiten}>Ticket aktualisieren</Button>
           </Modal.Footer>
         </Modal>
 
