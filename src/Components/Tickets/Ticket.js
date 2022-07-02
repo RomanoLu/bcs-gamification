@@ -263,238 +263,6 @@ class Popup extends React.Component {
   }
 }
 
-class Bearbeiten extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      showBearbeiten: false,
-      alert: false,
-    };
-  }
-
-  render() {
-
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    const submit = () => {
-      if (this.state.sta === "Geschlossen") {
-        //Hier GIF einfügen
-        this.setState({ alert: true });
-        this.props.closePopup();
-        //Dannach das Fenster schließen
-      } else {
-        Axios.post("http://localhost:3001/api/insertTicket", {
-          betreff: this.state.betreff,
-          bezug: this.state.bezug,
-          prio: this.state.prio,
-          sta: this.state.sta,
-        }).then(() => {
-          console.log("succesfull insert");
-        });
-      }
-    };
-
-    return (
-
-      <Modal.Dialog>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-        <Form className={style.formcontainer}>
-            <div className={style.parent}>
-              <div className={style.div1}>
-                <Form.Group
-                  className={style.mb - 3}
-                  htmlFor="disabledTextInput"
-                >
-                  <Form.Label>
-                    Betreff <span style={{ color: "red" }}>*</span>
-                  </Form.Label>
-                  <Form.Control
-                    onChange={(e) => {
-                      this.setState({ betreff: e.target.value });
-                    }}
-                    className={style.tfstyle}
-                    type="email"
-                  />
-                </Form.Group>
-
-                <Form.Group className={style.mb - 3}>
-                  <Form.Label htmlFor="disabledTextInput">
-                    Ticketart <span style={{ color: "red" }}>*</span>
-                  </Form.Label>
-
-                  <Form.Select
-                    id="disabledSelect"
-                    onChange={(e) => {
-                      this.setState({ art: e.target.value });
-                    }}
-                  >
-                    {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
-                    <option style={{ backgroundColor: "#f0f9ff" }}>
-                      Fehler
-                    </option>
-                    <option style={{ backgroundColor: "#f0f9ff" }}>
-                      Anpassung
-                    </option>
-                    <option style={{ backgroundColor: "#f0f9ff" }}>
-                      Dienstleistung
-                    </option>
-                    <option style={{ backgroundColor: "#f0f9ff" }}>
-                      Offener Punkt
-                    </option>
-                    <option style={{ backgroundColor: "#f0f9ff" }}>
-                      Vorschlag
-                    </option>
-                    <option style={{ backgroundColor: "#f0f9ff" }}>
-                      Anfrage
-                    </option>
-                  </Form.Select>
-                </Form.Group>
-                <Form.Group
-                  className={style.mb - 3}
-                  htmlFor="disabledTextInput"
-                >
-                  <Form.Label>
-                    Bezug <span style={{ color: "red" }}>*</span>
-                  </Form.Label>
-                  <Form.Control
-                    onChange={(e) => {
-                      this.setState({ bezug: e.target.value });
-                    }}
-                    className={style.tfstyle}
-                    type="email"
-                  />
-                </Form.Group>
-                <Form.Group className={style.mb - 3}>
-                  <Form.Label>
-                    Status <span style={{ color: "red" }}>*</span>
-                  </Form.Label>
-
-                  <Form.Select
-                    id="disabledSelect"
-                    onChange={(e) => {
-                      this.setState({ sta: e.target.value });
-                    }}
-                  >
-                    {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
-                    <option
-                      style={{ color: "blue", backgroundColor: "#f0f9ff" }}
-                    >
-                      Neu
-                    </option>
-                    <option
-                      style={{ color: "red", backgroundColor: "#f0f9ff" }}
-                    >
-                      Gesichtet
-                    </option>
-                    <option
-                      style={{ color: "purple", backgroundColor: "#f0f9ff" }}
-                    >
-                      Klärung
-                    </option>
-                    <option style={{ backgroundColor: "#f0f9ff" }}>
-                      Absprache
-                    </option>
-                    <option
-                      style={{ color: "purple", backgroundColor: "#f0f9ff" }}
-                    >
-                      Angeboten
-                    </option>
-                    <option style={{ backgroundColor: "#f0f9ff" }}>
-                      Aufgenommen
-                    </option>
-                    <option style={{ backgroundColor: "#f0f9ff" }}>
-                      Eingeplant
-                    </option>
-                    <option
-                      style={{ color: "red", backgroundColor: "#f0f9ff" }}
-                    >
-                      Bearbeitung
-                    </option>
-                    <option
-                      style={{ color: "green", backgroundColor: "#f0f9ff" }}
-                    >
-                      Abnahme
-                    </option>
-                    <option
-                      style={{ color: "green", backgroundColor: "#f0f9ff" }}
-                    >
-                      Geschlossen
-                    </option>
-                    <option style={{ backgroundColor: "#f0f9ff" }}>
-                      Unbeantwortet
-                    </option>
-                    <option style={{ backgroundColor: "#f0f9ff" }}>
-                      (Importiert)
-                    </option>
-                  </Form.Select>
-                </Form.Group>
-                <Form.Group className={style.mb - 3}>
-                  <Form.Label>
-                    Priorität (intern) <span style={{ color: "red" }}>*</span>
-                  </Form.Label>
-
-                  <Form.Select
-                    id="disabledSelect"
-                    onChange={(e) => {
-                      this.setState({ prio: e.target.value });
-                    }}
-                  >
-                    <option style={{ backgroundColor: "#f0f9ff" }}>
-                      Maximal
-                    </option>
-                    <option
-                      style={{ color: "#FF0000", backgroundColor: "#f0f9ff" }}
-                    >
-                      Sehr Hoch
-                    </option>
-                    <option
-                      style={{ color: "#AA0000", backgroundColor: "#f0f9ff" }}
-                    >
-                      Hoch
-                    </option>
-                    <option style={{ backgroundColor: "#f0f9ff" }}>
-                      Normal
-                    </option>
-                    <option
-                      style={{ color: "#c7c7c7", backgroundColor: "#f0f9ff" }}
-                    >
-                      Niedrig
-                    </option>
-                  </Form.Select>
-                </Form.Group>
-              </div>
-              <div className="div2">
-                <Form.Group className={style.mb - 3} controlId="formBasicEmail">
-                  <Form.Label>
-                    Beschreibung <span style={{ color: "red" }}>*</span>
-                  </Form.Label>
-                  <Form.Control className="tfstyle2" type="email" />
-                </Form.Group>
-              </div>
-            </div>
-            <Button variant="primary" onClick={submit}>
-              Submit
-            </Button>
-          </Form>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary">Close</Button>
-          <Button variant="primary">Save changes</Button>
-        </Modal.Footer>
-      </Modal.Dialog>
-      
-    );
-  }
-}
-
 class Ticket extends Component {
   constructor() {
     super();
@@ -533,6 +301,34 @@ class Ticket extends Component {
   }
 
   render() {
+    const openBearbeiten = () => {
+      this.setState({ showBearbeiten: true })
+    }
+    const closeBearbeiten = () => {
+      this.setState({ showBearbeiten: false });
+      this.setState({ checked: 0 });
+    }
+    const submitBearbeiten = () => {
+      if (this.state.sta === "Geschlossen") {
+        //Hier GIF einfügen
+        this.setState({ alert: true });
+        this.props.closePopup();
+        //Dannach das Fenster schließen
+      } else {
+        Axios.post("http://localhost:3001/api/updateTicket", {
+          betreff: this.state.betreff,
+          bezug: this.state.bezug,
+          prio: this.state.prio,
+          sta: this.state.sta,
+        }).then(() => {
+          console.log("succesfull insert");
+        });
+
+        Axios.post("http://localhost:3001/api/userInteraction", {
+          /**/
+        })
+      }
+    };
     return (
       <div className={style.container}>
         <div style={{ marginLeft: "400px", zIndex: "5", position: "fixed" }}>
@@ -606,9 +402,11 @@ class Ticket extends Component {
                   </td>
                   <td> #{val.idTickets}</td>
                   <td>
-                    <i>
-                      <FaAward />
-                    </i>
+                    <img
+                      src={ticket}
+                      alt=""
+                      className={style.avatar2}
+                    />
                     <a href="/bearbeiten"> {val.Betreff}</a>
                   </td>
 
@@ -707,11 +505,218 @@ class Ticket extends Component {
             </tbody>
           </Table>
         </div>
+
+        <Modal size="lg" show={this.state.showBearbeiten} onHide={openBearbeiten} centered>
+          <Modal.Header closeButton>
+            <Modal.Title>Ticket aktualisieren</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form className={style.formcontainer}>
+              <div className={style.parent}>
+                <div className={style.div1}>
+                  <Form.Group className={style.mb - 3} htmlFor="disabledTextInput">
+                    <Form.Label> Betreff <span style={{ color: "red" }}>*</span></Form.Label>
+                    <Form.Control
+                      onChange={(e) => {
+                        this.setState({ betreff: e.target.value });
+                      }} className={style.tfstyle} type="email" />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">
+                      Ticketart
+                    </Form.Label>
+                    <Form.Select
+                      id="disabledSelect"
+                      style={{ backgroundColor: "#d5e8f6" }}
+                      onChange={(e) => {
+                        this.setState({ art: e.target.value });
+                      }}
+                    >
+                      {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Fehler
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Anpassung
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Dienstleistung
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Offener Punkt
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Vorschlag
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Anfrage
+                      </option>
+                    </Form.Select>
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    htmlFor="disabledTextInput"
+                  >
+                    <Form.Label>
+                      Bezug <span style={{ color: "red" }}>*</span>
+                    </Form.Label>
+                    <Form.Control
+                      onChange={(e) => {
+                        this.setState({ bezug: e.target.value });
+                      }}
+                      className={style.tfstyle}
+                      type="email"
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledSelect">Status</Form.Label>
+                    <Form.Select
+                      style={{ backgroundColor: "#d5e8f6" }}
+                      id="disabledSelect"
+                      onChange={(e) => {
+                        this.setState({ sta: e.target.value });
+                      }}
+                    >
+                      {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
+                      <option
+                        style={{ color: "blue", backgroundColor: "#f0f9ff" }}
+                      >
+                        Neu
+                      </option>
+                      <option
+                        style={{ color: "red", backgroundColor: "#f0f9ff" }}
+                      >
+                        Gesichtet
+                      </option>
+                      <option
+                        style={{
+                          color: "purple",
+                          backgroundColor: "#f0f9ff",
+                        }}
+                      >
+                        Klärung
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Absprache
+                      </option>
+                      <option
+                        style={{
+                          color: "purple",
+                          backgroundColor: "#f0f9ff",
+                        }}
+                      >
+                        Angeboten
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Aufgenommen
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Eingeplant
+                      </option>
+                      <option
+                        style={{ color: "red", backgroundColor: "#f0f9ff" }}
+                      >
+                        Bearbeitung
+                      </option>
+                      <option
+                        style={{ color: "green", backgroundColor: "#f0f9ff" }}
+                      >
+                        Abnahme
+                      </option>
+                      <option
+                        style={{ color: "green", backgroundColor: "#f0f9ff" }}
+                      >
+                        Geschlossen
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Unbeantwortet
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        (Importiert)
+                      </option>
+                    </Form.Select>
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledSelect">
+                      Priorität (intern)
+                    </Form.Label>
+                    <Form.Select
+                      style={{ backgroundColor: "#d5e8f6" }}
+                      id="disabledSelect"
+                      onChange={(e) => {
+                        this.setState({ prio: e.target.value });
+                      }}
+                    >
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Maximal
+                      </option>
+                      <option
+                        style={{
+                          color: "#FF0000",
+                          backgroundColor: "#f0f9ff",
+                        }}
+                      >
+                        Sehr Hoch
+                      </option>
+                      <option
+                        style={{
+                          color: "#AA0000",
+                          backgroundColor: "#f0f9ff",
+                        }}
+                      >
+                        Hoch
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Normal
+                      </option>
+                      <option
+                        style={{
+                          color: "#c7c7c7",
+                          backgroundColor: "#f0f9ff",
+                        }}
+                      >
+                        Niedrig
+                      </option>
+                    </Form.Select>
+                  </Form.Group>
+                </div>
+                <div className="div2">
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlTextarea1"
+                  >
+                    <Form.Label htmlFor="disabledTextInput">
+                      Beschreibung
+                    </Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      rows={3}
+                      placeholder="Beschreibung"
+                      className={style.tfstyle2}
+                    />
+                  </Form.Group>
+                </div>
+              </div>
+            </Form>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button variant="primary" onClick={closeBearbeiten}>Ticket aktualisieren</Button>
+          </Modal.Footer>
+        </Modal>
+
+
+
+
+
+
+
+
+
+
+
         {this.state.showPopup ? (
           <Popup text="Close Me" closePopup={this.togglePopup.bind(this)} />
-        ) : null}
-        {this.state.showBearbeiten ? (
-          <Bearbeiten closePopup={this.togglePopup2.bind(this)} />
         ) : null}
       </div>
     );
