@@ -13,6 +13,7 @@ class Challenge extends React.Component {
       challengeList: [],
       show: false,
       selectedItem: [],
+      showDelete: false
     };
   }
 
@@ -36,6 +37,9 @@ class Challenge extends React.Component {
     const accept_Challenge = () => {
       this.setState({ show: true });
     };
+    const delete_Challenge = () => {
+      this.setState({showDelete: true});
+    };
 
     const deny_Challenge = () => {
       Axios.post("http://localhost:3001/api/selectedChallenge", {
@@ -49,9 +53,13 @@ class Challenge extends React.Component {
         (item) => item.idchallenges !== this.state.selectedItem.idchallenges
       );
       this.setState({ challengeList: newList });
+      this.setState({ showDelete: false});
     };
 
     const handleCloseDeny = () => this.setState({ show: false });
+    const handleCloseDelete = () => this.setState({showDelete: false});
+
+    
     const handleCloseAccept = () => {
       this.setState({ show: false });
 
@@ -94,7 +102,7 @@ class Challenge extends React.Component {
                     </button>
                   </td>
                   <td>
-                    <button onClick={deny_Challenge}>
+                    <button onClick={delete_Challenge}>
                       <FcCancel size={20} />
                     </button>
                   </td>
@@ -130,6 +138,22 @@ class Challenge extends React.Component {
             </Button>
           </Modal.Footer>
         </Modal>
+
+
+        <Modal show={this.state.showDelete} onHide={handleCloseDelete}>
+        <Modal.Header closeButton>
+          <Modal.Title>Challenge löschen</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Möchten Sie die Challenge wirklich löschen?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDelete}>
+            Nein
+          </Button>
+          <Button variant="primary" onClick={deny_Challenge}>
+            Ja
+          </Button>
+        </Modal.Footer>
+      </Modal>
       </div>
     );
   }

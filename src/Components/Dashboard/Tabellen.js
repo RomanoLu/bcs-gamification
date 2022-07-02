@@ -6,7 +6,8 @@ import projektbezug from "../Pictures/projektbezug.png";
 import aufgaben from "../Pictures/Aufgaben.png";
 import workflow from "../Pictures/Workflow.png";
 import { FcCheckmark } from "react-icons/fc";
-
+import tickets from "../Pictures/tickets.png";
+import termine from "../Pictures/Termine.png";
 
 
 function Tabellen(props) {
@@ -51,29 +52,71 @@ function Tabellen(props) {
                     src={aufgaben}
                     alt=""
                     className= {style.avatar2}
-                    /> Datenbankserver installieren
+                    /> Datenbankadministration
                 </td>
                 <td>
                   <img
                       src={projektbezug}
                       alt=""
                       className= {style.avatar2}
-                      /> Datenmigration auf Cloud-Server
+                      /> BCS Gamification
                 </td>
                 <td style = {{color: "black"}}>Mi 20.07.2022</td>
                 <td style = {{color: "black"}}>Fr 22.07.2022</td>
               </tr>
               <tr>
-                <td>neue Kaffeemaschine kaufen</td>
-                <td>interne Angelegenheiten</td>
+              <td>
+                  <img
+                    src={aufgaben}
+                    alt=""
+                    className= {style.avatar2}
+                    /> Challenge
+                </td>
+                <td>
+                  <img
+                      src={projektbezug}
+                      alt=""
+                      className= {style.avatar2}
+                      /> BCS Gamification
+                </td>
                 <td style = {{color: "black"}}>Do 21.07.2022</td>
                 <td style = {{color: "black"}}>Mo 25.07.2022</td>
               </tr>
               <tr>
-                <td>neue Kaffeemaschine kaufen</td>
-                <td>interne Angelegenheiten</td>
+              <td>
+                  <img
+                    src={aufgaben}
+                    alt=""
+                    className= {style.avatar2}
+                    /> Belohnung
+                </td>
+                <td>
+                  <img
+                      src={projektbezug}
+                      alt=""
+                      className= {style.avatar2}
+                      /> BCS Gamification
+                </td>
                 <td style = {{color: "black"}}>Do 21.07.2022</td>
                 <td style = {{color: "black"}}>Mo 25.07.2022</td>
+              </tr>
+              <tr>
+              <td>
+                  <img
+                    src={aufgaben}
+                    alt=""
+                    className= {style.avatar2}
+                    /> Tickets
+                </td>
+                <td>
+                  <img
+                      src={projektbezug}
+                      alt=""
+                      className= {style.avatar2}
+                      /> BCS Gamification
+                </td>
+                <td style = {{color: "black"}}>Di 02.08.2022</td>
+                <td style = {{color: "black"}}>Do 04.08.2022</td>
               </tr>
             </tbody>
           </Table>
@@ -82,22 +125,45 @@ function Tabellen(props) {
             <caption className={style.caption}>Nächste Termine</caption>
             <tbody>
               <tr className={style.secondhead}>
-                <td style={{ width: "5%" }}>ID</td>
                 <td>Beginn</td>
                 <td>Ende</td>
                 <td>Betreff</td>
               </tr>
               <tr>
-                <td>1</td>
-                <td>2022-08-30 14:00:00</td>
-                <td>2022-08-30 20:00:00</td>
-                <td>Golfturnier</td>
+                <td style={{color: "black"}}>Mi 20.07.2022 14:00</td>
+                <td style={{color: "black"}}>17:00</td>
+                <td><img
+                      src={termine}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Fifa Turnier</td>
               </tr>
               <tr>
-                <td>2</td>
-                <td>2022-07-09 00:00:00</td>
-                <td>2022-10-04 00:00:00</td>
-                <td>Semesterferien</td>
+                <td style={{color: "black"}}>Fr 22.07.2022 09:00</td>
+                <td style={{color: "black"}}>10:00</td>
+                <td><img
+                      src={termine}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Weekly</td>
+              </tr>
+              <tr>
+                <td style={{color: "black"}}>Mo 25.07.2022 14:30</td>
+                <td style={{color: "black"}}>16:00</td>
+                <td><img
+                      src={termine}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Meeting mit CGI</td>
+              </tr>
+              <tr>
+                <td style={{color: "black"}}>Mi 27.07.2022 10:00</td>
+                <td style={{color: "black"}}>12:00</td>
+                <td><img
+                      src={termine}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Meeting mit MC</td>
               </tr>
             </tbody>
           </Table>
@@ -195,22 +261,79 @@ function Tabellen(props) {
             <caption className={style.caption}>Wiedervorlagen</caption>
             <tbody>
               <tr className={style.secondhead}>
-                <td style={{ width: "5%" }}>ID</td>
                 <td>Betreff</td>
                 <td>Ende</td>
                 <td>Bezug</td>
               </tr>
               <tr>
-                <td>1</td>
-                <td>Seitenlayout</td>
-                <td>2022-07-01 00:00:00</td>
-                <td>BCS-Gamification</td>
+                <td><img
+                      src={wiedervorlagen}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Icons für BCS nachfragen</td>
+                <td style = {{color: "black"}}>Mo 25.07.2022</td>
+                <td>
+                  <img
+                      src={projektbezug}
+                      alt=""
+                      className= {style.avatar2}
+                      /> BCS Gamification</td>
               </tr>
               <tr>
-                <td>2</td>
-                <td>Softwarearchitektur-Buch lesen</td>
-                <td>2022-08-10 00:00:00</td>
-                <td>BCS-Gamification</td>
+                <td><img
+                      src={wiedervorlagen}
+                      alt=""
+                      className= {style.avatar2}
+                      /> CSS Farbschema</td>
+                <td style = {{color: "black"}}>Mi 27.07.2022</td>
+                <td><img
+                      src={projektbezug}
+                      alt=""
+                      className= {style.avatar2}
+                      /> BCS Gamification
+                </td>
+              </tr>
+              <tr>
+                <td><img
+                      src={wiedervorlagen}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Softwarearchitektur-Buch lesen</td>
+                <td style = {{color: "black"}}>Mo 01.09.2022</td>
+                <td><img
+                      src={projektbezug}
+                      alt=""
+                      className= {style.avatar2}
+                      /> BCS Gamification
+                </td>
+              </tr>
+              <tr>
+                <td><img
+                      src={wiedervorlagen}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Feature Selection besprechen</td>
+                <td style = {{color: "black"}}>Di 02.09.2022</td>
+                <td><img
+                      src={projektbezug}
+                      alt=""
+                      className= {style.avatar2}
+                      /> MC-Analytics
+                </td>
+              </tr>
+              <tr>
+                <td><img
+                      src={wiedervorlagen}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Bias-Varianz Kompromiss nachlesen</td>
+                <td style = {{color: "black"}}>Do 04.09.2022</td>
+                <td><img
+                      src={projektbezug}
+                      alt=""
+                      className= {style.avatar2}
+                      /> MC-Analytics
+                </td>
               </tr>
             </tbody>
           </Table>
@@ -223,22 +346,68 @@ function Tabellen(props) {
                   <td style={{ width: "5%" }}>ID</td>
                   <td>Betreff</td>
                   <td>Bezug</td>
-                  <td style={{ width: "5%" }}>Status</td>
+                  <td style={{ width: "20%" }}>Status</td>
                   <td>Priorität</td>
                 </tr>
                 <tr>
-                  <td>1</td>
-                  <td>Flexbox anpassung</td>
-                  <td>BCS Gamification</td>
-                  <td>1</td>
-                  <td>Hoch</td>
+                  <td style = {{color: "black"}}>#12</td>
+                  <td><img
+                      src={tickets}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Aktuelle Version der MySQL-Datenbank in MS Teams hochladen</td>
+                  <td><img
+                      src={projektbezug}
+                      alt=""
+                      className= {style.avatar2}
+                      /> BCS Gamification</td>
+                  <td style = {{color: "black"}}>7-Eingeplant</td>
+                  <td style = {{color: "red"}}>Sehr hoch</td>
                 </tr>
                 <tr>
-                  <td>2</td>
-                  <td>Backend Server lädt Falsche Daten</td>
-                  <td>BCS Gamification</td>
-                  <td>4</td>
-                  <td>Sehr hoch</td>
+                  <td style = {{color: "black"}}>#13</td>
+                  <td><img
+                      src={tickets}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Bearbeitung der Tickets ist fehlerhaft</td>
+                  <td><img
+                      src={aufgaben}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Tickets</td>
+                  <td style = {{color: "black"}}>1-Neu</td>
+                  <td style = {{color: "darkred"}}>Hoch</td>
+                </tr>
+                <tr>
+                  <td style = {{color: "black"}}>#14</td>
+                  <td><img
+                      src={tickets}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Backend Server lädt Falsche Daten</td>
+                  <td><img
+                      src={projektbezug}
+                      alt=""
+                      className= {style.avatar2}
+                      /> BCS Gamification</td>
+                  <td style = {{color: "black"}}>4-Absprache</td>
+                  <td style = {{color: "red"}}>Sehr hoch</td>
+                </tr>
+                <tr>
+                  <td style = {{color: "black"}}>#15</td>
+                  <td><img
+                      src={tickets}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Belohnungsmechanismus muss implementiert werden</td>
+                  <td><img
+                      src={aufgaben}
+                      alt=""
+                      className= {style.avatar2}
+                      /> Belohnung</td>
+                  <td style = {{color: "black"}}>1-Neu</td>
+                  <td style = {{color: "gold"}}>Mittel</td>
                 </tr>
               </tbody>
             </Table>
