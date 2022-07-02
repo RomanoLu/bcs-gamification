@@ -15,12 +15,20 @@ const db = mysql.createPool({
   database: "bcs",
 });
 
+// router.get("/getBelohnung", (req, res) => {
+//   const sqlSelect =
+//     "SELECT count(idbelohnung) FROM bcs.challenges WHERE absolviert = 1 GROUP BY idbelohnung";
+//   db.query(sqlSelect, (err, result) => {
+//     res.send(result);
+//   });
+// });
+
 router.get("/getBelohnung", (req, res) => {
-  const sqlSelect =
-    "SELECT count(idbelohnung) FROM bcs.challenges WHERE absolviert = 1 GROUP BY idbelohnung";
+  const sqlSelect = "SELECT concat('1/', anzahl,' ',  art) as Belohnung, art FROM bcs.belohnungen";
   db.query(sqlSelect, (err, result) => {
     res.send(result);
   });
-});
+})
+
 
 module.exports = router;
