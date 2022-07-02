@@ -17,14 +17,14 @@ const db = mysql.createPool({
 });
 
 
-router.post('/insertiNTERACTION', (req, res) => {
-    const id = req.body.id;
+router.post('/insertInteraction', (req, res) => {
     const aktion = req.body.aktion;  
-    const sqlInsert = 'INSERT INTO userinteraction (Aktion, Datum) VALUES (?,now());';
-    db.query(sqlInsert, [aktion, date], (err, result) => {
+    const sqlInsert = 'INSERT INTO bcs.userinteraction (Aktion, Datum) VALUES (?,now());';
+    db.query(sqlInsert, [aktion], (err, result) => {
     console.log(err)
     })
 });
+
 
 module.exports = router;
 

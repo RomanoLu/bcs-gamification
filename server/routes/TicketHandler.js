@@ -34,7 +34,7 @@ router.post('/updateTicket', (req, res) => {
     const id = req.body.id
     const betreff = req.body.betreff;
     const bezug = req.body.bezug;
-    const sta = req.body.sta;
+    const sta = req.body.status;
     const prio = req.body.prio;
     const sqlInsert = 'UPDATE tickets SET Betreff = ?, Bezug = ?, Status = ?, Priorität = ?, Erstellt_am = now() WHERE idTickets = ? ;';
     db.query(sqlInsert, [betreff, bezug, sta, prio, id], (err, result) => {
@@ -42,11 +42,12 @@ router.post('/updateTicket', (req, res) => {
     })
 });
 
-router.delete('/deleteTicket', (req, res) => {
-    const id = req.body.id
-    const sqlInsert = 'DELETE FROM tickets WHERE idTickets = ?;;';
-    db.query(sqlInsert, [id], (err, result) => {
-    console.log(err)
+router.post('/deleteTicket', (req, res) => {
+    const idTickets = req.body.idTickets;
+    const sqlInsert = 'DELETE FROM tickets WHERE idTickets = ?';
+    console.log(idTickets)
+    db.query(sqlInsert, [idTickets], (err, result) => {
+    console.log(err);
     })
 });
 

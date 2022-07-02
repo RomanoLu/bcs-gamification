@@ -1,7 +1,4 @@
 import React, { Component, useState } from "react";
-import LineChart from "./LineChart";
-import PieChart from "./PieChart";
-import BarChart from "./BarChart";
 import style from "./Statistics.module.css";
 import { ProgressBar } from "react-bootstrap";
 import Axios from "axios";

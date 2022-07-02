@@ -31,12 +31,13 @@ router.post('/insertChallenge', (req, res) => {
     const titel = req.body.titel;
     const priorität = req.body.priorität;
     const idbelohnung = req.body.idbelohnung;
+    const belohnung = req.body.belohnung;
     const anzahl = req.body.anzahl;
     const aktion = req.body.aktion;
     const zeit = req.body.zeit;    
     const buchung_über = req.body.buchung_über;
-    const sqlInsert = 'INSERT INTO challenges (bewertung, beschreibung, art, titel, priorität, idbelohnung, anzahl, aktion, zeit, buchung_über) VALUES (?,?,?,?,?,?,?,?,?,?);';
-    db.query(sqlInsert, [bewertung, beschreibung, art, titel, priorität, idbelohnung, anzahl, aktion, zeit, buchung_über], (err, result) => {
+    const sqlInsert = 'INSERT INTO challenges (bewertung, beschreibung, art, titel, priorität, idbelohnung, anzahl, aktion, zeit, buchung_über, belohnung) VALUES (?,?,?,?,?,?,?,?,?,?,?);';
+    db.query(sqlInsert, [bewertung, beschreibung, art, titel, priorität, idbelohnung, anzahl, aktion, zeit, buchung_über, belohnung], (err, result) => {
     console.log(err)
     })
 });

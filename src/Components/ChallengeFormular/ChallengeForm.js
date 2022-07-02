@@ -13,7 +13,7 @@ class ChallengeForm extends React.Component {
       beschreibung: "",
       titel: "",
       idbelohnung: "Urlaubstag",
-      belohnung: "",
+      belohnung: "1/50 Urlaubstag",
       belohnungsListe: [],
       zeit: 0,
       priorität: "",
@@ -58,6 +58,7 @@ class ChallengeForm extends React.Component {
           bewertung: this.state.bewertung,
           anzahl: this.state.anzahl,
           aktion: this.state.aktion,
+          belohnung: this.state.belohnung,
           buchung_über: this.state.buchung_über
         }).then(() => {
           alert("succesfull insert");
@@ -304,6 +305,7 @@ class ChallengeForm extends React.Component {
                     <Form.Label htmlFor="disabledSelect">Belohnung</Form.Label>
                     <Form.Select className={ChallengeFormCSS.form} id="disabledSelect" required onChange={(e) => {
                       this.setState({ idbelohnung: e.target.value });
+                      this.setState({belohnung: this.state.belohnungsListe.filter(item => item.art === e.target.value)[0].Belohnung});
                     }
                     }>
                     {this.state.belohnungsListe.map((val) => (

@@ -1,5 +1,4 @@
 .container {
-  overflow-y: auto;
   margin-top: 15px;
   align-items: center;
   justify-items: center;
@@ -8,6 +7,7 @@
 }
 
 .aufgaben {
+  overflow-y: scroll;
   height: 190px;
   align-self: center;
   border-radius: 0px;

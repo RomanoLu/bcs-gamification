@@ -105,7 +105,7 @@ class Challenge extends React.Component {
                     src={belohnung}
                     alt=""
                     className= {style.avatar2}
-                    />{val.idbelohnung}</td>
+                    />{val.belohnung}</td>
                   <td style = {{color: "black"}}>{val.zeit} Tage</td>
                   <td>
                     <button onClick={accept_Challenge}>
@@ -139,7 +139,7 @@ class Challenge extends React.Component {
               <h5>Beschreibung</h5>
               <p>{this.state.selectedItem.beschreibung}</p>
               <h5>Belohnung </h5>
-              <p>{this.state.selectedItem.idbelohnung}</p>
+              <p>{this.state.selectedItem.belohnung}</p>
               <h5>Zeit</h5>
               <p>{this.state.selectedItem.zeit} Tage</p>
             </div>
