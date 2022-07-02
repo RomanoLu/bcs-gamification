@@ -44,7 +44,7 @@ body,
   background: white;
 }
 .buttons {
-  margin-left: 85%;
+  margin-left: 88%;
 }
 
 h2 {
@@ -108,8 +108,8 @@ h2 {
   border-collapse: collapse;
   background-color: #f8f8f8;
   box-shadow: 5px 5px 10px #cecece, -5px -5px 10px #f2f2f2;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .parent {
@@ -120,4 +120,29 @@ h2 {
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+}
+
+.dropdowns {
+  background-color: #e4e4e4;
+  width: 110px;
+  height: 30px;
+}
+
+.avatar2 {
+  width: 14px;
+  height: 14px;
+  margin-right: 2px;
+}
+.newButton{
+  width: 150px;
+  background-color:#124167 ;
+}
+
+button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
 }
