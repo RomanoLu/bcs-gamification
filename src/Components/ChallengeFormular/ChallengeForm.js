@@ -12,8 +12,9 @@ class ChallengeForm extends React.Component {
       art: "Tickets",
       beschreibung: "",
       titel: "",
-      idbelohnung: "",
-      belohnung: [],
+      idbelohnung: "Urlaubstag",
+      belohnung: "",
+      belohnungsListe: [],
       zeit: 0,
       priorität: "",
       bewertung: "",
@@ -27,16 +28,19 @@ class ChallengeForm extends React.Component {
 
 
 
+  componentDidMount() {
+    Axios.get("http://localhost:3001/api/getBelohnung")
+    .then((response) => {
+      const belohnungsListe = response.data;
+      this.setState({ belohnungsListe });
+      console.log(this.state.belohnungsListe);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
   render() {
-      Axios.get("http://localhost:3001/api/getBelohnung")
-      .then((response) => {
-        const belohnung = response.data;
-        this.setState({ belohnung });
-        console.log(this.state.belohnung);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+
       const submit = (event) => {
       const form = event.currentTarget;
       if (form.checkValidity() === false) {
@@ -299,12 +303,14 @@ class ChallengeForm extends React.Component {
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="disabledSelect">Belohnung</Form.Label>
                     <Form.Select className={ChallengeFormCSS.form} id="disabledSelect" required onChange={(e) => {
-                      this.setState({ idbelohnung: e.target.value })
+                      this.setState({ idbelohnung: e.target.value });
                     }
                     }>
-                      <option>Werbegeschenk</option>
-                      <option>5/100 Urlaubstag</option>
-                      <option>1000px</option>
+                    {this.state.belohnungsListe.map((val) => (
+                      <option value = {val.art}> {val.Belohnung}</option>
+                    ))}
+                      
+                    
                     </Form.Select>
                   </Form.Group>
                 </div>
