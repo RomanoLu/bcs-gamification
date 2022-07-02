@@ -42,6 +42,14 @@ router.post('/updateTicket', (req, res) => {
     })
 });
 
+router.delete('/deleteTicket', (req, res) => {
+    const id = req.body.id
+    const sqlInsert = 'DELETE FROM tickets WHERE idTickets = ?;;';
+    db.query(sqlInsert, [id], (err, result) => {
+    console.log(err)
+    })
+});
+
 router.get('/getTickets', (req,res) => {
     const sqlSelect = 'SELECT * FROM tickets'
     db.query(sqlSelect, (err, result) => {

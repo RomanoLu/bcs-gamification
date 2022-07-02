@@ -324,6 +324,14 @@ class Ticket extends Component {
         this.props.closePopup();
         this.setState({ showBearbeiten: false });
         this.setState({ checked: 0 });
+
+        Axios.delete("http://localhost:3001/api/deleteTicket", {
+          id: this.state.currentID
+        }).then(() => {
+          console.log("succesfull insert");
+        });
+
+
         //Dannach das Fenster schließen
       } else {
         Axios.post("http://localhost:3001/api/updateTicket", {
