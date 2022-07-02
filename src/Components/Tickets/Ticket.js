@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import style from "./TicketsStyles.module.css";
-import { FaAward } from "react-icons/fa";
-import { Table, Dropdown, Button, Form, Row, Col } from "react-bootstrap";
+import { FaAward, FaRegWindowClose } from "react-icons/fa";
+import { Table, Button, Form, Row, Col, Modal } from "react-bootstrap";
 import Axios from "axios";
 import Confetti from "./Confetti";
 import Confetti2 from "react-confetti";
 import Notify from "../Notify";
+import ticket from "../Pictures/tickets.png";
+import aufgaben from "../Pictures/Aufgaben.png";
+import Moment from 'moment';
 
 class Popup extends React.Component {
   constructor() {
@@ -32,6 +35,7 @@ class Popup extends React.Component {
           prio: this.state.prio,
           sta: this.state.sta,
         }).then(() => {
+          alert("Ticket succesfully created")
           console.log("succesfull insert");
         });
       }
@@ -40,218 +44,219 @@ class Popup extends React.Component {
     return (
       <div className={style.popup}>
         <div className={style.popup_inner}>
-          <h4 style={{ textAlign: "center" }}>Neues Ticket erstellen</h4>
-          <hr></hr>
-          <Notify />
-          <div className={style.flexboxContainer}>
-            <Form>
-              <fieldset>
-                <div className={style.parent}>
-                  <div className={style.div2}>
-                    {/*Priorität*/}
-                    <Form.Group className="mb-3">
-                      <Form.Label htmlFor="disabledSelect">
-                        Priorität (intern)
-                      </Form.Label>
-                      <Form.Select
-                        style={{ backgroundColor: "#d5e8f6" }}
-                        id="disabledSelect"
-                        onChange={(e) => {
-                          this.setState({ prio: e.target.value });
-                        }}
-                      >
-                        <option style={{ backgroundColor: "#f0f9ff" }}>
-                          Maximal
-                        </option>
-                        <option
-                          style={{
-                            color: "#FF0000",
-                            backgroundColor: "#f0f9ff",
-                          }}
-                        >
-                          Sehr Hoch
-                        </option>
-                        <option
-                          style={{
-                            color: "#AA0000",
-                            backgroundColor: "#f0f9ff",
-                          }}
-                        >
-                          Hoch
-                        </option>
-                        <option style={{ backgroundColor: "#f0f9ff" }}>
-                          Normal
-                        </option>
-                        <option
-                          style={{
-                            color: "#c7c7c7",
-                            backgroundColor: "#f0f9ff",
-                          }}
-                        >
-                          Niedrig
-                        </option>
-                      </Form.Select>
-                    </Form.Group>
-                    <Form.Group
-                      className="mb-3"
-                      controlId="exampleForm.ControlTextarea1"
-                    >
-                      <Form.Label htmlFor="disabledTextInput">
-                        Beschreibung
-                      </Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        rows={3}
-                        placeholder="Beschreibung"
-                        className={style.tfstyle2}
-                      />
-                      <br />
-                      <Row>
-                        <Col></Col>
-                        <Col>
-                          <Button
-                            variant="primary"
-                            onClick={submit}
-                            style={{ marginLeft: "50px" }}
-                          >
-                            Submit
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Form.Group>
-                  </div>
-                  <div className={style.div1}>
-                    <Form.Group className="mb-3">
-                      <Form.Label htmlFor="disabledTextInput">
-                        Betreff
-                      </Form.Label>
-                      <Form.Control
-                        id="disabledTextInput"
-                        placeholder="Betreff"
-                        className={style.tfstyle}
-                        onChange={(e) => {
-                          this.setState({ betreff: e.target.value });
-                        }}
-                      />
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                      <Form.Label htmlFor="disabledTextInput">Bezug</Form.Label>
-                      <Form.Control
-                        id="disabledTextInput"
-                        placeholder="Bezug"
-                        className={style.tfstyle}
-                        onChange={(e) => {
-                          this.setState({ bezug: e.target.value });
-                        }}
-                      />
-                    </Form.Group>
-                    {/*Ticketart*/}
-                    <Form.Group className="mb-3">
-                      <Form.Label htmlFor="disabledTextInput">
-                        Ticketart
-                      </Form.Label>
-                      <Form.Select
-                        id="disabledSelect"
-                        style={{ backgroundColor: "#d5e8f6" }}
-                        onChange={(e) => {
-                          this.setState({ art: e.target.value });
-                        }}
-                      >
-                        {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
-                        <option style={{ backgroundColor: "#f0f9ff" }}>
-                          Fehler
-                        </option>
-                        <option style={{ backgroundColor: "#f0f9ff" }}>
-                          Anpassung
-                        </option>
-                        <option style={{ backgroundColor: "#f0f9ff" }}>
-                          Dienstleistung
-                        </option>
-                        <option style={{ backgroundColor: "#f0f9ff" }}>
-                          Offener Punkt
-                        </option>
-                        <option style={{ backgroundColor: "#f0f9ff" }}>
-                          Vorschlag
-                        </option>
-                        <option style={{ backgroundColor: "#f0f9ff" }}>
-                          Anfrage
-                        </option>
-                      </Form.Select>
-                    </Form.Group>
-                    {/*Status*/}
-                    <Form.Group className="mb-3">
-                      <Form.Label htmlFor="disabledSelect">Status</Form.Label>
-                      <Form.Select
-                        style={{ backgroundColor: "#d5e8f6" }}
-                        id="disabledSelect"
-                        onChange={(e) => {
-                          this.setState({ sta: e.target.value });
-                        }}
-                      >
-                        {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
-                        <option
-                          style={{ color: "blue", backgroundColor: "#f0f9ff" }}
-                        >
-                          Neu
-                        </option>
-                        <option
-                          style={{ color: "red", backgroundColor: "#f0f9ff" }}
-                        >
-                          Gesichtet
-                        </option>
-                        <option
-                          style={{
-                            color: "purple",
-                            backgroundColor: "#f0f9ff",
-                          }}
-                        >
-                          Klärung
-                        </option>
-                        <option style={{ backgroundColor: "#f0f9ff" }}>
-                          Absprache
-                        </option>
-                        <option
-                          style={{
-                            color: "purple",
-                            backgroundColor: "#f0f9ff",
-                          }}
-                        >
-                          Angeboten
-                        </option>
-                        <option style={{ backgroundColor: "#f0f9ff" }}>
-                          Aufgenommen
-                        </option>
-                        <option style={{ backgroundColor: "#f0f9ff" }}>
-                          Eingeplant
-                        </option>
-                        <option
-                          style={{ color: "red", backgroundColor: "#f0f9ff" }}
-                        >
-                          Bearbeitung
-                        </option>
-                        <option
-                          style={{ color: "green", backgroundColor: "#f0f9ff" }}
-                        >
-                          Abnahme
-                        </option>
-                        <option
-                          style={{ color: "green", backgroundColor: "#f0f9ff" }}
-                        >
-                          Geschlossen
-                        </option>
-                        <option style={{ backgroundColor: "#f0f9ff" }}>
-                          Unbeantwortet
-                        </option>
-                        <option style={{ backgroundColor: "#f0f9ff" }}>
-                          (Importiert)
-                        </option>
-                      </Form.Select>
-                    </Form.Group>
-                  </div>
-                </div>
-              </fieldset>
-            </Form>
+          <div>
+            <div style={{ marginLeft: "95%" }}> <button onClick={this.props.closePopup}><FaRegWindowClose></FaRegWindowClose></button></div>
+            <h4 style={{ marginLeft: "9.8%" }}>Ticket erstellen </h4>
+
           </div>
+          <hr></hr>
+          <Form>
+            <fieldset>
+              <div className={style.parent}>
+                <div className={style.div2}>
+                  {/*Priorität*/}
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledSelect">
+                      Priorität (intern)
+                    </Form.Label>
+                    <Form.Select
+                      style={{ backgroundColor: "#d5e8f6" }}
+                      id="disabledSelect"
+                      onChange={(e) => {
+                        this.setState({ prio: e.target.value });
+                      }}
+                    >
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Maximal
+                      </option>
+                      <option
+                        style={{
+                          color: "#FF0000",
+                          backgroundColor: "#f0f9ff",
+                        }}
+                      >
+                        Sehr Hoch
+                      </option>
+                      <option
+                        style={{
+                          color: "#AA0000",
+                          backgroundColor: "#f0f9ff",
+                        }}
+                      >
+                        Hoch
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Normal
+                      </option>
+                      <option
+                        style={{
+                          color: "#c7c7c7",
+                          backgroundColor: "#f0f9ff",
+                        }}
+                      >
+                        Niedrig
+                      </option>
+                    </Form.Select>
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlTextarea1"
+                  >
+                    <Form.Label htmlFor="disabledTextInput">
+                      Beschreibung
+                    </Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      rows={3}
+                      placeholder="Beschreibung"
+                      className={style.tfstyle2}
+                    />
+                    <br />
+                    <Row>
+                      <Col></Col>
+                      <Col>
+                        <Button
+                          variant="primary"
+                          onClick={submit}
+                          style={{ marginLeft: "70%" }}
+                        >
+                          Erstellen
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Form.Group>
+                </div>
+                <div className={style.div1}>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">
+                      Betreff
+                    </Form.Label>
+                    <Form.Control
+                      id="disabledTextInput"
+                      placeholder="Betreff"
+                      className={style.tfstyle}
+                      onChange={(e) => {
+                        this.setState({ betreff: e.target.value });
+                      }}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">Bezug</Form.Label>
+                    <Form.Control
+                      id="disabledTextInput"
+                      placeholder="Bezug"
+                      className={style.tfstyle}
+                      onChange={(e) => {
+                        this.setState({ bezug: e.target.value });
+                      }}
+                    />
+                  </Form.Group>
+                  {/*Ticketart*/}
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledTextInput">
+                      Ticketart
+                    </Form.Label>
+                    <Form.Select
+                      id="disabledSelect"
+                      style={{ backgroundColor: "#d5e8f6" }}
+                      onChange={(e) => {
+                        this.setState({ art: e.target.value });
+                      }}
+                    >
+                      {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Fehler
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Anpassung
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Dienstleistung
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Offener Punkt
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Vorschlag
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Anfrage
+                      </option>
+                    </Form.Select>
+                  </Form.Group>
+                  {/*Status*/}
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="disabledSelect">Status</Form.Label>
+                    <Form.Select
+                      style={{ backgroundColor: "#d5e8f6" }}
+                      id="disabledSelect"
+                      onChange={(e) => {
+                        this.setState({ sta: e.target.value });
+                      }}
+                    >
+                      {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
+                      <option
+                        style={{ color: "blue", backgroundColor: "#f0f9ff" }}
+                      >
+                        Neu
+                      </option>
+                      <option
+                        style={{ color: "red", backgroundColor: "#f0f9ff" }}
+                      >
+                        Gesichtet
+                      </option>
+                      <option
+                        style={{
+                          color: "purple",
+                          backgroundColor: "#f0f9ff",
+                        }}
+                      >
+                        Klärung
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Absprache
+                      </option>
+                      <option
+                        style={{
+                          color: "purple",
+                          backgroundColor: "#f0f9ff",
+                        }}
+                      >
+                        Angeboten
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Aufgenommen
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Eingeplant
+                      </option>
+                      <option
+                        style={{ color: "red", backgroundColor: "#f0f9ff" }}
+                      >
+                        Bearbeitung
+                      </option>
+                      <option
+                        style={{ color: "green", backgroundColor: "#f0f9ff" }}
+                      >
+                        Abnahme
+                      </option>
+                      <option
+                        style={{ color: "green", backgroundColor: "#f0f9ff" }}
+                      >
+                        Geschlossen
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        Unbeantwortet
+                      </option>
+                      <option style={{ backgroundColor: "#f0f9ff" }}>
+                        (Importiert)
+                      </option>
+                    </Form.Select>
+                  </Form.Group>
+                </div>
+              </div>
+            </fieldset>
+          </Form>
         </div>
       </div>
     );
@@ -268,6 +273,12 @@ class Bearbeiten extends React.Component {
   }
 
   render() {
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const submit = () => {
       if (this.state.sta === "Geschlossen") {
         //Hier GIF einfügen
@@ -287,11 +298,14 @@ class Bearbeiten extends React.Component {
     };
 
     return (
-      <div className={style.popup}>
-        <div className={style.popup_inner}>
-          <h4>Ticket bearbeiten</h4>
-          <hr></hr>
-          <Form className={style.formcontainer}>
+
+      <Modal.Dialog>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+        <Form className={style.formcontainer}>
             <div className={style.parent}>
               <div className={style.div1}>
                 <Form.Group
@@ -469,8 +483,14 @@ class Bearbeiten extends React.Component {
               Submit
             </Button>
           </Form>
-        </div>
-      </div>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary">Close</Button>
+          <Button variant="primary">Save changes</Button>
+        </Modal.Footer>
+      </Modal.Dialog>
+      
     );
   }
 }
@@ -518,51 +538,49 @@ class Ticket extends Component {
         <div style={{ marginLeft: "400px", zIndex: "5", position: "fixed" }}>
           {this.state.alert ? <Notify /> : null}
         </div>
-        <h2>Meine Tickets: Alle meine Tickets</h2>
+        <h2 style={{ marginLeft: "3%" }}>Meine Tickets: Alle meine Tickets</h2>
 
+
+        <Form style={{ marginLeft: "3.8%" }}>
+          <Row>
+
+            <Form.Select size="sm" className={style.dropdowns}>
+              <option>Zeitraum</option>
+            </Form.Select>
+
+            <Form.Select size="sm" className={style.dropdowns}>
+              <option>Eingang</option>
+              <option>Wunschtermin(Kunde)</option>
+              <option>Termin</option>
+              <option>Eingefügt</option>
+              <option>Aktualisiert am</option>
+            </Form.Select>
+
+            <Form.Select size="sm" className={style.dropdowns} >
+              <option>Gesamt</option>
+              <option>Jahr</option>
+              <option>Geschäftsjahr</option>
+              <option>Quartal</option>
+              <option>Monat</option>
+            </Form.Select>
+
+          </Row>
+        </Form>
         <div className={style.buttons}>
-          <Button variant="light" onClick={this.togglePopup.bind(this)}>
+          <Button className={style.newButton} onClick={this.togglePopup.bind(this)}>
+            <img
+              src={ticket}
+              alt=""
+              className={style.avatar2}
+            />
             Neu
-          </Button>{" "}
-          <Button variant="primary">Bearbeiten</Button>{" "}
+          </Button>
         </div>
-        <Dropdown>
-          <Dropdown.Toggle id="1" size="sm" variant="secondary">
-            Zeitraum
-          </Dropdown.Toggle>
-          <Dropdown.Menu variant="dark1"></Dropdown.Menu>
-          <Dropdown.Toggle id="2" size="sm" variant="secondary">
-            Eingang
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu variant="dark1">
-            <Dropdown.Item href="#/action-1" active>
-              Wunschtermin
-            </Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Termin</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Eingefügt</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item href="#/action-4">Aktualisiert am</Dropdown.Item>
-          </Dropdown.Menu>
-          <Dropdown.Toggle id="3" size="sm" variant="secondary">
-            Gesamt
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu variant="dark2">
-            <Dropdown.Item href="#/action-1" active>
-              Jahr
-            </Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Geschäftsjahr</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Quartal</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item href="#/action-4">Monat</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-
         <div className={style.container2}>
           <Table responsive="sm">
             <tbody>
               <tr className={style.secondhead}>
+                <td style={{ width: "5%" }}></td>
                 <td style={{ width: "5%" }}>ID</td>
                 <td style={{ width: "25%" }}>Betreff</td>
                 <td style={{ width: "10%" }}>Status</td>
@@ -586,21 +604,103 @@ class Ticket extends Component {
                       }}
                     />
                   </td>
-                  <td> {val.idTickets}</td>
+                  <td> #{val.idTickets}</td>
                   <td>
                     <i>
                       <FaAward />
                     </i>
                     <a href="/bearbeiten"> {val.Betreff}</a>
                   </td>
-                  <td>{val.Status}</td>
-                  <td>{val.Priorität}</td>
-                  <td>{val.Bezug}</td>
+
+
+                  {(() => {
+                    if (val.Status == "Neu") {
+                      return (
+                        <td style={{ color: "blue" }}>{val.Status}</td>
+                      )
+                    } else if (val.Status == "Gesichtet") {
+                      return (
+                        <td style={{ color: "red" }}>{val.Status}</td>
+                      )
+                    } else if (val.Status == "Klärung") {
+                      return (
+                        <td >{val.Status}</td>
+                      )
+                    } else if (val.Status == "Absprache") {
+                      return (
+                        <td >{val.Status}</td>
+                      )
+                    } else if (val.Status == "Angeboten") {
+                      return (
+                        <td style={{ color: "red" }}>{val.Status}</td>
+                      )
+                    } else if (val.Status == "Aufgenommen") {
+                      return (
+                        <td >{val.Status}</td>
+                      )
+                    } else if (val.Status == "Eingeplant") {
+                      return (
+                        <td>{val.Status}</td>
+                      )
+                    } else if (val.Status == "Bearbeitung") {
+                      return (
+                        <td>{val.Status}</td>
+                      )
+                    } else if (val.Status == "Abnahme") {
+                      return (
+                        <td style={{ color: "green" }}>{val.Status}</td>
+                      )
+                    }
+                    else if (val.Status == "Geschlossen") {
+                      return (
+                        <td style={{ color: "green" }}>{val.Status}</td>
+                      )
+                    } else {
+                      return (
+                        <td style={{ color: "red" }}>{val.Status}</td>
+                      )
+                    }
+                  })()}
+
+
+                  {(() => {
+                    if (val.Priorität == "Hoch") {
+                      return (
+                        <td style={{ color: "#f0f9ff" }}>{val.Priorität}</td>
+                      )
+                    } else if (val.Priorität == "Sehr Hoch") {
+                      return (
+                        <td style={{ color: "#FF0000" }}>{val.Priorität}</td>
+                      )
+                    } else if (val.Priorität == "Maximal") {
+                      return (
+                        <td>{val.Priorität}</td>
+                      )
+                    } else if (val.Priorität == "Normal") {
+                      return (
+                        <td>{val.Priorität}</td>
+                      )
+                    }
+                    else {
+                      return (
+                        <td style={{ color: "#f0f9ff" }}>{val.Priorität}</td>
+                      )
+                    }
+                  })()}
+
                   <td>
-                    {new Date(val.Erstellt_am)
+                    <img
+                      src={aufgaben}
+                      alt=""
+                      className={style.avatar2}
+                    />
+                    {val.Bezug}</td>
+                  <td>
+                    {Moment(new Date(val.Erstellt_am)
                       .toISOString()
                       .slice(0, 19)
-                      .replace("T", " ")}
+                      .replace("T", " ")).format('DD.MM.YYYY')
+                    }
                   </td>
                 </tr>
               ))}
