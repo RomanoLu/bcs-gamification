@@ -10,10 +10,9 @@
   margin-left: 5%;
   margin-right: 7%;
   margin-top: 1%;
-
 }
 
-.title{
+.title {
   margin-top: 2%;
   margin-left: 5%;
 }
@@ -27,8 +26,9 @@
   width: 40%;
 }
 
-
-html, body, .app {
+html,
+body,
+.app {
   margin: 0;
   padding: 0;
   position: relative;
@@ -44,105 +44,96 @@ html, body, .app {
   right: 0;
   bottom: 0;
   margin: auto;
-  background-color: rgba(0,0,0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 }
-.popup_inner {
-  position: absolute;
-  left: 25%;
-  right: 25%;
-  top: 25%;
-  bottom: 25%;
-  height: 450px;
-  margin: auto;
+
+.containeritems:nth-child(2) {
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  justify-content: center;
+  order: 0;
+  width: 60%;
+  height: 100%;
+}
+
+.cardleft {
+  width: auto;
+}
+
+.comp {
+  width: 100%;
+}
+
+.Medaille {
+  height: 220px;
+  border-width: 10px;
+}
+
+.avatar {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  align-self: center;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.avatar2 {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  align-self: center;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.BadgeList {
+  overflow-y: scroll;
+  height: 200px;
+  width: 98%;
+  border-style: solid;
+  margin-left: 10px;
+  border-width: 2px;
+  border-color: #d0e1ef;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.badgepic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  align-self: center;
+}
+
+.Updates {
+  flex: 50%;
   background: white;
+  border-radius: 0.7rem;
+  padding: 1rem;
+  gap: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  font-size: 13px;
 }
 
-
-
-  
-  .containeritems:nth-child(2) {
-    display: block;
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
-    justify-content: center;
-    order: 0;
-    width: 60%;
-    height: 100%;
-  }
-
-  .cardleft {
-    width: auto;
-  }
-
-  .comp {
-    width: 100%;
-  }
-
-
-  .Medaille {
-    height: 220px;
-    border-width: 10px;
-  }
-
-  .avatar {
-    width: 175px;
-    height: 175px;
-    border-radius: 50%;
-    align-self: center;
-    margin-left: 5px;
-    margin-top: 5px;
-  }
-
-  .BadgeList {
-    overflow-y: scroll;
-    height: 200px;
-    width: 98%;
-    border-style: solid;
-    margin-left: 10px;
-    border-width: 2px;
-    border-color: #d0e1ef;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .badgepic {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    align-self: center;
-  }
-
-  .Updates{
-    flex: 50%;
-    background: white;
-    border-radius: 0.7rem;
-    padding: 1rem;
-    gap: 1rem;
-    display: flex;
-    flex-direction: column;
-    font-size: 13px;
+.update {
+  display: flex;
+  gap: 0.5rem;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d0e1ef;
 }
 
-.update{
-    display: flex;
-    gap: 0.5rem;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #d0e1ef;
+.update > img {
+  width: 3.2rem;
+  height: 3.2rem;
 }
 
-.update>img{
-    width: 3.2rem;
-    height: 3.2rem;
-}
-
-.noti>div>span:nth-of-type(1){
-    font-weight: bold;
+.noti > div > span:nth-of-type(1) {
+  font-weight: bold;
 }
 
 .r1 {
@@ -157,9 +148,6 @@ html, body, .app {
 .listgroupflush {
   border-width: 0px;
 }
-
-
-
 
 .rl {
   flex: 0 1 auto;
@@ -184,11 +172,9 @@ html, body, .app {
   border-style: solid;
   border-width: 2px;
   border-color: #d0e1ef;
-  
 }
 
-.containerunten{
-  
+.containerunten {
   border-style: solid;
   border-color: #d0e1ef;
   border-width: 1px;
@@ -197,19 +183,16 @@ html, body, .app {
   margin-right: 7%;
   margin-top: 1%;
 }
-.oben{
 
-}
-
-.info{
+.info {
   justify-content: center;
   justify-items: center;
   align-items: center;
   align-content: center;
 }
-.unten{
+.unten {
   font-size: 12px;
-  color:rgba(31, 31, 31, 0.5)
+  color: rgba(31, 31, 31, 0.5);
 }
 
 .popupbtn {
