@@ -13,9 +13,13 @@ const db = mysql.createPool({
 
 const ticketHandlerRoute = require('./routes/TicketHandler')
 const challengeHandlerRoute = require('./routes/ChallengeHandler')
+const belohnungHandlerRoute = require('./routes/BelohnungHandler')
+
 
 app.use('/api',ticketHandlerRoute);
 app.use('/api',challengeHandlerRoute);
+app.use('/api',belohnungHandlerRoute);
+
 
 
 app.use(cors())

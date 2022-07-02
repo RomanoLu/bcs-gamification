@@ -3,8 +3,9 @@ import { Table, Modal, Button } from "react-bootstrap";
 import style from "./AufgabenStyles.module.css";
 import Axios from "axios";
 import { FcCheckmark, FcCancel } from "react-icons/fc";
-import { GrAchievement } from "react-icons/gr";
-import { useRowSelect } from "react-table";
+import challenge from "../Pictures/ChallengeIcon.png";
+import belohnung from "../Pictures/belohnung.png";
+
 
 class Challenge extends React.Component {
   constructor() {
@@ -92,10 +93,20 @@ class Challenge extends React.Component {
               </tr>
               {this.state.challengeList.map((val) => (
                 <tr onClick={this.onSelectedRow.bind(this, val)}>
-                  <td>{val.idchallenges}</td>
-                  <td>{val.titel}</td>
-                  <td>{val.idbelohnung}</td>
-                  <td>{val.zeit}</td>
+                  <td style={{color: "black"}}>#{val.idchallenges}</td>
+                  <td>                  
+                    <img
+                    src={challenge}
+                    alt=""
+                    className= {style.avatar2}
+                    /> {val.titel}</td>
+                  <td>
+                    <img
+                    src={belohnung}
+                    alt=""
+                    className= {style.avatar2}
+                    />{val.idbelohnung}</td>
+                  <td style = {{color: "black"}}>{val.zeit} Tage</td>
                   <td>
                     <button onClick={accept_Challenge}>
                       <FcCheckmark size={20} />
@@ -115,18 +126,22 @@ class Challenge extends React.Component {
         <Modal show={this.state.show} onHide={handleCloseDeny}>
           <Modal.Header closeButton>
             <img
-              src=" https://www.pngitem.com/pimgs/m/632-6329807_business-challenge-challenges-icon-hd-png-download.png"
+              src= {challenge}
               alt=""
               className={style.avatar}
             />
-            <Modal.Title>{this.state.selectedItem.titel}</Modal.Title>
+            <Modal.Title>Challenge</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div>
+              <h5>Titel</h5>
+              <p>{this.state.selectedItem.titel}</p>
               <h5>Beschreibung</h5>
               <p>{this.state.selectedItem.beschreibung}</p>
-              <h5>Belohnung: {this.state.selectedItem.idbelohnung}</h5>
-              <h5>Zeitspanne: {this.state.selectedItem.zeit} Tage</h5>
+              <h5>Belohnung </h5>
+              <p>{this.state.selectedItem.idbelohnung}</p>
+              <h5>Zeit</h5>
+              <p>{this.state.selectedItem.zeit} Tage</p>
             </div>
           </Modal.Body>
           <Modal.Footer>
@@ -142,6 +157,11 @@ class Challenge extends React.Component {
 
         <Modal show={this.state.showDelete} onHide={handleCloseDelete}>
         <Modal.Header closeButton>
+        <img
+              src= {challenge}
+              alt=""
+              className={style.avatar}
+            />
           <Modal.Title>Challenge löschen</Modal.Title>
         </Modal.Header>
         <Modal.Body>Möchten Sie die Challenge wirklich löschen?</Modal.Body>

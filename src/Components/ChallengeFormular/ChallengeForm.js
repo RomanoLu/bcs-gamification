@@ -13,6 +13,7 @@ class ChallengeForm extends React.Component {
       beschreibung: "",
       titel: "",
       idbelohnung: "",
+      belohnung: [],
       zeit: 0,
       priorität: "",
       bewertung: "",
@@ -27,6 +28,15 @@ class ChallengeForm extends React.Component {
 
 
   render() {
+      Axios.get("http://localhost:3001/api/getBelohnung")
+      .then((response) => {
+        const belohnung = response.data;
+        this.setState({ belohnung });
+        console.log(this.state.belohnung);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
       const submit = (event) => {
       const form = event.currentTarget;
       if (form.checkValidity() === false) {
