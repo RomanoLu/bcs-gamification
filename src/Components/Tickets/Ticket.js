@@ -372,9 +372,10 @@ class Ticket extends Component {
     };
     return (
       <div className={style.container}>
-        <div style={{ marginLeft: "400px", zIndex: "5", position: "fixed" }}>
-          {this.state.alert ? <Notify /> : null}
-        </div>
+        {this.state.alert ? 
+              <Notify />
+        : null
+        }
         <h2 style={{ marginLeft: "3%" }}>Meine Tickets: Alle meine Tickets</h2>
 
 
