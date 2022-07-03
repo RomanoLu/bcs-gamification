@@ -53,20 +53,39 @@ router.post('/selectedChallenge', (req, res) => {
     })
 });
 
+router.post('/updateChallenge', (req, res) => {
+    const id = req.body.id;
+    const sqlInsert = 'UPDATE challenges SET absolviert = 1, abgeschlossen_am = now() WHERE idchallenges = ?';
+    db.query(sqlInsert, [id], (err, result) => {
+    console.log(err)
+    })
+});
+
 
 router.get('/getChallengeProgress', (req,res) => {
-    const sqlSelect = '(SELECT (count(*)/(Select anzahl FROM bcs.challenges WHERE now() < ende & aktion = "Tickets")) AS challengeProgress FROM userinteraction WHERE (Select start FROM bcs.challenges WHERE now() < ende & aktion = "Tickets") > Datum &(Select ende FROM bcs.challenges WHERE now() < ende & aktion = "Tickets") < Datum & Aktion = "Tickets")'
+    // const sqlSelect = 'SELECT (count(*) / (SELECT anzahl from bcs.challenges WHERE idchallenges = ?)) AS challengeProgress FROM userinteraction WHERE (SELECT start from bcs.challenges where idchallenges = ?) < Datum AND (SELECT ende from bcs.challenges where idchallenges = ?) > Datum AND Aktion = "Tickets_Geschlossen"';
+    const sqlSelect = '(SELECT (count(*)/(Select anzahl FROM bcs.challenges WHERE now() < ende AND aktion = "Tickets" AND angenommen = 1 AND absolviert IS NULL)) AS challengeProgress FROM userinteraction WHERE (Select start FROM bcs.challenges WHERE now() < ende AND aktion = "Tickets" AND angenommen = 1 AND absolviert IS NULL) < Datum AND (Select ende FROM bcs.challenges WHERE now() < ende AND aktion = "Tickets" AND angenommen = 1 AND absolviert IS NULL) > Datum AND Aktion = "Tickets_Geschlossen")';
+    db.query(sqlSelect,(err, result) => {
+        res.send(result);
+    })
+});
+
+
+router.get('/getOpenChallenges', (req,res) => {
+    const sqlSelect = 'SELECT * FROM bcs.challenges WHERE angenommen = 1 AND absolviert IS NULL';
     db.query(sqlSelect, (err, result) => {
         res.send(result);
     })
 });
 
-router.get('/getOpenChallenges', (req,res) => {
+router.get('/getAllChallenges', (req,res) => {
     const sqlSelect = 'SELECT * FROM bcs.challenges WHERE angenommen = 1';
     db.query(sqlSelect, (err, result) => {
-        res.send(result)
+        res.send(result);
     })
 });
+
+
 
 
 module.exports = router;

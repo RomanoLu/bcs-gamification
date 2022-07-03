@@ -7,6 +7,7 @@ import Notify from "../Notify";
 import ticket from "../Pictures/tickets.png";
 import aufgaben from "../Pictures/Aufgaben.png";
 import Moment from 'moment';
+import Alert from "../Alert";
 
 class Ticket extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class Ticket extends Component {
     this.state = {
       alert: false,
       showPopup: false,
+      showToast: false,
       showNeu: false,
       showBearbeiten: false,
       checked: 0,
@@ -24,7 +26,8 @@ class Ticket extends Component {
       currentPrio: "Normal",
       currentDescription: "",
       currentBezug: "",
-      currentID: ""
+      currentID: "",
+      progress: []
     };
   }
 
@@ -80,13 +83,6 @@ class Ticket extends Component {
         alert("Ticket succesfully created")
         console.log("succesfull insert");
       });
-
-      // const t = [this.state.currentBetreff, this.state.currentBezug, this.state.currentStatus,
-      //   this.state.currentPrio, "2022-07-03T13:15:47.000Z",this.state.currentArt,this.state.currentDescription]
-
-      // this.setState({ticketsList: [...this.state.ticketsList, t ]})     
-      // console.log(this.state.ticketsList);
- 
     }
 
 
@@ -108,7 +104,20 @@ class Ticket extends Component {
           console.log("succesfull insert");
         });
         this.setState({ticketsList: this.state.ticketsList.filter(item => item.idTickets !== this.state.currentID)})
-        //Dannach das Fenster schließen
+
+        Axios.get("http://localhost:3001/api/getChallengeProgress")
+        .then((response) => {
+          const progress = response.data;
+          this.setState({ progress: progress[0] });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        console.log("www" + this.state.progress.challengeProgress)
+        if(this.state.progress.challengeProgress >= 1){
+          this.setState({showToast: true})
+        }
+
       } else {
         Axios.post("http://localhost:3001/api/updateTicket", {
           betreff: this.state.currentBetreff,
@@ -141,6 +150,9 @@ class Ticket extends Component {
     };
     return (
       <div className={style.container}>
+        {this.state.showToast ? 
+              <Alert />: null
+        }
         {this.state.alert ? 
               <Notify />
         : null
