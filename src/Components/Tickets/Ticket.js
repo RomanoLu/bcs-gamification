@@ -8,265 +8,6 @@ import ticket from "../Pictures/tickets.png";
 import aufgaben from "../Pictures/Aufgaben.png";
 import Moment from 'moment';
 
-
-class Popup extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      showPopup: false,
-      betreff: "",
-      art: "Fehler",
-      bezug: "",
-      prio: "Normal",
-      sta: "Neu",
-      descr: ""
-    };
-  }
-
-  render() {
-    const submit = () => {
-      if (this.state.betreff === "" || this.state.bezug === "") {
-        alert("Bitte füllen Sie alle Pflichtfelder aus!");
-      } else {
-        this.props.closePopup();
-        Axios.post("http://localhost:3001/api/insertTicket", {
-          betreff: this.state.betreff,
-          bezug: this.state.bezug,
-          prio: this.state.prio,
-          sta: this.state.sta,
-          descr: this.state.descr
-        }).then(() => {
-          alert("Ticket succesfully created")
-          console.log("succesfull insert");
-        });
-      }
-    };
-
-    return (
-      <div className={style.popup}>
-        <div className={style.popup_inner}>
-          <div>
-            <div style={{ marginLeft: "95%" }}> <button onClick={this.props.closePopup}><FaRegWindowClose></FaRegWindowClose></button></div>
-            <h4 style={{ marginLeft: "9.8%" }}>Ticket erstellen </h4>
-
-          </div>
-          <hr></hr>
-          <Form>
-            <fieldset>
-              <div className={style.parent}>
-                <div className={style.div2}>
-                  {/*Priorität*/}
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="disabledSelect">
-                      Priorität (intern)
-                    </Form.Label>
-                    <Form.Select
-                      style={{ backgroundColor: "#d5e8f6" }}
-                      id="disabledSelect"
-                      onChange={(e) => {
-                        this.setState({ prio: e.target.value });
-                      }}
-                    >
-                      <option style={{ backgroundColor: "#f0f9ff" }}>
-                        Maximal
-                      </option>
-                      <option
-                        style={{
-                          color: "#FF0000",
-                          backgroundColor: "#f0f9ff",
-                        }}
-                      >
-                        Sehr Hoch
-                      </option>
-                      <option
-                        style={{
-                          color: "#AA0000",
-                          backgroundColor: "#f0f9ff",
-                        }}
-                      >
-                        Hoch
-                      </option>
-                      <option style={{ backgroundColor: "#f0f9ff" }}>
-                        Normal
-                      </option>
-                      <option
-                        style={{
-                          color: "#c7c7c7",
-                          backgroundColor: "#f0f9ff",
-                        }}
-                      >
-                        Niedrig
-                      </option>
-                    </Form.Select>
-                  </Form.Group>
-                  <Form.Group
-                    className="mb-3"
-                    controlId="exampleForm.ControlTextarea1"
-                  >
-                    <Form.Label htmlFor="disabledTextInput">
-                      Beschreibung
-                    </Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows={3}
-                      placeholder="Beschreibung"
-                      className={style.tfstyle2}
-                      onChange={(e) => {
-                        this.setState({ descr: e.target.value });
-                      }}
-                    />
-                    <br />
-                    <Row>
-                      <Col></Col>
-                      <Col>
-                        <Button
-                          variant="primary"
-                          onClick={submit}
-                          style={{ marginLeft: "70%" }}
-                        >
-                          Erstellen
-                        </Button>
-                      </Col>
-                    </Row>
-                  </Form.Group>
-                </div>
-                <div className={style.div1}>
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="disabledTextInput">
-                      Betreff
-                    </Form.Label>
-                    <Form.Control
-                      id="disabledTextInput"
-                      placeholder="Betreff"
-                      className={style.tfstyle}
-                      onChange={(e) => {
-                        this.setState({ betreff: e.target.value });
-                      }}
-                    />
-                  </Form.Group>
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="disabledTextInput">Bezug</Form.Label>
-                    <Form.Control
-                      id="disabledTextInput"
-                      placeholder="Bezug"
-                      className={style.tfstyle}
-                      onChange={(e) => {
-                        this.setState({ bezug: e.target.value });
-                      }}
-                    />
-                  </Form.Group>
-                  {/*Ticketart*/}
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="disabledTextInput">
-                      Ticketart
-                    </Form.Label>
-                    <Form.Select
-                      id="disabledSelect"
-                      style={{ backgroundColor: "#d5e8f6" }}
-                      onChange={(e) => {
-                        this.setState({ art: e.target.value });
-                      }}
-                    >
-              
-                      <option style={{ backgroundColor: "#f0f9ff" }}>
-                        Fehler
-                      </option>
-                      <option style={{ backgroundColor: "#f0f9ff" }}>
-                        Anpassung
-                      </option>
-                      <option style={{ backgroundColor: "#f0f9ff" }}>
-                        Dienstleistung
-                      </option>
-                      <option style={{ backgroundColor: "#f0f9ff" }}>
-                        Offener Punkt
-                      </option>
-                      <option style={{ backgroundColor: "#f0f9ff" }}>
-                        Vorschlag
-                      </option>
-                      <option style={{ backgroundColor: "#f0f9ff" }}>
-                        Anfrage
-                      </option>
-                    </Form.Select>
-                  </Form.Group>
-                  {/*Status*/}
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="disabledSelect">Status</Form.Label>
-                    <Form.Select
-                      style={{ backgroundColor: "#d5e8f6" }}
-                      id="disabledSelect"
-                      onChange={(e) => {
-                        this.setState({ sta: e.target.value });
-                      }}
-                    >
-                      {/*TODO Entweder zeit in Db ändern oder wir müssen hier system zeit nehmen und dann mit den optionen verrechnen und das ergebnis schreiben*/}
-                      <option
-                        style={{ color: "blue", backgroundColor: "#f0f9ff" }}
-                      >
-                        Neu
-                      </option>
-                      <option
-                        style={{ color: "red", backgroundColor: "#f0f9ff" }}
-                      >
-                        Gesichtet
-                      </option>
-                      <option
-                        style={{
-                          color: "purple",
-                          backgroundColor: "#f0f9ff",
-                        }}
-                      >
-                        Klärung
-                      </option>
-                      <option style={{ backgroundColor: "#f0f9ff" }}>
-                        Absprache
-                      </option>
-                      <option
-                        style={{
-                          color: "purple",
-                          backgroundColor: "#f0f9ff",
-                        }}
-                      >
-                        Angeboten
-                      </option>
-                      <option style={{ backgroundColor: "#f0f9ff" }}>
-                        Aufgenommen
-                      </option>
-                      <option style={{ backgroundColor: "#f0f9ff" }}>
-                        Eingeplant
-                      </option>
-                      <option
-                        style={{ color: "red", backgroundColor: "#f0f9ff" }}
-                      >
-                        Bearbeitung
-                      </option>
-                      <option
-                        style={{ color: "green", backgroundColor: "#f0f9ff" }}
-                      >
-                        Abnahme
-                      </option>
-                      <option
-                        style={{ color: "green", backgroundColor: "#f0f9ff" }}
-                      >
-                        Geschlossen
-                      </option>
-                      <option style={{ backgroundColor: "#f0f9ff" }}>
-                        Unbeantwortet
-                      </option>
-                      <option style={{ backgroundColor: "#f0f9ff" }}>
-                        (Importiert)
-                      </option>
-                    </Form.Select>
-                  </Form.Group>
-                </div>
-              </div>
-            </fieldset>
-          </Form>
-        </div>
-      </div>
-    );
-  }
-}
-
 class Ticket extends Component {
   constructor() {
     super();
@@ -321,8 +62,34 @@ class Ticket extends Component {
       this.setState({ showNeu: false });
     }
     const submitNeu = () => {
+      this.setState({showNeu: false});
+      Axios.post("http://localhost:3001/api/insertInteraction", {
+        aktion: "Tickets_"+this.state.currentStatus.toString(),
+      }).then(() => {
+        console.log("succesfull insert");
+      });
 
+      Axios.post("http://localhost:3001/api/insertTicket", {
+        betreff: this.state.currentBetreff,
+        art: this.state.currentArt,
+        status: this.state.currentStatus,
+        bezug: this.state.currentBezug,
+        prio: this.state.currentPrio,
+        beschreibung: this.state.currentDescription
+      }).then(() => {
+        alert("Ticket succesfully created")
+        console.log("succesfull insert");
+      });
+
+      // const t = [this.state.currentBetreff, this.state.currentBezug, this.state.currentStatus,
+      //   this.state.currentPrio, "2022-07-03T13:15:47.000Z",this.state.currentArt,this.state.currentDescription]
+
+      // this.setState({ticketsList: [...this.state.ticketsList, t ]})     
+      // console.log(this.state.ticketsList);
+ 
     }
+
+
     const openBearbeiten = () => {
       this.setState({ showBearbeiten: true })
     }
@@ -348,7 +115,9 @@ class Ticket extends Component {
           bezug: this.state.currentBezug,
           prio: this.state.currentPrio,
           status: this.state.currentStatus,
-          id: this.state.currentID
+          id: this.state.currentID,
+          art: this.state.currentArt,
+          beschreibung: this.state.currentDescription
         }).then(() => {
           console.log("succesfull insert");
         });
@@ -356,7 +125,7 @@ class Ticket extends Component {
         this.setState({ticketsList:         this.state.ticketsList.map(item => {
           if(item.idTickets === this.state.currentID) {
             return {...item, Betreff: this.state.currentBetreff, Bezug: this.state.currentBezug, Status: this.state.currentStatus,
-            Priorität: this.state.currentPrio}
+            Priorität: this.state.currentPrio, Art: this.state.currentArt, Beschreibung: this.state.currentDescription}
           }
           else {
             return{...item}
@@ -441,6 +210,7 @@ class Ticket extends Component {
                         this.setState({currentDescription: val.Beschreibung})
                         this.setState({currentBezug: val.Bezug})
                         this.setState({currentID : val.idTickets})
+                        this.setState({currentArt: val.Art})
                         var i = val.idTickets;
                         this.setState({ checked: i });
                         this.setState({ showBearbeiten: true });                       
@@ -565,7 +335,7 @@ class Ticket extends Component {
             <Form className={style.formcontainer}>
               <div className={style.parent}>
                 <div className={style.div1}>
-                  <Form.Group className={style.mb - 3} htmlFor="disabledTextInput">
+                  <Form.Group className="mb-3" htmlFor="disabledTextInput">
                     <Form.Label> Betreff <span style={{ color: "red" }}>*</span></Form.Label>
                     <Form.Control
                         onChange={(e) => {
@@ -674,11 +444,6 @@ class Ticket extends Component {
                         style={{ color: "green", backgroundColor: "#f0f9ff" }}
                       >
                         Abnahme
-                      </option>
-                      <option
-                        style={{ color: "green", backgroundColor: "#f0f9ff" }}
-                      >
-                        Geschlossen
                       </option>
                       <option style={{ backgroundColor: "#f0f9ff" }}>
                         Unbeantwortet
@@ -959,7 +724,9 @@ class Ticket extends Component {
                       rows={3}
                       placeholder="Beschreibung"
                       className={style.tfstyle2}
-                      onChange= {this.state.currentDescription}
+                      onChange={(e) => {
+                        this.setState({ currentDescription: e.target.value });
+                      }}
                     />
                   </Form.Group>
                 </div>
@@ -971,20 +738,6 @@ class Ticket extends Component {
             <Button variant="primary" onClick={submitBearbeiten}>Ticket aktualisieren</Button>
           </Modal.Footer>
         </Modal>
-
-
-
-
-
-
-
-
-
-
-
-        {this.state.showPopup ? (
-          <Popup text="Close Me" closePopup={this.togglePopup.bind(this)} />
-        ) : null}
       </div>
     );
   }

@@ -17,15 +17,15 @@ class Statistics extends Component {
   }
 
   componentDidMount() {
-    Axios.get("http://localhost:3001/api/getOpenChallenges")
-      .then((response) => {
-        const challengeList = response.data;
-        this.setState({ challengeList });
-        console.log(this.state.challengeList);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    // Axios.get("http://localhost:3001/api/getOpenChallenges")
+    //   .then((response) => {
+    //     const challengeList = response.data;
+    //     this.setState({ challengeList });
+    //     console.log(this.state.challengeList);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
     Axios.get("http://localhost:3001/api/getChallengeProgress")
       .then((response) => {
         const progress = response.data;

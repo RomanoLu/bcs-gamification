@@ -19,16 +19,19 @@ const db = mysql.createPool({
 
 router.post('/insertTicket', (req, res) => {
     const betreff = req.body.betreff;
+    const art = req.body.art;
+    const status = req.body.status;
     const bezug = req.body.bezug;
-    const sta = req.body.sta;
+    const beschreibung = req.body.beschreibung;
     const prio = req.body.prio;
-    const sqlInsert = 'INSERT INTO tickets (Betreff, Bezug, Status, Priorität, Erstellt_am) VALUES (?,?,?,?, now());';
+    const sqlInsert = 'INSERT INTO tickets (Betreff, Bezug, Status, Priorität, Erstellt_am, Art, Beschreibung) VALUES (?,?,?,?,now(),?,?);';
     
    
-    db.query(sqlInsert, [betreff, bezug, sta, prio], (err, result) => {
+    db.query(sqlInsert, [betreff, bezug, status, prio, art, beschreibung], (err, result) => {
     console.log(err)
     })
 });
+
 
 router.post('/updateTicket', (req, res) => {
     const id = req.body.id
@@ -36,11 +39,14 @@ router.post('/updateTicket', (req, res) => {
     const bezug = req.body.bezug;
     const sta = req.body.status;
     const prio = req.body.prio;
-    const sqlInsert = 'UPDATE tickets SET Betreff = ?, Bezug = ?, Status = ?, Priorität = ?, Erstellt_am = now() WHERE idTickets = ? ;';
-    db.query(sqlInsert, [betreff, bezug, sta, prio, id], (err, result) => {
+    const art = req.body.art;
+    const beschreibung = req.body.beschreibung;
+    const sqlInsert = 'UPDATE tickets SET Betreff = ?, Bezug = ?, Status = ?, Priorität = ?, Erstellt_am = now(), Art = ?, Beschreibung = ? WHERE idTickets = ? ;';
+    db.query(sqlInsert, [betreff, bezug, sta, prio, art, beschreibung, id], (err, result) => {
     console.log(err)
     })
 });
+
 
 router.post('/deleteTicket', (req, res) => {
     const idTickets = req.body.idTickets;
