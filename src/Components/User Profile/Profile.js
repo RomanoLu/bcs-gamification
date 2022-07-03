@@ -6,6 +6,10 @@ import checkliste from "../Pictures/checkliste.png";
 import berg from "../Pictures/berg.png";
 import trophy from "../Pictures/trophy.png";
 import badge from "../Pictures/badgeforbadge.png";
+import ticketbadge from "../Pictures/ticketbadge.png";
+import herausforderung from "../Pictures/herausforderung.png";
+import zeiterfassung from "../Pictures/zeiterfassung.png";
+import wiedervorlagen from "../Pictures/wiedervorlagenbadge.png";
 import { Card, ListGroup, ListGroupItem, Modal } from "react-bootstrap";
 import { BiCheckCircle } from "react-icons/bi";
 import { ImInfo } from "react-icons/im";
@@ -127,7 +131,7 @@ class Profile extends React.Component {
                       </span>{" "}
                       <br />
                       <span style={{ color: "green" }}>
-                        <BiCheckCircle /> Verdient am: 02.05.2022
+                        <BiCheckCircle /> Verdient am: 30.04.2022
                       </span>
                     </div>
                   </div>
@@ -155,11 +159,7 @@ class Profile extends React.Component {
                 </div>
 
                 <div className={style.update}>
-                  <img
-                    src="https://cdn-icons.flaticon.com/png/512/3852/premium/3852558.png"
-                    alt=""
-                    className={style.avatar}
-                  />
+                  <img src={herausforderung} alt="" className={style.avatar} />
                   <div className={style.noti}>
                     <div style={{ marginBottom: "0.5rem" }}>
                       <span>Herausforderer</span> <br />
@@ -169,6 +169,52 @@ class Profile extends React.Component {
                       <br />
                       <span style={{ color: "green" }}>
                         <BiCheckCircle /> Verdient am: 12.01.2022
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className={style.update}>
+                  <img src={zeiterfassung} alt="" className={style.avatar} />
+                  <div className={style.noti}>
+                    <div style={{ marginBottom: "0.5rem" }}>
+                      <span>Einsteiger: Zeiterfassung</span> <br />
+                      <span style={{ color: "grey" }}>
+                        In einer Woche mehr als 15 Stunden mit der Stoppuhr
+                        erfasst
+                      </span>{" "}
+                      <br />
+                      <span style={{ color: "green" }}>
+                        <BiCheckCircle /> Verdient am: 02.12.2021
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className={style.update}>
+                  <img src={ticketbadge} alt="" className={style.avatar} />
+                  <div className={style.noti}>
+                    <div style={{ marginBottom: "0.5rem" }}>
+                      <span>Einsteiger: Tickets </span> <br />
+                      <span style={{ color: "grey" }}>
+                        2 Tickets am selben Tag geschlossen
+                      </span>{" "}
+                      <br />
+                      <span style={{ color: "green" }}>
+                        <BiCheckCircle /> Verdient am: 30.11.2021
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className={style.update}>
+                  <img src={wiedervorlagen} alt="" className={style.avatar} />
+                  <div className={style.noti}>
+                    <div style={{ marginBottom: "0.5rem" }}>
+                      <span>Einsteiger: Wiedervorlagen </span> <br />
+                      <span style={{ color: "grey" }}>
+                        5 Wiedervorlagen erstellt
+                      </span>{" "}
+                      <br />
+                      <span style={{ color: "green" }}>
+                        <BiCheckCircle /> Verdient am: 28.11.2021
                       </span>
                     </div>
                   </div>
@@ -195,94 +241,92 @@ class Profile extends React.Component {
             <Modal.Title>Offene Badges</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div className={style.popup_inner}>
-              <div className={style.popup_BadgeList}>
-                <div className={style.Updates}>
-                  <div className={style.update}>
-                    <img src={einstein} alt="" className={style.avatar} />
-                    <div className={style.noti}>
-                      <div style={{ marginBottom: "0.5rem" }}>
-                        <span>Albert Einstein</span> <br />
-                        <span style={{ color: "grey" }}>
-                          10 Tickets schließen, die älter als 6 Monate sind.
-                        </span>{" "}
-                        <br />
-                        <span style={{ color: "green" }}>
-                          <ProgressBar
-                            style={{ width: "300px" }}
-                            striped
-                            variant="success"
-                            now={20}
-                            label={"20%"}
-                          />
-                        </span>
-                      </div>
+            <div className={style.popupBadgeList}>
+              <div className={style.Updates}>
+                <div className={style.update}>
+                  <img src={einstein} alt="" className={style.avatar} />
+                  <div className={style.noti}>
+                    <div style={{ marginBottom: "0.5rem" }}>
+                      <span>Albert Einstein</span> <br />
+                      <span style={{ color: "grey" }}>
+                        10 Tickets geschlossen, die älter als 6 Monate sind.
+                      </span>{" "}
+                      <br />
+                      <span style={{ color: "green" }}>
+                        <ProgressBar
+                          style={{ width: "300px" }}
+                          striped
+                          variant="success"
+                          now={20}
+                          label={"20%"}
+                        />
+                      </span>
                     </div>
                   </div>
+                </div>
 
-                  <div className={style.update}>
-                    <img src={berg} alt="" className={style.avatar} />
-                    <div className={style.noti}>
-                      <div style={{ marginBottom: "0.5rem" }}>
-                        <span>King of the Hill</span> <br />
-                        <span style={{ color: "grey" }}>
-                          In einem Jahr 100 Tickets abschließen
-                        </span>
-                        <br />
-                        <span style={{ color: "green" }}>
-                          <ProgressBar
-                            style={{ width: "300px" }}
-                            striped
-                            variant="success"
-                            now={32}
-                            label={"32%"}
-                          />
-                        </span>
-                      </div>
+                <div className={style.update}>
+                  <img src={berg} alt="" className={style.avatar} />
+                  <div className={style.noti}>
+                    <div style={{ marginBottom: "0.5rem" }}>
+                      <span>King of the Hill</span> <br />
+                      <span style={{ color: "grey" }}>
+                        In einem Jahr 100 Tickets geschlossen
+                      </span>
+                      <br />
+                      <span style={{ color: "green" }}>
+                        <ProgressBar
+                          style={{ width: "300px" }}
+                          striped
+                          variant="success"
+                          now={32}
+                          label={"32%"}
+                        />
+                      </span>
                     </div>
                   </div>
+                </div>
 
-                  <div className={style.update}>
-                    <img src={kalender} alt="" className={style.avatar} />
-                    <div className={style.noti}>
-                      <div style={{ marginBottom: "0.5rem" }}>
-                        <span>Einsteiger: Kalender</span> <br />
-                        <span style={{ color: "grey" }}>
-                          2 Termine im Kalender eintragen.
-                        </span>{" "}
-                        <br />
-                        <span style={{ color: "green" }}>
-                          <ProgressBar
-                            style={{ width: "300px" }}
-                            striped
-                            variant="success"
-                            now={50}
-                            label={"50%"}
-                          />
-                        </span>
-                      </div>
+                <div className={style.update}>
+                  <img src={kalender} alt="" className={style.avatar} />
+                  <div className={style.noti}>
+                    <div style={{ marginBottom: "0.5rem" }}>
+                      <span>Einsteiger: Kalender</span> <br />
+                      <span style={{ color: "grey" }}>
+                        20 Termine im Kalender eingetragen.
+                      </span>{" "}
+                      <br />
+                      <span style={{ color: "green" }}>
+                        <ProgressBar
+                          style={{ width: "300px" }}
+                          striped
+                          variant="success"
+                          now={50}
+                          label={"50%"}
+                        />
+                      </span>
                     </div>
                   </div>
+                </div>
 
-                  <div className={style.update}>
-                    <img src={checkliste} alt="" className={style.avatar} />
-                    <div className={style.noti}>
-                      <div style={{ marginBottom: "0.5rem" }}>
-                        <span>Abchecker</span> <br />
-                        <span style={{ color: "grey" }}>
-                          3 Checklisteneinträge in einer Woche abschließen
-                        </span>{" "}
-                        <br />
-                        <span style={{ color: "green" }}>
-                          <ProgressBar
-                            style={{ width: "300px" }}
-                            striped
-                            variant="success"
-                            now={67}
-                            label={"67%"}
-                          />
-                        </span>
-                      </div>
+                <div className={style.update}>
+                  <img src={checkliste} alt="" className={style.avatar} />
+                  <div className={style.noti}>
+                    <div style={{ marginBottom: "0.5rem" }}>
+                      <span>Abchecker</span> <br />
+                      <span style={{ color: "grey" }}>
+                        3 Checklisteneinträge in einer Woche abgeschlossen
+                      </span>{" "}
+                      <br />
+                      <span style={{ color: "green" }}>
+                        <ProgressBar
+                          style={{ width: "300px" }}
+                          striped
+                          variant="success"
+                          now={67}
+                          label={"67%"}
+                        />
+                      </span>
                     </div>
                   </div>
                 </div>
