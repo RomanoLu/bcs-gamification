@@ -20,8 +20,8 @@ function Alert() {
         return null;
       }
   return (
-    <div className = {style.overlay2}>
-        <ToastContainer  position = "top-end">
+    <div>
+        <ToastContainer style={{marginTop:"59px"}}  position = "top-end">
 
         <Toast style = {{width: "325px", height: "75px"}}  onClose={() => setShow(false)}>
         <Toast.Header>

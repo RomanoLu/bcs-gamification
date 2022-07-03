@@ -27,7 +27,7 @@ class Ticket extends Component {
       currentDescription: "",
       currentBezug: "",
       currentID: "",
-      progress: []
+      progress: ""
     };
   }
 
@@ -41,19 +41,6 @@ class Ticket extends Component {
       .catch(function (error) {
         console.log(error);
       });
-  }
-
-  togglePopup() {
-    this.setState({
-      showPopup: !this.state.showPopup,
-    });
-  }
-
-  togglePopup2() {
-    this.setState({
-      alert: true,
-      showBearbeiten: false,
-    });
   }
 
   render() {
@@ -94,9 +81,15 @@ class Ticket extends Component {
       this.setState({ checked: 0 });
     }
     const submitBearbeiten = () => {
+      Axios.post("http://localhost:3001/api/insertInteraction", {
+        aktion: "Tickets_"+this.state.currentStatus.toString(),
+      }).then(() => {
+        console.log("succesfull insert");
+      });
       if (this.state.currentStatus === "Geschlossen") {
         //Hier GIF einfügen
         this.setState({ alert: true });
+
         closeBearbeiten();
         Axios.post("http://localhost:3001/api/deleteTicket", {
           idTickets: this.state.currentID
@@ -108,15 +101,16 @@ class Ticket extends Component {
         Axios.get("http://localhost:3001/api/getChallengeProgress")
         .then((response) => {
           const progress = response.data;
-          this.setState({ progress: progress[0] });
+          this.setState({ progress: progress[0].challengeProgress });
+          if(this.state.progress >= 1){
+            this.setState({showToast: true})
+          }
         })
         .catch(function (error) {
           console.log(error);
         });
-        console.log("www" + this.state.progress.challengeProgress)
-        if(this.state.progress.challengeProgress >= 1){
-          this.setState({showToast: true})
-        }
+
+
 
       } else {
         Axios.post("http://localhost:3001/api/updateTicket", {
@@ -142,11 +136,6 @@ class Ticket extends Component {
         })})
         closeBearbeiten();
       }
-      Axios.post("http://localhost:3001/api/insertInteraction", {
-        aktion: "Tickets_"+this.state.currentStatus.toString(),
-      }).then(() => {
-        console.log("succesfull insert");
-      });
     };
     return (
       <div className={style.container}>

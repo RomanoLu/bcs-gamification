@@ -20,7 +20,7 @@ class ChallengeForm extends React.Component {
       bewertung: "",
       anzahl: 0,
       ende: "",
-      aktion: "Arbeitszeiten",
+      aktion: "Tickets",
       buchung_über: "",
       validated: false
     };

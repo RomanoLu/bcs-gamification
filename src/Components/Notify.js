@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from 'react'
-import {Toast} from 'react-bootstrap'
+import {Toast,ToastContainer} from 'react-bootstrap'
 import style from "./Tickets/TicketsStyles.module.css";
 import Confetti2 from 'react-confetti'
 
@@ -25,7 +25,9 @@ function Notify() {
             <Confetti2
                             run={true}
                         />
-        <div className = {style.overlayToast}>
+        <div>
+        <ToastContainer  position = "middle-center">
+
             <Toast style = {{width: "500px", height: "300px"}}  onClose={() => setShow(false)}>
             <Toast.Header>
                 <img style = {{width: "30px", height: "30px"}} src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f680.png" className="rounded me-2" alt="" />
@@ -37,6 +39,7 @@ function Notify() {
             <img src="https://immotion-jzfyoi19mmhwtlehhr7.netdna-ssl.com/wp-content/uploads/2018/04/4-hard-work.gif" />
             </Toast.Body>
             </Toast>
+        </ToastContainer>
         </div>
         </div>
   )
