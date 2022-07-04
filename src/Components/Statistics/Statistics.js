@@ -1,13 +1,11 @@
 import React, { Component, useState, useEffect } from "react";
 import style from "./Statistics.module.css";
-import { Table, Dropdown, Button, Form } from "react-bootstrap";
+import { Table, Dropdown, Button, Form, Row } from "react-bootstrap";
 import { ProgressBar } from "react-bootstrap";
 import Axios from "axios";
-import Moment from 'moment';
+import Moment from "moment";
 import challenge from "../Pictures/ChallengeIcon.png";
 import belohnung from "../Pictures/belohnung.png";
-
-
 
 class Statistics extends Component {
   constructor() {
@@ -25,22 +23,22 @@ class Statistics extends Component {
     Axios.get("http://localhost:3001/api/getOpenChallenges")
       .then((response) => {
         const challengeList = response.data;
-        console.log(challengeList[0].idchallenges)
-        this.setState({ challengeList: challengeList[0]});
+        console.log(challengeList[0].idchallenges);
+        this.setState({ challengeList: challengeList[0] });
       })
       .catch(function (error) {
         console.log(error);
       });
-      Axios.get("http://localhost:3001/api/getChallengeProgress")
-        .then((response) => {
-          const progress = response.data;
-          this.setState({ progress: progress[0] });
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-      }
-      
+    Axios.get("http://localhost:3001/api/getChallengeProgress")
+      .then((response) => {
+        const progress = response.data;
+        this.setState({ progress: progress[0] });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   togglePopup() {
     this.setState({
       alert: !this.state.alert,
@@ -51,27 +49,30 @@ class Statistics extends Component {
   render() {
     console.log("WAS: " + this.state.progress.challengeProgress);
     console.log("WAS2: " + this.state.challengeList);
-    if(this.state.progress.challengeProgress >= 1){
-    Axios.post("http://localhost:3001/api/updateChallenge", {
-        id: this.state.challengeList.idchallenges
-      })
-  }
+    if (this.state.progress.challengeProgress >= 1) {
+      Axios.post("http://localhost:3001/api/updateChallenge", {
+        id: this.state.challengeList.idchallenges,
+      });
+    }
     return (
       <div className={style.container}>
         <h2>Meine Statistik: Challenge</h2>
-        <Form.Group className="mb-3" controlId="validationCustom01">
-          <Form.Select
-            className={style.form}
-            id="disabledSelect"
-            onChange={(e) => {
-              this.setState({ filter: e.target.value });
-            }}
-            required
-          >
-            <option>Offen</option>
-            <option>Absolviert</option>
-          </Form.Select>
-        </Form.Group>
+        <Form style={{ marginLeft: "3.8%" }}>
+          <Form.Group>
+            <Form.Select
+              size="sm"
+              className={style.form}
+              id="disabledSelect"
+              onChange={(e) => {
+                this.setState({ filter: e.target.value });
+              }}
+              required
+            >
+              <option>Offen</option>
+              <option>Absolviert</option>
+            </Form.Select>
+          </Form.Group>
+        </Form>
         <div className={style.container2}>
           <OpenChallenges
             display={this.state.filter}
@@ -115,26 +116,23 @@ const OpenChallenges = (props) => {
             {openChallenge.map((val) => (
               <tr>
                 <td>#{val.idchallenges}</td>
-                <td style = {{color: "darkblue"}}>
-                <img
-                    src={challenge}
-                    alt=""
-                    className= {style.avatar2}
-                />{val.titel}</td>
+                <td style={{ color: "darkblue" }}>
+                  <img src={challenge} alt="" className={style.avatar2} />
+                  {val.titel}
+                </td>
                 <td>{val.anzahl}</td>
-                <td style = {{color: "darkblue"}}>
-                <img
-                    src={belohnung}
-                    alt=""
-                    className= {style.avatar2}
-                    />{val.belohnung}</td>
+                <td style={{ color: "darkblue" }}>
+                  <img src={belohnung} alt="" className={style.avatar2} />
+                  {val.belohnung}
+                </td>
                 <td>
-                {Moment(new Date(val.ende)
+                  {Moment(
+                    new Date(val.ende)
                       .toISOString()
                       .slice(0, 19)
-                      .replace("T", " ")).format('DD.MM.YYYY')
-                    }
-                </td> 
+                      .replace("T", " ")
+                  ).format("DD.MM.YYYY")}
+                </td>
                 <td>
                   <span style={{ color: "green" }}>
                     <ProgressBar
@@ -162,22 +160,22 @@ const OpenChallenges = (props) => {
               {solvedChallenge.map((val) => (
                 <tr>
                   <td>#{val.idchallenges}</td>
-                  <td style = {{color: "darkblue"}}>
-                  <img
-                    src={challenge}
-                    alt=""
-                    className= {style.avatar2}
-                    />{val.titel}</td>
-                  <td><img
-                    src={belohnung}
-                    alt=""
-                    className= {style.avatar2}
-                    />{val.belohnung}</td>
-                  <td>                    {Moment(new Date(val.abgeschlossen_am)
-                      .toISOString()
-                      .slice(0, 19)
-                      .replace("T", " ")).format('DD.MM.YYYY')
-                    }
+                  <td style={{ color: "darkblue" }}>
+                    <img src={challenge} alt="" className={style.avatar2} />
+                    {val.titel}
+                  </td>
+                  <td>
+                    <img src={belohnung} alt="" className={style.avatar2} />
+                    {val.belohnung}
+                  </td>
+                  <td>
+                    {" "}
+                    {Moment(
+                      new Date(val.abgeschlossen_am)
+                        .toISOString()
+                        .slice(0, 19)
+                        .replace("T", " ")
+                    ).format("DD.MM.YYYY")}
                   </td>
                 </tr>
               ))}

@@ -121,7 +121,7 @@ h2 {
   border-style: groove;
 }
 .form {
-  width: 200px;
-  background-color: grey;
-  color: white;
+  background-color: #e4e4e4;
+  width: 120px;
+  height: 30px;
 }
