@@ -27,7 +27,8 @@ class Ticket extends Component {
       currentDescription: "",
       currentBezug: "",
       currentID: "",
-      progress: ""
+      progress: "",
+      res: ""
     };
   }
 
@@ -80,12 +81,18 @@ class Ticket extends Component {
       this.setState({ showBearbeiten: false });
       this.setState({ checked: 0 });
     }
+    function sleep(seconds) 
+    {
+      var e = new Date().getTime() + (seconds * 1000);
+      while (new Date().getTime() <= e) {}
+    }
+
+    
     const submitBearbeiten = () => {
       Axios.post("http://localhost:3001/api/insertInteraction", {
-        aktion: "Tickets_"+this.state.currentStatus.toString(),
-      }).then(() => {
-        console.log("succesfull insert");
+        aktion: "Tickets_"+this.state.currentStatus.toString()
       });
+
       if (this.state.currentStatus === "Geschlossen") {
         //Hier GIF einfügen
         this.setState({ alert: true });
@@ -97,21 +104,17 @@ class Ticket extends Component {
           console.log("succesfull insert");
         });
         this.setState({ticketsList: this.state.ticketsList.filter(item => item.idTickets !== this.state.currentID)})
-
+        sleep(1);
         Axios.get("http://localhost:3001/api/getChallengeProgress")
         .then((response) => {
           const progress = response.data;
+          console.log("p" + progress);
           this.setState({ progress: progress[0].challengeProgress });
+          console.log("Progress: " + this.state.progress)
           if(this.state.progress >= 1){
             this.setState({showToast: true})
           }
         })
-        .catch(function (error) {
-          console.log(error);
-        });
-
-
-
       } else {
         Axios.post("http://localhost:3001/api/updateTicket", {
           betreff: this.state.currentBetreff,

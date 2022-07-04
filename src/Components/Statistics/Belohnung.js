@@ -20,7 +20,6 @@ class Belohnung extends Component {
     return (
       <div className={style.container}>
         <h2>Meine Statistik: Belohnungen</h2>
-        <DashboardView />
         <Belohnungschart />
       </div>
     );

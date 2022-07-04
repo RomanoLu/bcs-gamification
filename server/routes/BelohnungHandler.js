@@ -28,7 +28,13 @@ router.get("/getBelohnung", (req, res) => {
   db.query(sqlSelect, (err, result) => {
     res.send(result);
   });
-})
+});
 
+router.get("/getVerdienteBelohnungen", (req, res) => {
+  const sqlSelect = "SELECT b.anzahl, count(c.idbelohnung) as absolviert, b.art FROM belohnungen b INNER JOIN challenges c ON c.idbelohnung LIKE b.art WHERE c.absolviert = 1 GROUP BY b.art";
+  db.query(sqlSelect, (err, result) => {
+    res.send(result);
+  });
+});
 
 module.exports = router;
