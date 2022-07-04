@@ -1,4 +1,4 @@
-import React, { Component, useState} from "react";
+import React, { Component, useState } from "react";
 import style from "./TicketsStyles.module.css";
 import { FaRegWindowClose } from "react-icons/fa";
 import { Table, Button, Form, Row, Col, Modal } from "react-bootstrap";
@@ -6,7 +6,7 @@ import Axios from "axios";
 import Notify from "../Notify";
 import ticket from "../Pictures/tickets.png";
 import aufgaben from "../Pictures/Aufgaben.png";
-import Moment from 'moment';
+import Moment from "moment";
 import Alert from "../Alert";
 
 class Ticket extends Component {
@@ -21,14 +21,14 @@ class Ticket extends Component {
       checked: 0,
       ticketsList: [],
       currentBetreff: "",
-      currentArt:"Fehler",
+      currentArt: "Fehler",
       currentStatus: "Neu",
       currentPrio: "Normal",
       currentDescription: "",
       currentBezug: "",
       currentID: "",
       progress: "",
-      res: ""
+      res: "",
     };
   }
 
@@ -45,17 +45,16 @@ class Ticket extends Component {
   }
 
   render() {
-    
     const openNeu = () => {
-      this.setState({ showNeu: true })
-    }
+      this.setState({ showNeu: true });
+    };
     const closeNeu = () => {
       this.setState({ showNeu: false });
-    }
+    };
     const submitNeu = () => {
-      this.setState({showNeu: false});
+      this.setState({ showNeu: false });
       Axios.post("http://localhost:3001/api/insertInteraction", {
-        aktion: "Tickets_"+this.state.currentStatus.toString(),
+        aktion: "Tickets_" + this.state.currentStatus.toString(),
       }).then(() => {
         console.log("succesfull insert");
       });
@@ -66,57 +65,59 @@ class Ticket extends Component {
         status: this.state.currentStatus,
         bezug: this.state.currentBezug,
         prio: this.state.currentPrio,
-        beschreibung: this.state.currentDescription
+        beschreibung: this.state.currentDescription,
       }).then(() => {
-        alert("Ticket succesfully created")
+        alert("Ticket succesfully created");
         console.log("succesfull insert");
       });
-    }
-
+    };
 
     const openBearbeiten = () => {
-      this.setState({ showBearbeiten: true })
-    }
+      this.setState({ showBearbeiten: true });
+    };
     const closeBearbeiten = () => {
       this.setState({ showBearbeiten: false });
       this.setState({ checked: 0 });
-    }
-    function sleep(seconds) 
-    {
-      var e = new Date().getTime() + (seconds * 1000);
+    };
+    function sleep(seconds) {
+      var e = new Date().getTime() + seconds * 1000;
       while (new Date().getTime() <= e) {}
     }
 
-    
     const submitBearbeiten = () => {
       Axios.post("http://localhost:3001/api/insertInteraction", {
-        aktion: "Tickets_"+this.state.currentStatus.toString()
+        aktion: "Tickets_" + this.state.currentStatus.toString(),
       });
 
       if (this.state.currentStatus === "Geschlossen") {
         //Hier GIF einfügen
-        if(this.state.currentArt === "Fehler"){
+        if (this.state.currentArt === "Fehler") {
           this.setState({ alert: true });
         }
-        
+
         closeBearbeiten();
         Axios.post("http://localhost:3001/api/deleteTicket", {
-          idTickets: this.state.currentID
+          idTickets: this.state.currentID,
         }).then(() => {
           console.log("succesfull insert");
         });
-        this.setState({ticketsList: this.state.ticketsList.filter(item => item.idTickets !== this.state.currentID)})
+        this.setState({
+          ticketsList: this.state.ticketsList.filter(
+            (item) => item.idTickets !== this.state.currentID
+          ),
+        });
         sleep(1);
-        Axios.get("http://localhost:3001/api/getChallengeProgress")
-        .then((response) => {
-          const progress = response.data;
-          console.log("p" + progress);
-          this.setState({ progress: progress[0].challengeProgress });
-          console.log("Progress: " + this.state.progress)
-          if(this.state.progress >= 1){
-            this.setState({showToast: true})
+        Axios.get("http://localhost:3001/api/getChallengeProgress").then(
+          (response) => {
+            const progress = response.data;
+            console.log("p" + progress);
+            this.setState({ progress: progress[0].challengeProgress });
+            console.log("Progress: " + this.state.progress);
+            if (this.state.progress >= 1) {
+              this.setState({ showToast: true });
+            }
           }
-        })
+        );
       } else {
         Axios.post("http://localhost:3001/api/updateTicket", {
           betreff: this.state.currentBetreff,
@@ -125,38 +126,39 @@ class Ticket extends Component {
           status: this.state.currentStatus,
           id: this.state.currentID,
           art: this.state.currentArt,
-          beschreibung: this.state.currentDescription
+          beschreibung: this.state.currentDescription,
         }).then(() => {
           console.log("succesfull insert");
         });
-        
-        this.setState({ticketsList:         this.state.ticketsList.map(item => {
-          if(item.idTickets === this.state.currentID) {
-            return {...item, Betreff: this.state.currentBetreff, Bezug: this.state.currentBezug, Status: this.state.currentStatus,
-            Priorität: this.state.currentPrio, Art: this.state.currentArt, Beschreibung: this.state.currentDescription}
-          }
-          else {
-            return{...item}
-          }
-        })})
+
+        this.setState({
+          ticketsList: this.state.ticketsList.map((item) => {
+            if (item.idTickets === this.state.currentID) {
+              return {
+                ...item,
+                Betreff: this.state.currentBetreff,
+                Bezug: this.state.currentBezug,
+                Status: this.state.currentStatus,
+                Priorität: this.state.currentPrio,
+                Art: this.state.currentArt,
+                Beschreibung: this.state.currentDescription,
+              };
+            } else {
+              return { ...item };
+            }
+          }),
+        });
         closeBearbeiten();
       }
     };
     return (
       <div className={style.container}>
-        {this.state.showToast ? 
-              <Alert />: null
-        }
-        {this.state.alert ? 
-              <Notify />
-        : null
-        }
+        {this.state.showToast ? <Alert /> : null}
+        {this.state.alert ? <Notify /> : null}
         <h2 style={{ marginLeft: "3%" }}>Meine Tickets: Alle meine Tickets</h2>
-
 
         <Form style={{ marginLeft: "3.8%" }}>
           <Row>
-
             <Form.Select size="sm" className={style.dropdowns}>
               <option>Zeitraum</option>
             </Form.Select>
@@ -169,7 +171,7 @@ class Ticket extends Component {
               <option>Aktualisiert am</option>
             </Form.Select>
 
-            <Form.Select size="sm" className={style.dropdowns} >
+            <Form.Select size="sm" className={style.dropdowns}>
               <option>Gesamt</option>
               <option>Jahr</option>
               <option>Geschäftsjahr</option>
@@ -177,18 +179,12 @@ class Ticket extends Component {
               <option>Monat</option>
             </Form.Select>
 
+            <Button className={style.newButton} onClick={openNeu}>
+              <img src={ticket} alt="" className={style.avatar2} />
+              Neu
+            </Button>
           </Row>
         </Form>
-        <div className={style.buttons}>
-          <Button className={style.newButton} onClick={openNeu}>
-            <img
-              src={ticket}
-              alt=""
-              className={style.avatar2}
-            />
-            Neu
-          </Button>
-        </div>
         <div className={style.container2}>
           <Table responsive="sm">
             <tbody>
@@ -210,118 +206,82 @@ class Ticket extends Component {
                       id={val.idTickets}
                       checked={this.state.checked === val.idTickets}
                       onChange={(e) => {
-                        this.setState({currentBetreff: val.Betreff})
-                        this.setState({currentStatus: val.Status})
-                        this.setState({currentPrio: val.Priorität})
-                        this.setState({currentDescription: val.Beschreibung})
-                        this.setState({currentBezug: val.Bezug})
-                        this.setState({currentID : val.idTickets})
-                        this.setState({currentArt: val.Art})
+                        this.setState({ currentBetreff: val.Betreff });
+                        this.setState({ currentStatus: val.Status });
+                        this.setState({ currentPrio: val.Priorität });
+                        this.setState({ currentDescription: val.Beschreibung });
+                        this.setState({ currentBezug: val.Bezug });
+                        this.setState({ currentID: val.idTickets });
+                        this.setState({ currentArt: val.Art });
                         var i = val.idTickets;
                         this.setState({ checked: i });
-                        this.setState({ showBearbeiten: true });                       
+                        this.setState({ showBearbeiten: true });
                       }}
                     />
                   </td>
                   <td> #{val.idTickets}</td>
                   <td>
-                    <img
-                      src={ticket}
-                      alt=""
-                      className={style.avatar2}
-                    />
+                    <img src={ticket} alt="" className={style.avatar2} />
                     <a href="/bearbeiten"> {val.Betreff}</a>
                   </td>
 
-
                   {(() => {
                     if (val.Status === "Neu") {
-                      return (
-                        <td style={{ color: "blue" }}>{val.Status}</td>
-                      )
+                      return <td style={{ color: "blue" }}>{val.Status}</td>;
                     } else if (val.Status === "Gesichtet") {
-                      return (
-                        <td style={{ color: "red" }}>{val.Status}</td>
-                      )
+                      return <td style={{ color: "red" }}>{val.Status}</td>;
                     } else if (val.Status === "Klärung") {
-                      return (
-                        <td >{val.Status}</td>
-                      )
+                      return <td>{val.Status}</td>;
                     } else if (val.Status === "Absprache") {
-                      return (
-                        <td >{val.Status}</td>
-                      )
+                      return <td>{val.Status}</td>;
                     } else if (val.Status === "Angeboten") {
-                      return (
-                        <td style={{ color: "red" }}>{val.Status}</td>
-                      )
+                      return <td style={{ color: "red" }}>{val.Status}</td>;
                     } else if (val.Status === "Aufgenommen") {
-                      return (
-                        <td >{val.Status}</td>
-                      )
+                      return <td>{val.Status}</td>;
                     } else if (val.Status === "Eingeplant") {
-                      return (
-                        <td>{val.Status}</td>
-                      )
+                      return <td>{val.Status}</td>;
                     } else if (val.Status === "Bearbeitung") {
-                      return (
-                        <td>{val.Status}</td>
-                      )
+                      return <td>{val.Status}</td>;
                     } else if (val.Status === "Abnahme") {
-                      return (
-                        <td style={{ color: "green" }}>{val.Status}</td>
-                      )
-                    }
-                    else if (val.Status === "Geschlossen") {
-                      return (
-                        <td style={{ color: "green" }}>{val.Status}</td>
-                      )
+                      return <td style={{ color: "green" }}>{val.Status}</td>;
+                    } else if (val.Status === "Geschlossen") {
+                      return <td style={{ color: "green" }}>{val.Status}</td>;
                     } else {
-                      return (
-                        <td style={{ color: "red" }}>{val.Status}</td>
-                      )
+                      return <td style={{ color: "red" }}>{val.Status}</td>;
                     }
                   })()}
-
 
                   {(() => {
                     if (val.Priorität === "Hoch") {
                       return (
                         <td style={{ color: "#f0f9ff" }}>{val.Priorität}</td>
-                      )
+                      );
                     } else if (val.Priorität === "Sehr Hoch") {
                       return (
                         <td style={{ color: "#FF0000" }}>{val.Priorität}</td>
-                      )
+                      );
                     } else if (val.Priorität === "Maximal") {
-                      return (
-                        <td>{val.Priorität}</td>
-                      )
+                      return <td>{val.Priorität}</td>;
                     } else if (val.Priorität === "Normal") {
-                      return (
-                        <td>{val.Priorität}</td>
-                      )
-                    }
-                    else {
+                      return <td>{val.Priorität}</td>;
+                    } else {
                       return (
                         <td style={{ color: "#f0f9ff" }}>{val.Priorität}</td>
-                      )
+                      );
                     }
                   })()}
 
                   <td>
-                    <img
-                      src={aufgaben}
-                      alt=""
-                      className={style.avatar2}
-                    />
-                    {val.Bezug}</td>
+                    <img src={aufgaben} alt="" className={style.avatar2} />
+                    {val.Bezug}
+                  </td>
                   <td>
-                    {Moment(new Date(val.Erstellt_am)
-                      .toISOString()
-                      .slice(0, 19)
-                      .replace("T", " ")).format('DD.MM.YYYY')
-                    }
+                    {Moment(
+                      new Date(val.Erstellt_am)
+                        .toISOString()
+                        .slice(0, 19)
+                        .replace("T", " ")
+                    ).format("DD.MM.YYYY")}
                   </td>
                 </tr>
               ))}
@@ -331,23 +291,27 @@ class Ticket extends Component {
         {/*Modal - Neues Ticket anlegen */}
         <Modal size="lg" show={this.state.showNeu} onHide={closeNeu} centered>
           <Modal.Header closeButton onClick={closeBearbeiten}>
-            <Modal.Title><img
-                      src={ticket}
-                      alt=""
-                      className={style.avatar}
-                    />Ticket anlegen</Modal.Title>
+            <Modal.Title>
+              <img src={ticket} alt="" className={style.avatar} />
+              Ticket anlegen
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form className={style.formcontainer}>
               <div className={style.parent}>
                 <div className={style.div1}>
                   <Form.Group className="mb-3" htmlFor="disabledTextInput">
-                    <Form.Label> Betreff <span style={{ color: "red" }}>*</span></Form.Label>
+                    <Form.Label>
+                      {" "}
+                      Betreff <span style={{ color: "red" }}>*</span>
+                    </Form.Label>
                     <Form.Control
-                        onChange={(e) => {
+                      onChange={(e) => {
                         this.setState({ currentBetreff: e.target.value });
-                      }} className={style.tfstyle} type="email" />
-                      
+                      }}
+                      className={style.tfstyle}
+                      type="email"
+                    />
                   </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="disabledTextInput">
@@ -381,10 +345,7 @@ class Ticket extends Component {
                       </option>
                     </Form.Select>
                   </Form.Group>
-                  <Form.Group
-                    className="mb-3"
-                    htmlFor="disabledTextInput"
-                  >
+                  <Form.Group className="mb-3" htmlFor="disabledTextInput">
                     <Form.Label>
                       Bezug <span style={{ color: "red" }}>*</span>
                     </Form.Label>
@@ -469,7 +430,7 @@ class Ticket extends Component {
                       onChange={(e) => {
                         this.setState({ currentPrio: e.target.value });
                       }}
-                      >
+                    >
                       <option style={{ backgroundColor: "#f0f9ff" }}>
                         Maximal
                       </option>
@@ -518,8 +479,8 @@ class Ticket extends Component {
                       className={style.tfstyle2}
                       onChange={(e) => {
                         this.setState({ currentDescription: e.target.value });
-                      }}                   
-                      />
+                      }}
+                    />
                   </Form.Group>
                 </div>
               </div>
@@ -527,31 +488,42 @@ class Ticket extends Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="primary" onClick={submitNeu}>Ticket anlegen</Button>
+            <Button variant="primary" onClick={submitNeu}>
+              Ticket anlegen
+            </Button>
           </Modal.Footer>
         </Modal>
 
         {/*Modal - Ticket bearbeiten */}
-        <Modal size="lg" show={this.state.showBearbeiten} onHide={closeBearbeiten} centered>
+        <Modal
+          size="lg"
+          show={this.state.showBearbeiten}
+          onHide={closeBearbeiten}
+          centered
+        >
           <Modal.Header closeButton>
-            <Modal.Title><img
-                      src={ticket}
-                      alt=""
-                      className={style.avatar}
-                    />Ticket aktualisieren</Modal.Title>
+            <Modal.Title>
+              <img src={ticket} alt="" className={style.avatar} />
+              Ticket aktualisieren
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form className={style.formcontainer}>
               <div className={style.parent}>
                 <div className={style.div1}>
                   <Form.Group className="mb-3" htmlFor="disabledTextInput">
-                    <Form.Label> Betreff <span style={{ color: "red" }}>*</span></Form.Label>
+                    <Form.Label>
+                      {" "}
+                      Betreff <span style={{ color: "red" }}>*</span>
+                    </Form.Label>
                     <Form.Control
-                        defaultValue={this.state.currentBetreff}
-                        onChange={(e) => {
+                      defaultValue={this.state.currentBetreff}
+                      onChange={(e) => {
                         this.setState({ currentBetreff: e.target.value });
-                      }} className={style.tfstyle} type="email" />
-                      
+                      }}
+                      className={style.tfstyle}
+                      type="email"
+                    />
                   </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="disabledTextInput">
@@ -586,10 +558,7 @@ class Ticket extends Component {
                       </option>
                     </Form.Select>
                   </Form.Group>
-                  <Form.Group
-                    className="mb-3"
-                    htmlFor="disabledTextInput"
-                  >
+                  <Form.Group className="mb-3" htmlFor="disabledTextInput">
                     <Form.Label>
                       Bezug <span style={{ color: "red" }}>*</span>
                     </Form.Label>
@@ -682,7 +651,7 @@ class Ticket extends Component {
                       onChange={(e) => {
                         this.setState({ currentPrio: e.target.value });
                       }}
-                      >
+                    >
                       <option style={{ backgroundColor: "#f0f9ff" }}>
                         Maximal
                       </option>
@@ -741,7 +710,9 @@ class Ticket extends Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="primary" onClick={submitBearbeiten}>Ticket aktualisieren</Button>
+            <Button variant="primary" onClick={submitBearbeiten}>
+              Ticket aktualisieren
+            </Button>
           </Modal.Footer>
         </Modal>
       </div>
