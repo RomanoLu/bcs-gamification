@@ -40,11 +40,14 @@ class Ticket extends Component {
         console.log(this.state.ticketsList);
       })
       .catch(function (error) {
-        console.log(error);
       });
   }
 
   render() {
+    function sleep(seconds) {
+      var e = new Date().getTime() + seconds * 1000;
+      while (new Date().getTime() <= e) {}
+    }
     const openNeu = () => {
       this.setState({ showNeu: true });
     };
@@ -56,7 +59,6 @@ class Ticket extends Component {
       Axios.post("http://localhost:3001/api/insertInteraction", {
         aktion: "Tickets_" + this.state.currentStatus.toString(),
       }).then(() => {
-        console.log("succesfull insert");
       });
 
       Axios.post("http://localhost:3001/api/insertTicket", {
@@ -66,10 +68,39 @@ class Ticket extends Component {
         bezug: this.state.currentBezug,
         prio: this.state.currentPrio,
         beschreibung: this.state.currentDescription,
-      }).then(() => {
-        alert("Ticket succesfully created");
-        console.log("succesfull insert");
+      }).then((e) => {
+        console.log("succesfull inserted" + e);
+      }).catch((e) => {
+        console.log(e);
       });
+
+      sleep(1.5);
+
+      Axios.get("http://localhost:3001/api/getTickets")
+      .then((response) => {
+        const ticketsList = response.data;
+        this.setState({ ticketsList });
+        console.log(this.state.ticketsList);
+      })
+      .catch(function (error) {
+      });
+      // var lastItem = this.state.ticketsList.pop();
+      // const a = {
+      //   "idTickets": lastItem.idTickets+1,
+      //   "Betreff": this.state.currentBetreff,
+      //   "Bezug": this.state.currentBezug,
+      //   "Status": this.state.currentStatus,
+      //   "Priorität": this.state.currentPrio,
+      //   "Erstellt_am": "2022-07-04T16:17:53.000Z",
+      //   "Art": this.state.currentArt,
+      //   "Beschreibung": this.state.currentDescription
+      // }
+      // this.setState(prevState =>({
+      //   ticketsList: [...prevState.ticketsList, a]
+      // }))
+      // console.log(a);
+      // console.log(this.state.ticketsList[10]);
+
     };
 
     const openBearbeiten = () => {
@@ -79,10 +110,6 @@ class Ticket extends Component {
       this.setState({ showBearbeiten: false });
       this.setState({ checked: 0 });
     };
-    function sleep(seconds) {
-      var e = new Date().getTime() + seconds * 1000;
-      while (new Date().getTime() <= e) {}
-    }
 
     const submitBearbeiten = () => {
       Axios.post("http://localhost:3001/api/insertInteraction", {
@@ -99,7 +126,6 @@ class Ticket extends Component {
         Axios.post("http://localhost:3001/api/deleteTicket", {
           idTickets: this.state.currentID,
         }).then(() => {
-          console.log("succesfull insert");
         });
         this.setState({
           ticketsList: this.state.ticketsList.filter(
@@ -110,9 +136,7 @@ class Ticket extends Component {
         Axios.get("http://localhost:3001/api/getChallengeProgress").then(
           (response) => {
             const progress = response.data;
-            console.log("p" + progress);
             this.setState({ progress: progress[0].challengeProgress });
-            console.log("Progress: " + this.state.progress);
             if (this.state.progress >= 1) {
               this.setState({ showToast: true });
             }
@@ -128,7 +152,6 @@ class Ticket extends Component {
           art: this.state.currentArt,
           beschreibung: this.state.currentDescription,
         }).then(() => {
-          console.log("succesfull insert");
         });
 
         this.setState({
