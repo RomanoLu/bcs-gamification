@@ -95,8 +95,10 @@ class Ticket extends Component {
 
       if (this.state.currentStatus === "Geschlossen") {
         //Hier GIF einfügen
-        this.setState({ alert: true });
-
+        if(this.state.currentArt === "Fehler"){
+          this.setState({ alert: true });
+        }
+        
         closeBearbeiten();
         Axios.post("http://localhost:3001/api/deleteTicket", {
           idTickets: this.state.currentID
