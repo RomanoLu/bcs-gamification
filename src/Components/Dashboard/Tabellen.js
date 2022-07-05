@@ -106,7 +106,7 @@ function Tabellen(props) {
                     src={aufgaben}
                     alt=""
                     className= {style.avatar2}
-                    /> Tickets
+                    /> Tickets 
                 </td>
                 <td>
                   <img
@@ -340,7 +340,7 @@ function Tabellen(props) {
         ) : (
           props.display === "Ticket" && (
             <Table responsive="sm">
-              <caption className={style.caption}>Tickets</caption>
+              <caption className={style.caption}>Tickets (Kunde)</caption>
               <tbody>
                 <tr className={style.secondhead}>
                   <td style={{ width: "5%" }}>ID</td>

@@ -56,7 +56,7 @@ class Statistics extends Component {
     }
     return (
       <div className={style.container}>
-        <h2>Meine Statistik: Challenge</h2>
+        <h2 style={{ marginLeft: "3.8%" }}>Meine Challenges</h2>
         <Form style={{ marginLeft: "3.8%" }}>
           <Form.Group>
             <Form.Select

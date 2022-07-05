@@ -30,9 +30,11 @@ class Header extends React.Component {
         <div className={HeaderCSS.wrapper}>
           <div className={HeaderCSS.search}>
             <Navbar>
-              <Navbar.Brand>
+              <Navbar.Brand >
                 {" "}
-                <img src={Logo} width="30px" height="30px" />{" "}
+                <a href="/dashboard">
+                <img style={{marginLeft: "15px"}}  src={Logo} width="30px" height="30px" />{" "}
+                </a>
               </Navbar.Brand>
               <Navbar.Toggle className={HeaderCSS.coloring} />
               <Navbar.Collapse>
@@ -40,7 +42,6 @@ class Header extends React.Component {
                   <Nav.Link href="/dashboard">Mein Bereich</Nav.Link>
                   <Nav.Link href="/tickets">Tickets</Nav.Link>
                   <Nav.Link href="/profile">Profil</Nav.Link>
-                  <Nav.Link href="/statistics">Challenge</Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
@@ -67,11 +68,14 @@ class Header extends React.Component {
               <HiQuestionMarkCircle className={HeaderCSS.icon} />
             </div>
             <div className={HeaderCSS.item}>
+              <a href="/profile">
               <img
+                
                 src="https://profile-images.xing.com/images/4a6cc053bd0c65e3ecd609eb3f39188c-1/fatih-kuruscu.1024x1024.jpg"
                 alt=""
                 className={HeaderCSS.avatar}
               />
+              </a>
             </div>
             <div className={HeaderCSS.item}>
               <RiSettings5Fill className={HeaderCSS.icon} onClick = {nav_extra}/>
@@ -82,9 +86,9 @@ class Header extends React.Component {
       </div>
       <div className={HeaderCSS.settingNav}>
       <Dropdown.Menu show = {this.state.showPopup}>
-        <Dropdown.Item href="/newChallenge" onClick = {nav_extra} eventKey="1">Challenge</Dropdown.Item>
-        <Dropdown.Item href="/statistics" onClick = {nav_extra} eventKey="2">Statistik</Dropdown.Item>
-        <Dropdown.Item href="/belohnungen" onClick = {nav_extra} eventKey="3">Meine Belohnungen</Dropdown.Item>
+        <Dropdown.Item href="/newChallenge" onClick = {nav_extra} eventKey="1">Challenge (Admin)</Dropdown.Item>
+        <Dropdown.Item href="/statistics" onClick = {nav_extra} eventKey="2">Challenge</Dropdown.Item>
+        <Dropdown.Item href="/belohnungen" onClick = {nav_extra} eventKey="3">Belohnungen</Dropdown.Item>
       </Dropdown.Menu>
       </div>
 

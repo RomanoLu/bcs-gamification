@@ -64,7 +64,7 @@ router.post('/updateChallenge', (req, res) => {
 
 router.get('/getChallengeProgress', (req,res) => {
     // const sqlSelect = 'SELECT (count(*) / (SELECT anzahl from bcs.challenges WHERE idchallenges = ?)) AS challengeProgress FROM userinteraction WHERE (SELECT start from bcs.challenges where idchallenges = ?) < Datum AND (SELECT ende from bcs.challenges where idchallenges = ?) > Datum AND Aktion = "Tickets_Geschlossen"';
-    const sqlSelect = '(SELECT (count(*)/(Select anzahl FROM bcs.challenges WHERE now() < ende AND aktion = "Tickets" AND angenommen = 1 AND absolviert IS NULL)) AS challengeProgress FROM userinteraction WHERE (Select start FROM bcs.challenges WHERE now() < ende AND aktion = "Tickets" AND angenommen = 1 AND absolviert IS NULL) < Datum AND (Select ende FROM bcs.challenges WHERE now() < ende AND aktion = "Tickets" AND angenommen = 1 AND absolviert IS NULL) > Datum AND Aktion = "Tickets_Geschlossen")';
+    const sqlSelect = '(SELECT (count(*)/(Select anzahl FROM bcs.challenges WHERE now() < ende AND art = "Tickets" AND angenommen = 1 AND absolviert IS NULL)) AS challengeProgress FROM userinteraction WHERE (Select start FROM bcs.challenges WHERE now() < ende AND art = "Tickets" AND angenommen = 1 AND absolviert IS NULL) < Datum AND (Select ende FROM bcs.challenges WHERE now() < ende AND art = "Tickets" AND angenommen = 1 AND absolviert IS NULL) > Datum AND Aktion = "Tickets_Geschlossen")';
     db.query(sqlSelect,(err, result) => {
         res.send(result);
     })

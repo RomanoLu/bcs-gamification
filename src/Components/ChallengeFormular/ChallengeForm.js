@@ -18,7 +18,7 @@ class ChallengeForm extends React.Component {
       zeit: 0,
       priorität: "",
       bewertung: "",
-      anzahl: 0,
+      anzahl: 1,
       ende: "",
       aktion: "Tickets",
       buchung_über: "",
@@ -69,7 +69,7 @@ class ChallengeForm extends React.Component {
     };
     return (
       <>
-        <h2>Neue Challenge anlegen</h2>
+        <h2 style={{ marginLeft: "15%" }}>Neue Challenge anlegen</h2>
         <div className={ChallengeFormCSS.flexboxContainer}>
           <Form noValidate validated={this.state.validated} onSubmit={submit}>
             <fieldset>
